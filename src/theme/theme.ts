@@ -6,7 +6,7 @@ export const theme = {
         lightGreen: '#D1FAE5',
         lime: '#A7D129',
         cream: '#FFD',
-    } as const,
+    },
     fonts: {
         primaryFont: "'Ubuntu', Arial, sans-serif",
         accentFont: "'Work Sans', Arial, sans-serif",

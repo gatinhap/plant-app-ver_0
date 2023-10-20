@@ -12,7 +12,6 @@ export const NavItemStyled = styled(Link)<{
 	border-radius: 44px;
 	padding: 10px 17px;
 	width: fit-content;
-	width: -moz-fit-content;
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.70);
 	font-size: ${({theme}) => theme.fontSizes.regularParagraph}px;
 	font-weight: ${({theme}) => theme.fontWeights.normal};
