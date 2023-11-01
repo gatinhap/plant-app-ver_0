@@ -15,7 +15,7 @@ const AddNewPlant = () => {
                 moja kolekcja
             </NavItem>
             <h3>dodaj roślinkę</h3>
-            <Form/>
+            <Form />
 
         </PageComponent>
     )

@@ -18,7 +18,6 @@ const MyCollectionPage = () => {
             </CallToActionAsLink>
 
             <PlantCollection/>
-
         </PageComponent>
     )
 }

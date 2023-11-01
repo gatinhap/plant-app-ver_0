@@ -1,32 +1,28 @@
 import {InputFieldStyled} from "./InputAndLabel.styles.ts";
 import {InputFieldProps} from "./InputAndLabel.types.ts";
+import {forwardRef} from "react";
 
-const InputField = (
+const InputField: InputFieldProps = forwardRef<HTMLInputElement, InputFieldProps>((
     {
         height,
         type,
-        value,
-        name,
         placeholder,
         accept,
-        handleChange,
-        onKeyDown
-    }: InputFieldProps) => {
+        ...props
+    }, ref) => {
 
     return (
         <>
             <InputFieldStyled
+                ref={ref}
                 $height={height}
                 type={type}
-                value={value}
-                name={name}
                 placeholder={placeholder}
                 accept={accept}
-                onChange={handleChange}
-                onKeyDown={onKeyDown}
+                {...props}
             />
         </>
     )
-}
+})
 
 export default InputField;
