@@ -3,18 +3,14 @@ import {useForm} from "react-hook-form";
 import FormButton from "./FormButton.tsx";
 import {Color} from "../colors.ts";
 import {StyledForm} from "./Form.styles.ts";
-import {useEffect, useState} from "react";
-import NavItem from "../navItem/NavItem.tsx";
 import {nanoid} from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
+import NavItem from "../navItem/NavItem.tsx";
 
 const Form = () => {
     const storedPlants = JSON.parse(localStorage.getItem('formData'));
 
-    const [plant, setPlant] = useState(storedPlants ? storedPlants : []);
-
-    //not use external data to populate initial state
-    //so how should I display local storage plants with state?
+    const plantsArray = storedPlants ? storedPlants : []
 
     const {
         register,
@@ -29,22 +25,14 @@ const Form = () => {
             plantID: id,
         }
 
-        setPlant(prevState => {
-            return [
-                ...prevState,
-                newPlant
-            ]
-        })
+        plantsArray.push(newPlant)
+
+        localStorage.setItem("formData", JSON.stringify(plantsArray))
+
         reset();
     }
 
-    //save plant in local storage
-    useEffect(() => {
-        localStorage.setItem("formData", JSON.stringify(plant))
-    }, [plant])
-
-
-    console.log(plant)
+    console.log(plantsArray)
 
     return (
         <>
@@ -86,7 +74,7 @@ const Form = () => {
 
                 <h4>plants from local storage</h4>
 
-                {plant.map((item, index) => {
+                {plantsArray.map((item, index) => {
                     return (
                         <div key={index}>
                             <NavItem
