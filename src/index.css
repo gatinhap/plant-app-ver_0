@@ -1,67 +1,77 @@
 :root {
-    /*colors*/
+  /*colors*/
 
-    --primary-green: #02383C;
-    --primary-green-with-overlay: linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%), #02383C;
-    --medium-green: #065F46;
-    --light-green: #D1FAE5;
-    --lime: #A7D129;
-    --cream: #FFD;
+  --primary-green: #02383c;
+  --primary-green-with-overlay: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    #02383c;
+  --medium-green: #065f46;
+  --light-green: #d1fae5;
+  --lime: #a7d129;
+  --cream: #ffd;
 
-    /*transitions*/
-    --primary-transition: all .3s ease;
+  /*transitions*/
+  --primary-transition: all 0.3s ease;
 
-    /*fonts*/
-    --primary-font: 'Ubuntu', Arial, sans-serif;
-    --accent-font: 'Work Sans', Arial, sans-serif;
+  /*fonts*/
+  --primary-font: "Ubuntu", Arial, sans-serif;
+  --accent-font: "Work Sans", Arial, sans-serif;
 }
 
 body {
-    background: var(--primary-green);
-    font-family: var(--primary-font);
-    font-size: 15px;
+  background: var(--primary-green);
+  font-family: var(--primary-font);
+  font-size: 15px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0.5em 0;
-    color: var(--lime);
-    font-weight: 800;
-    font-family: var(--accent-font);
-    line-height: 1;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0.5em 0;
+  color: var(--lime);
+  font-weight: 800;
+  font-family: var(--accent-font);
+  line-height: 1;
 }
 
 h1 {
-    font-size: 78px;
-    letter-spacing: -1.17px;
+  font-size: 78px;
+  letter-spacing: -1.17px;
 }
 
 h2 {
-    font-size: 59px;
-    letter-spacing: -0.885px;
+  font-size: 59px;
+  letter-spacing: -0.885px;
 }
 
 h3 {
-    font-size: 44px;
-    letter-spacing: -0.66px;
+  font-size: 44px;
+  letter-spacing: -0.66px;
 }
 
 h4 {
-    font-size: 33px;
-    letter-spacing: -0.495px;
+  font-size: 33px;
+  letter-spacing: -0.495px;
 }
 
 h5 {
-    font-size: 25px;
-    letter-spacing: -0.375px;
+  font-size: 25px;
+  letter-spacing: -0.375px;
 }
 
 h6 {
-    font-size: 18px;
-    letter-spacing: -0.27px;
+  font-size: 18px;
+  letter-spacing: -0.27px;
 }
 
 .render-on-top {
-    position: absolute;
-    top: 10px;
-    right: 0;
+  position: absolute;
+  top: 10px;
+  right: 0;
 }
