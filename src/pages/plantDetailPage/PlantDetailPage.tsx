@@ -1,29 +1,26 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
-import {theme} from "../../theme/theme.ts";
-import plant from '../../assets/monstera.png'
+import { theme } from "../../theme/theme.ts";
+import plant from "../../assets/monstera.png";
 import PlantImage from "../../components/plantDetails/PlantImage.tsx";
 import PlantInfo from "../../components/plantDetails/PlantInfo.tsx";
 import PlantNav from "../../components/plantDetails/PlantNav.tsx";
 import { Route, Routes } from "react-router-dom";
 
 const PlantDetailPage = () => {
-    return (
-        <PageComponent>
-            <h3>Moja monsterka</h3>
-            <PlantImage
-                imgSrc={plant}
-                isCustomImage={true}
-            />
-            <NavItem
-                backgroundColor={theme.colors.lightGreen}
-                color={theme.colors.mediumGreen}
-                linkTo={'/'}
-                shouldDisplay={true}
-            >
-                moja kolekcja
-            </NavItem>
-            <PlantNav/>
+  return (
+    <PageComponent>
+      <h3>Moja monsterka</h3>
+      <PlantImage imgSrc={plant} isCustomImage={true} />
+      <NavItem
+        backgroundColor={theme.colors.lightGreen}
+        color={theme.colors.mediumGreen}
+        linkTo={"/"}
+        shouldDisplay={true}
+      >
+        moja kolekcja
+      </NavItem>
+      <PlantNav />
 
       {/*using Routes here will render components below nav, one at a time*/}
       <Routes>

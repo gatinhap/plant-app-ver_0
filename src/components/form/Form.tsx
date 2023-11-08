@@ -1,10 +1,16 @@
 import LabelField from "../inputAndLabel/LabelField.tsx";
 import InputField from "../inputAndLabel/InputField.tsx";
 import FormButton from "./FormButton.tsx";
-import {StyledForm} from "./Form.styles.ts";
-import {theme} from "../../theme/theme.ts";
-import {ChangeEvent, KeyboardEvent, SyntheticEvent, useEffect, useState} from "react";
-import {nanoid} from "nanoid";
+import { StyledForm } from "./Form.styles.ts";
+import { theme } from "../../theme/theme.ts";
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
+import { nanoid } from "nanoid";
 import NavItem from "../navItem/NavItem.tsx";
 
 //retrieve data from local storage
@@ -119,36 +125,37 @@ const Form = () => {
           </LabelField>
         </div>
 
-                <FormButton
-                    type={'submit'}
-                    color={theme.colors.cream}
-                    backgroundColor={theme.colors.mediumGreen}
-                    handleClick={submitFormData}
-                >
-                    zapisz
-                </FormButton>
-            </StyledForm>
+        <FormButton
+          type={"submit"}
+          color={theme.colors.cream}
+          backgroundColor={theme.colors.mediumGreen}
+          handleClick={submitFormData}
+        >
+          zapisz
+        </FormButton>
+      </StyledForm>
 
-            <h4>from local storage</h4>
-            <p style={{color: theme.colors.cream}}>To check if data is correctly received. For now it's not really
-                working. The
-                context will be created later on and initialFormData mapped in correct places</p>
+      <h4>from local storage</h4>
+      <p style={{ color: theme.colors.cream }}>
+        To check if data is correctly received. For now it's not really working.
+        The context will be created later on and initialFormData mapped in
+        correct places
+      </p>
 
-            {initialFormData.plants.map((item, index) => {
-                return (
-                    <NavItem
-                        backgroundColor={theme.colors.lightGreen}
-                        color={theme.colors.mediumGreen}
-                        key={index}
-                        linkTo={`/${item.plantName}`}
-                    >
-                        {item.plantName}
-                    </NavItem>
-                )
-            })}
-        </>
-
-    )
-}
+      {initialFormData.plants.map((item, index) => {
+        return (
+          <NavItem
+            backgroundColor={theme.colors.lightGreen}
+            color={theme.colors.mediumGreen}
+            key={index}
+            linkTo={`/${item.plantName}`}
+          >
+            {item.plantName}
+          </NavItem>
+        );
+      })}
+    </>
+  );
+};
 
 export default Form;
