@@ -7,3 +7,10 @@ export type FormButtonProps = {
   handleClick?: () => void | undefined;
   type?: "button" | "submit" | "reset" | undefined;
 };
+
+export type FormValues = {
+  plantID: string;
+  plantName: string;
+  watering: string;
+  misting: string;
+};

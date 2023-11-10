@@ -1,34 +1,34 @@
 import LabelField from "../inputAndLabel/LabelField.tsx";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
 import { Color } from "../colors.ts";
 import { StyledForm } from "./Form.styles.ts";
 import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
 import NavItem from "../navItem/NavItem.tsx";
+import { FormValues } from "./Form.types.ts";
 
 const Form = () => {
-  const storedPlants = JSON.parse(localStorage.getItem("formData"));
+  const plantsCollection: FormValues[] =
+    JSON.parse(localStorage.getItem("formData") || "") || [];
 
-  const plantsArray = storedPlants ? storedPlants : [];
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
-  const { register, handleSubmit, reset } = useForm();
-
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     const id = nanoid();
     const newPlant = {
       ...data,
       plantID: id,
     };
 
-    plantsArray.push(newPlant);
+    plantsCollection.push(newPlant);
 
-    localStorage.setItem("formData", JSON.stringify(plantsArray));
+    localStorage.setItem("formData", JSON.stringify(plantsCollection));
 
     reset();
   };
 
-  console.log(plantsArray);
+  console.log(plantsCollection);
 
   return (
     <>
@@ -74,9 +74,9 @@ const Form = () => {
 
         <h4>plants from local storage</h4>
 
-        {plantsArray.map((item, index) => {
+        {plantsCollection.map((item) => {
           return (
-            <div key={index}>
+            <div key={item.plantID}>
               <NavItem
                 backgroundColor={Color.lightGreen}
                 color={Color.mediumGreen}
