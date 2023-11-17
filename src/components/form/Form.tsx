@@ -1,161 +1,94 @@
 import LabelField from "../inputAndLabel/LabelField.tsx";
-import InputField from "../inputAndLabel/InputField.tsx";
-
-import { Color } from "../colors.ts";
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
-
+import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
-import { nanoid } from "nanoid";
-
+import { Color } from "../colors.ts";
 import { StyledForm } from "./Form.styles.ts";
-
-//retrieve data from local storage
-//if no data is saved return empty object
-const getPlants = () => {
-  const storedPlants = JSON.parse(localStorage.getItem("formData"));
-  if (!storedPlants)
-    return {
-      plants: [
-        {
-          plantID: "",
-          plantName: "",
-          plantImage: "",
-        },
-      ],
-    };
-  return storedPlants;
-};
+import { nanoid } from "nanoid";
+import InputField from "../inputAndLabel/InputField.tsx";
+import NavItem from "../navItem/NavItem.tsx";
+import { FormValues } from "./Form.types.ts";
 
 const Form = () => {
-  const [initialFormData, setInitialFormData] = useState(getPlants);
-  const [singlePlant, setSinglePlant] = useState(initialFormData.plants[0]);
+  const plantsCollection: FormValues[] =
+    JSON.parse(localStorage.getItem("formData") || "") || [];
 
-  //IMAGE PROBABLY WILL BE ADDED IN ANOTHER ITERATION
-  // const [image, setImage] = useState('')
-  //
-  // const onImageChange = (event) => {
-  //     setImage(URL.createObjectURL(event.target.files[0]))
-  // }
+  const { register, handleSubmit, reset } = useForm<FormValues>();
 
-  //control inputs and create ID for single plant
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value }: EventTarget & HTMLInputElement = event.target;
-    const newPlantID = nanoid();
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const id = nanoid();
+    const newPlant = {
+      ...data,
+      plantID: id,
+    };
 
-    setSinglePlant((prevSinglePlant) => {
-      return {
-        ...prevSinglePlant,
-        plantID: newPlantID,
-        [name]: value,
-      };
-    });
+    plantsCollection.push(newPlant);
+
+    localStorage.setItem("formData", JSON.stringify(plantsCollection));
+
+    reset();
   };
 
-  //set state of formData with all data put by user
-  const submitFormData = () => {
-    setInitialFormData((prevInitialFormData) => {
-      //push to plant array single plant
-      //!! how to add first plant to fill the empty keys
-      //and only then start adding other plants??
-      // addPlant(prevInitialFormData.plants);
-      prevInitialFormData.plants.push(singlePlant);
-
-      return {
-        ...prevInitialFormData,
-      };
-    });
-  };
-
-  //prevent page refresh when submit button is pressed
-  const handleSubmit = (event: SyntheticEvent) => {
-    event.preventDefault();
-  };
-
-  //prevent form submission when user clicks enter -> is wrong -> the inputs will be validated so that the user have to fill them
-  //this function will be removed
-  const handleKeyDown = (event: KeyboardEvent<HTMLElement | undefined>) => {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-    }
-  };
-
-  //save in local storage saved plants data
-  useEffect(() => {
-    localStorage.setItem("formData", JSON.stringify(initialFormData));
-  }, [initialFormData]);
-
-  console.log(initialFormData);
+  console.log(plantsCollection);
 
   return (
     <>
-      {/*for now there are only two fields for testing purposes, later the rest will be added*/}
-      <StyledForm onSubmit={handleSubmit}>
-        <div>
-          <LabelField>
-            podaj nazwę roślinki
-            <InputField
-              height={"50px"}
-              placeholder={"nazywam się..."}
-              type={"text"}
-              name={"plantName"}
-              value={singlePlant.plantName}
-              handleChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-          </LabelField>
-        </div>
-        <div>
-          <LabelField>
-            dodaj jej zdjęcie
-            <InputField
-              height={"190px"}
-              placeholder={
-                "zalecane wymiary to min. 250px na 200px, format png  lub jpg"
-              }
-              type={"file"}
-              accept="image/png, image/jpeg"
-              name={"plantImage"}
-              handleChange={handleChange}
-              value={singlePlant.plantImage}
-            />
-          </LabelField>
-        </div>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <LabelField>
+          podaj nazwę roślinki
+          <InputField
+            height={"50px"}
+            placeholder={"nazywam się..."}
+            type={"text"}
+            {...register("plantName")}
+          />
+        </LabelField>
 
+        <LabelField>
+          jak chcesz ją podlewać
+          <InputField
+            height={"50px"}
+            placeholder={"wpisz jak bardzo lubię wodę..."}
+            type={"text"}
+            {...register("watering")}
+          />
+        </LabelField>
+        <LabelField>
+          czy lubi zraszanie
+          <InputField
+            height={"50px"}
+            placeholder={
+              "niektóre z nas to uwielbiają, a inne \n" +
+              "nie mogą znieść, a ja..."
+            }
+            type={"text"}
+            {...register("misting")}
+          />
+        </LabelField>
         <FormButton
           type={"submit"}
           color={Color.cream}
           backgroundColor={Color.mediumGreen}
-          handleClick={submitFormData}
         >
           zapisz
         </FormButton>
+
+        <h4>plants from local storage</h4>
+
+        {plantsCollection.map((item) => {
+          return (
+            <div key={item.plantID}>
+              <NavItem
+                backgroundColor={Color.lightGreen}
+                color={Color.mediumGreen}
+                linkTo={`/${item.plantName}`}
+              >
+                {item.plantName}
+              </NavItem>
+              <span>{item.watering}</span>
+            </div>
+          );
+        })}
       </StyledForm>
-
-      <h4>from local storage</h4>
-      <p style={{ color: Color.cream }}>
-        To check if data is correctly received. For now it's not really working.
-        The context will be created later on and initialFormData mapped in
-        correct places
-      </p>
-
-      {initialFormData.plants.map((item, index) => {
-        return (
-          <NavItem
-            backgroundColor={Color.lightGreen}
-            color={Color.mediumGreen}
-            key={index}
-            linkTo={`/${item.plantName}`}
-          >
-            {item.plantName}
-          </NavItem>
-        );
-      })}
     </>
   );
 };
