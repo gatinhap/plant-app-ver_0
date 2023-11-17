@@ -135,13 +135,6 @@ const Form = () => {
         </FormButton>
       </StyledForm>
 
-      <h4>from local storage</h4>
-      <p style={{ color: theme.colors.cream }}>
-        To check if data is correctly received. For now it's not really working.
-        The context will be created later on and initialFormData mapped in
-        correct places
-      </p>
-
       {initialFormData.plants.map((item, index) => {
         return (
           <NavItem

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export const NavItemStyled = styled(Link)<{
   $backgroundColor: string;
   $color: string;
+  $shouldDisplayOnTop: boolean;
 }>`
   display: inline-flex;
   justify-content: center;
@@ -22,9 +23,22 @@ export const NavItemStyled = styled(Link)<{
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   color: ${({ $color }) => $color};
 
+  ${({ $shouldDisplayOnTop }) =>
+    $shouldDisplayOnTop &&
+    `
+    position: absolute;
+    top: 10px;
+    right: 0;
+  `}
   &:hover {
     transform: translate(1px, 1px);
     box-shadow: 1px 1px 0 0 #000;
     cursor: pointer;
   }
 `;
+
+export const RenderOnTop = {
+  position: "absolute",
+  top: "10px",
+  right: "0",
+};

@@ -1,4 +1,4 @@
-import { NavItemStyled } from "./NavItem.styles.ts";
+import { NavItemStyled, RenderOnTop } from "./NavItem.styles.ts";
 import { NavItemProps } from "./NavItem.types.ts";
 
 const NavItem = ({
@@ -8,17 +8,12 @@ const NavItem = ({
   color,
   shouldDisplay,
 }: NavItemProps) => {
-  const RenderOnTop = {
-    position: "absolute",
-    top: "10px",
-    right: "0",
-  };
-
   return (
     <NavItemStyled
       to={linkTo}
       $backgroundColor={backgroundColor}
       $color={color}
+      $shouldDisplayOnTop={true}
       //temporary solution to render this element only on certain pages
       style={shouldDisplay && RenderOnTop}
     >
