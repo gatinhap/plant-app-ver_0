@@ -3,25 +3,12 @@ import { ReactNode } from "react";
 
 type CallToActionAsLinkProps = {
   children: ReactNode;
-  backgroundColor: string;
-  color: string;
   linkTo: string;
 };
 
-const CallToActionAsLink = ({
-  children,
-  backgroundColor,
-  color,
-  linkTo,
-}: CallToActionAsLinkProps) => {
+const CallToActionAsLink = ({ children, linkTo }: CallToActionAsLinkProps) => {
   return (
-    <CallToActionAsLinkStyled
-      to={linkTo}
-      $backgroundColor={backgroundColor}
-      $color={color}
-    >
-      {children}
-    </CallToActionAsLinkStyled>
+    <CallToActionAsLinkStyled to={linkTo}>{children}</CallToActionAsLinkStyled>
   );
 };
 

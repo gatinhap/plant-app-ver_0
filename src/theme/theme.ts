@@ -33,6 +33,8 @@ export const theme = {
   lineHeight: {
     heading: 1,
     smallParagraph: 1.66,
+    regularParagraph: 1.7,
+    largeParagraph: 1.6,
   },
   letterSpacing: {
     h1: -1.17,
@@ -41,8 +43,9 @@ export const theme = {
     h4: -0.495,
     h5: -0.375,
     h6: -0.27,
-    smallParagraph: 0.7,
-    largeParagraph: 0.24,
+    smallParagraph: 0.9,
+    regularParagraph: 0.8,
+    largeParagraph: 1,
   },
   transitions: {
     primaryTransition: "all .3s ease",

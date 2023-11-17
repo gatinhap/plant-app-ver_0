@@ -7,18 +7,34 @@ const GlobalStyle = createGlobalStyle`
 		font-size: ${(props) => props.theme.fontSizes.regularParagraph}px;
 	}
 
+	button {
+		font-family: ${({ theme: { fonts } }) => fonts.primaryFont};
+	}
+
+	input {
+		&::placeholder {
+			opacity: 30%;
+			color: ${({ theme }) => theme.colors.primaryGreen};
+			font-family: ${({ theme }) => theme.fonts.primaryFont};
+			font-size: ${({ theme }) => theme.fontSizes.smallParagraph}px;
+			font-weight: ${({ theme }) => theme.fontWeights.normal};
+			line-height: ${({ theme }) => theme.lineHeight.smallParagraph};
+			letter-spacing: ${({ theme }) => theme.letterSpacing.smallParagraph}px;
+		}
+	}
+
 	h1, h2, h3, h4, h5, h6 {
 		margin: 0.5em 0;
 		color: ${({ theme }) => theme.colors.lime};
-        font-weight: ${({ theme: { fontWeights } }) => fontWeights.extraBold};
-        font-family: ${({ theme }) => theme.fonts.accentFont};
-        line-height: ${({ theme: { lineHeight } }) => lineHeight.heading};
+		font-weight: ${({ theme: { fontWeights } }) => fontWeights.extraBold};
+		font-family: ${({ theme }) => theme.fonts.accentFont};
+		line-height: ${({ theme: { lineHeight } }) => lineHeight.heading};
 	}
-    
-    h1 {
-        font-size: ${({ theme }) => theme.headingSizes.h1}px;
-        letter-spacing: ${({ theme }) => theme.letterSpacing.h1}px;
-    }
+
+	h1 {
+		font-size: ${({ theme }) => theme.headingSizes.h1}px;
+		letter-spacing: ${({ theme }) => theme.letterSpacing.h1}px;
+	}
 
 	h2 {
 		font-size: ${({ theme }) => theme.headingSizes.h2}px;

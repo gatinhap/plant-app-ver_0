@@ -2,10 +2,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const NavItemStyled = styled(Link)<{
-  $backgroundColor: string;
-  $color: string;
   $shouldDisplayOnTop: boolean;
 }>`
+  ${({ $shouldDisplayOnTop }) =>
+    $shouldDisplayOnTop &&
+    `
+    position: absolute;
+    top: 10px;
+    right: 0;
+  `}
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -20,25 +25,12 @@ export const NavItemStyled = styled(Link)<{
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  color: ${({ $color }) => $color};
+  background-color: ${({ theme }) => theme.colors.lightGreen};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 
-  ${({ $shouldDisplayOnTop }) =>
-    $shouldDisplayOnTop &&
-    `
-    position: absolute;
-    top: 10px;
-    right: 0;
-  `}
   &:hover {
     transform: translate(1px, 1px);
     box-shadow: 1px 1px 0 0 #000;
     cursor: pointer;
   }
 `;
-
-export const RenderOnTop = {
-  position: "absolute",
-  top: "10px",
-  right: "0",
-};

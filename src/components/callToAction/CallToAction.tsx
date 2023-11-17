@@ -1,20 +1,9 @@
 import { CallToActionStyled } from "./CallToAction.styles.ts";
 import { CallToActionProps } from "./CallToAction.types.ts";
 
-const CallToAction = ({
-  children,
-  backgroundColor,
-  color,
-  handleClick,
-}: CallToActionProps) => {
+const CallToAction = ({ children, handleClick }: CallToActionProps) => {
   return (
-    <CallToActionStyled
-      $backgroundColor={backgroundColor}
-      $color={color}
-      onClick={handleClick}
-    >
-      {children}
-    </CallToActionStyled>
+    <CallToActionStyled onClick={handleClick}>{children}</CallToActionStyled>
   );
 };
 

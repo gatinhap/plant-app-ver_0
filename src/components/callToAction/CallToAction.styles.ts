@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const CallToActionStyled = styled.div<{
-  $backgroundColor: string;
-  $color: string;
-}>`
+export const CallToActionStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,14 +14,13 @@ export const CallToActionStyled = styled.div<{
   text-align: center;
   font-size: ${({ theme }) => theme.fontSizes.largeParagraph}px;
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  font-family: ${({ theme }) => theme.fonts.primaryFont};
   letter-spacing: ${({ theme }) => theme.letterSpacing.largeParagraph}px;
   text-transform: uppercase;
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  color: ${({ $color }) => $color};
+  background-color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.cream};
 
   &:hover {
     transform: translate(2px, 2px);

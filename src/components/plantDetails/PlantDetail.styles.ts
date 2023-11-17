@@ -30,10 +30,7 @@ export const PlantNavStyled = styled.nav`
   margin-block: 20px;
 `;
 
-export const PlantNavItemStyled = styled(Link)<{
-  $backgroundColor: string;
-  $color: string;
-}>`
+export const PlantNavItemStyled = styled(Link)`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -47,8 +44,8 @@ export const PlantNavItemStyled = styled(Link)<{
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  color: ${({ $color }) => $color};
+  background-color: ${({ theme }) => theme.colors.lightGreen};
+  color: ${({ theme }) => theme.colors.mediumGreen};
 
   &:hover {
     transform: translate(1px, 1px);
