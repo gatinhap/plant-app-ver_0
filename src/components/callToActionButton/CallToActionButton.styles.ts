@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const CallToActionStyled = styled.div`
+export const CallToActionButtonStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,7 @@ export const CallToActionStyled = styled.div`
   }
 `;
 
-export const CallToActionAsLinkStyled = styled(CallToActionStyled).attrs({
+export const CallToActionAsLinkStyled = styled(CallToActionButtonStyled).attrs({
   as: Link,
 })`
   text-decoration: none;

@@ -1,6 +1,6 @@
 import { theme } from "../../theme/theme.ts";
 
-export const StylesMap = {
+export const ParagraphStylesMap = {
   small: {
     fontSize: theme.fontSizes.smallParagraph,
     lineHeight: theme.lineHeight.smallParagraph,

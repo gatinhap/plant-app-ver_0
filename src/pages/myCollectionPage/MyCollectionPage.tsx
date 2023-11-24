@@ -1,6 +1,6 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import PlantCollection from "../../components/plantCollection/PlantCollection.tsx";
-import CallToActionAsLink from "../../components/callToAction/CallToActionAsLink.tsx";
+import CallToActionAsLink from "../../components/callToActionButton/CallToActionAsLink.tsx";
 
 const MyCollectionPage = () => {
   return (

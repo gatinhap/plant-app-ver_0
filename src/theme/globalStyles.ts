@@ -1,14 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+	html,
 	body {
 		font-family: ${({ theme: { fonts } }) => fonts.primaryFont};
 		background: ${({ theme }) => theme.colors.primaryGreen};
 		font-size: ${(props) => props.theme.fontSizes.regularParagraph}px;
-	}
-
-	button {
-		font-family: ${({ theme: { fonts } }) => fonts.primaryFont};
 	}
 
 	input {
@@ -21,6 +18,13 @@ const GlobalStyle = createGlobalStyle`
 			line-height: ${({ theme }) => theme.lineHeight.smallParagraph};
 			letter-spacing: ${({ theme }) => theme.letterSpacing.smallParagraph}px;
 		}
+	}
+
+	label {
+		color: ${({ theme }) => theme.colors.cream};
+		font-size: ${({ theme }) => theme.fontSizes.largeParagraph}px;
+		font-weight: ${({ theme }) => theme.fontWeights.medium};
+		letter-spacing: ${({ theme }) => theme.letterSpacing.largeParagraph}px;
 	}
 
 	h1, h2, h3, h4, h5, h6 {

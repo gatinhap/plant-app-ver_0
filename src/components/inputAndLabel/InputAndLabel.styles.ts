@@ -13,10 +13,3 @@ export const InputFieldStyled = styled.input<{
   background-color: ${({ theme }) => theme.colors.cream};
   color: ${({ theme }) => theme.colors.primaryGreen};
 `;
-
-export const LabelStyled = styled.label`
-  color: ${({ theme }) => theme.colors.cream};
-  font-size: ${({ theme }) => theme.fontSizes.largeParagraph}px;
-  font-weight: ${({ theme }) => theme.fontWeights.medium};
-  letter-spacing: ${({ theme }) => theme.letterSpacing.largeParagraph}px;
-`;

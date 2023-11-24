@@ -1,4 +1,4 @@
-import { CallToActionAsLinkStyled } from "./CallToAction.styles.ts";
+import { CallToActionAsLinkStyled } from "./CallToActionButton.styles.ts";
 import { ReactNode } from "react";
 
 type CallToActionAsLinkProps = {
