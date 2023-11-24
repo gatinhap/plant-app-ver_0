@@ -1,23 +1,18 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
-import { Color } from "../../components/colors.ts";
 import plant from "../../assets/monstera.png";
 import PlantImage from "../../components/plantDetails/PlantImage.tsx";
 import PlantInfo from "../../components/plantDetails/PlantInfo.tsx";
 import PlantNav from "../../components/plantDetails/PlantNav.tsx";
 import { Route, Routes } from "react-router-dom";
+import Text from "../../components/text/Text.tsx";
 
 const PlantDetailPage = () => {
   return (
     <PageComponent>
       <h3>Moja monsterka</h3>
       <PlantImage imgSrc={plant} isCustomImage={true} />
-      <NavItem
-        backgroundColor={Color.lightGreen}
-        color={Color.mediumGreen}
-        linkTo={"/"}
-        shouldDisplay={true}
-      >
+      <NavItem linkTo={"/"} shouldDisplayOnTop={true}>
         moja kolekcja
       </NavItem>
       <PlantNav />
@@ -28,7 +23,7 @@ const PlantDetailPage = () => {
           path={"/podlewanie"}
           element={
             <PlantInfo title={"podlewanie"}>
-              jak podelwać moją roślinkę
+              <Text variant={"regular"}>jak podelwać moją roślinkę</Text>
             </PlantInfo>
           }
         />
@@ -60,8 +55,10 @@ const PlantDetailPage = () => {
           path={"/nawożenie"}
           element={
             <PlantInfo title={"nawożenie"}>
-              jaki rodzaj nawozu i kiedy go używać, żeby moją roślinka rosła
-              zdrowo
+              <Text variant={"large"}>
+                jaki rodzaj nawozu i kiedy go używać, żeby moją roślinka rosła
+                zdrowo
+              </Text>
             </PlantInfo>
           }
         />

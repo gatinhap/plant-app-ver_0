@@ -1,7 +1,6 @@
 import LabelField from "../inputAndLabel/LabelField.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
-import { Color } from "../colors.ts";
 import { StyledForm } from "./Form.styles.ts";
 import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
@@ -64,24 +63,14 @@ const Form = () => {
             {...register("misting")}
           />
         </LabelField>
-        <FormButton
-          type={"submit"}
-          color={Color.cream}
-          backgroundColor={Color.mediumGreen}
-        >
-          zapisz
-        </FormButton>
+        <FormButton type={"submit"}>zapisz</FormButton>
 
         <h4>plants from local storage</h4>
 
         {plantsCollection.map((item) => {
           return (
             <div key={item.plantID}>
-              <NavItem
-                backgroundColor={Color.lightGreen}
-                color={Color.mediumGreen}
-                linkTo={`/${item.plantName}`}
-              >
+              <NavItem shouldDisplayOnTop={false} linkTo={`/${item.plantName}`}>
                 {item.plantName}
               </NavItem>
               <span>{item.watering}</span>

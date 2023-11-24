@@ -1,10 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const CallToActionStyled = styled.div<{
-  $backgroundColor: string;
-  $color: string;
-}>`
+export const CallToActionButtonStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,16 +12,15 @@ export const CallToActionStyled = styled.div<{
   width: fit-content;
   box-shadow: 4px 4px 0 0 #000;
   text-align: center;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: var(--primary-font);
-  letter-spacing: -0.24px;
+  font-size: ${({ theme }) => theme.fontSizes.largeParagraph}px;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  letter-spacing: ${({ theme }) => theme.letterSpacing.largeParagraph}px;
   text-transform: uppercase;
   -webkit-user-select: none;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
-  color: ${({ $color }) => $color};
+  background-color: ${({ theme }) => theme.colors.mediumGreen};
+  color: ${({ theme }) => theme.colors.cream};
 
   &:hover {
     transform: translate(2px, 2px);
@@ -33,7 +29,7 @@ export const CallToActionStyled = styled.div<{
   }
 `;
 
-export const CallToActionAsLinkStyled = styled(CallToActionStyled).attrs({
+export const CallToActionAsLinkStyled = styled(CallToActionButtonStyled).attrs({
   as: Link,
 })`
   text-decoration: none;

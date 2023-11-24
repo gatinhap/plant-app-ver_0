@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CallToActionStyled } from "../callToAction/CallToAction.styles.ts";
+import { CallToActionButtonStyled } from "../callToActionButton/CallToActionButton.styles.ts";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -8,7 +8,7 @@ export const StyledForm = styled.form`
   margin-block: 50px;
 `;
 
-export const FormButtonStyled = styled(CallToActionStyled).attrs({
+export const FormButtonStyled = styled(CallToActionButtonStyled).attrs({
   as: "button",
 })`
   outline: unset;

@@ -12,7 +12,5 @@ export type PlantInfoProps = {
 
 export type PlantNavItemProps = {
   children: ReactNode;
-  backgroundColor: string;
-  color: string;
   linkTo: string;
 };

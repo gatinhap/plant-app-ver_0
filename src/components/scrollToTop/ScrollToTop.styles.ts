@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ScrollToTopStyled = styled.div<{ $backgroundColor: string }>`
+export const ScrollToTopStyled = styled.div`
   position: absolute;
   bottom: 8px;
   right: 8px;
@@ -8,7 +8,7 @@ export const ScrollToTopStyled = styled.div<{ $backgroundColor: string }>`
   width: 29px;
   height: 29px;
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 1));
-  background-color: ${({ $backgroundColor }) => $backgroundColor};
+  background-color: ${({ theme }) => theme.colors.lime};
 
   &:hover {
     width: 28px;
