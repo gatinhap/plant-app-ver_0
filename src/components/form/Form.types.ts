@@ -11,4 +11,7 @@ export type FormValues = {
   plantName: string;
   watering: string;
   misting: string;
+  light: string;
+  soil: string;
+  fertilization: string;
 };

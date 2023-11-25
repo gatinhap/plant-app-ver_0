@@ -4,12 +4,13 @@ import FormButton from "./FormButton.tsx";
 import { StyledForm } from "./Form.styles.ts";
 import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
-import NavItem from "../navItem/NavItem.tsx";
 import { FormValues } from "./Form.types.ts";
 
 const Form = () => {
+  const token = localStorage.getItem("formData");
+
   const plantsCollection: FormValues[] =
-    JSON.parse(localStorage.getItem("formData") || "") || [];
+    (token && JSON.parse(localStorage.getItem("formData") || "")) || [];
 
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
@@ -27,8 +28,6 @@ const Form = () => {
     reset();
   };
 
-  console.log(plantsCollection);
-
   return (
     <>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -45,16 +44,17 @@ const Form = () => {
         <LabelField>
           jak chcesz ją podlewać
           <InputField
-            height={"50px"}
+            height={"86px"}
             placeholder={"wpisz jak bardzo lubię wodę..."}
             type={"text"}
             {...register("watering")}
           />
         </LabelField>
+
         <LabelField>
           czy lubi zraszanie
           <InputField
-            height={"50px"}
+            height={"86px"}
             placeholder={
               "niektóre z nas to uwielbiają, a inne \n" +
               "nie mogą znieść, a ja..."
@@ -63,20 +63,40 @@ const Form = () => {
             {...register("misting")}
           />
         </LabelField>
+
+        <LabelField>
+          światło - dużo czy mało
+          <InputField
+            height={"86px"}
+            placeholder={"słońce, słoneczko utrzymuje mnie\n" + "przy życiu..."}
+            type={"text"}
+            {...register("light")}
+          />
+        </LabelField>
+
+        <LabelField>
+          gleba
+          <InputField
+            height={"86px"}
+            placeholder={
+              "uniwersalna, a może bigosik, hmm,\n" + "ja najbardziej lubię..."
+            }
+            type={"text"}
+            {...register("soil")}
+          />
+        </LabelField>
+
+        <LabelField>
+          nawożenie
+          <InputField
+            height={"86px"}
+            placeholder={"witaminki dla roślinki, a moje\n" + "ulubione to..."}
+            type={"text"}
+            {...register("fertilization")}
+          />
+        </LabelField>
+
         <FormButton type={"submit"}>zapisz</FormButton>
-
-        <h4>plants from local storage</h4>
-
-        {plantsCollection.map((item) => {
-          return (
-            <div key={item.plantID}>
-              <NavItem shouldDisplayOnTop={false} linkTo={`/${item.plantName}`}>
-                {item.plantName}
-              </NavItem>
-              <span>{item.watering}</span>
-            </div>
-          );
-        })}
       </StyledForm>
     </>
   );

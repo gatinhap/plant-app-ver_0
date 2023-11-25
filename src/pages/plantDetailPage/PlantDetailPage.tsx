@@ -1,75 +1,99 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
-import plant from "../../assets/monstera.png";
-import PlantImage from "../../components/plantDetails/PlantImage.tsx";
 import PlantInfo from "../../components/plantDetails/PlantInfo.tsx";
-import PlantNav from "../../components/plantDetails/PlantNav.tsx";
 import { Route, Routes } from "react-router-dom";
 import Text from "../../components/text/Text.tsx";
+import { FormValues } from "../../components/form/Form.types.ts";
+import { PlantNavStyled } from "../../components/plantDetails/PlantDetail.styles.ts";
+import PlantNavItem from "../../components/plantDetails/PlantNavItem.tsx";
+import { PlantDetailPageProps } from "./PlantDetailPage.types.ts";
 
-const PlantDetailPage = () => {
+const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
+  const plantsCollection: FormValues[] =
+    JSON.parse(localStorage.getItem("formData") || "") || [];
+
+  const currentPlant = plantsCollection.find(
+    (singlePlant) => singlePlant.plantID === currentPlantId,
+  );
+
   return (
     <PageComponent>
-      <h3>Moja monsterka</h3>
-      <PlantImage imgSrc={plant} isCustomImage={true} />
       <NavItem linkTo={"/"} shouldDisplayOnTop={true}>
         moja kolekcja
       </NavItem>
-      <PlantNav />
+      {currentPlant && (
+        <div>
+          <h3>{currentPlant.plantName}</h3>
 
-      {/*using Routes here will render components below nav, one at a time*/}
-      <Routes>
-        <Route
-          path={"/podlewanie"}
-          element={
-            <PlantInfo title={"podlewanie"}>
-              <Text variant={"regular"}>jak podelwać moją roślinkę</Text>
-            </PlantInfo>
-          }
-        />
-        <Route
-          path={"/zraszanie"}
-          element={
-            <PlantInfo title={"zraszanie"}>
-              czy i jak często zraszać moją roślinkę
-            </PlantInfo>
-          }
-        />
-        <Route
-          path={"/światło"}
-          element={
-            <PlantInfo title={"światło"}>
-              jak dużo światła potrzebuje moją roślinkę
-            </PlantInfo>
-          }
-        />
-        <Route
-          path={"/gleba"}
-          element={
-            <PlantInfo title={"gleba"}>
-              jaka gleba jest najlepsza dla mojej roślinki
-            </PlantInfo>
-          }
-        />
-        <Route
-          path={"/nawożenie"}
-          element={
-            <PlantInfo title={"nawożenie"}>
-              <Text variant={"large"}>
-                jaki rodzaj nawozu i kiedy go używać, żeby moją roślinka rosła
-                zdrowo
-              </Text>
-            </PlantInfo>
-          }
-        />
-      </Routes>
+          <PlantNavStyled>
+            <PlantNavItem linkTo={`/${currentPlant.plantName}/podlewanie`}>
+              podlewanie
+            </PlantNavItem>
+            <PlantNavItem linkTo={`/${currentPlant.plantName}/zraszanie`}>
+              zraszanie
+            </PlantNavItem>
+            <PlantNavItem linkTo={`/${currentPlant.plantName}/światło`}>
+              światło
+            </PlantNavItem>
+            <PlantNavItem linkTo={`/${currentPlant.plantName}/gleba`}>
+              gleba
+            </PlantNavItem>
+            <PlantNavItem linkTo={`/${currentPlant.plantName}/nawożenie`}>
+              nawożenie
+            </PlantNavItem>
+          </PlantNavStyled>
+
+          {/*using Routes here will render components below nav, one at a time*/}
+          <Routes>
+            <Route
+              path={"/podlewanie"}
+              element={
+                <PlantInfo title={"podlewanie"}>
+                  <Text variant={"regular"}>{currentPlant.watering}</Text>
+                </PlantInfo>
+              }
+            />
+
+            <Route
+              path={"/zraszanie"}
+              element={
+                <PlantInfo title={"zraszanie"}>
+                  <Text variant={"regular"}>{currentPlant.misting}</Text>
+                </PlantInfo>
+              }
+            />
+
+            <Route
+              path={"/światło"}
+              element={
+                <PlantInfo title={"światło"}>
+                  <Text variant={"regular"}>{currentPlant.light}</Text>
+                </PlantInfo>
+              }
+            />
+
+            <Route
+              path={"/gleba"}
+              element={
+                <PlantInfo title={"gleba"}>
+                  <Text variant={"regular"}>{currentPlant.soil}</Text>
+                </PlantInfo>
+              }
+            />
+
+            <Route
+              path={"/nawożenie"}
+              element={
+                <PlantInfo title={"nawożenie"}>
+                  <Text variant={"regular"}>{currentPlant.fertilization}</Text>
+                </PlantInfo>
+              }
+            />
+          </Routes>
+        </div>
+      )}
     </PageComponent>
   );
 };
 
 export default PlantDetailPage;
-
-//plant detail page will contain
-//name
-//image
-//plant nav with all the plant nav items that are links to subpage displaying beneath it
