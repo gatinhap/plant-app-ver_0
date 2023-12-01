@@ -8,10 +8,11 @@ import { ThemeProvider } from "styled-components";
 import { FormValues } from "./components/form/Form.types.ts";
 
 const App = () => {
-  const token = localStorage.getItem("formData");
+  const formData = localStorage.getItem("plantsList");
 
-  const plantsCollection: FormValues[] =
-    (token && JSON.parse(localStorage.getItem("formData") || "")) || [];
+  const plantsCollection = formData
+    ? (JSON.parse(formData) as FormValues[])
+    : [];
 
   return (
     <>

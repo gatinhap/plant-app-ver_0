@@ -7,10 +7,11 @@ import InputField from "../inputAndLabel/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 
 const Form = () => {
-  const token = localStorage.getItem("formData");
+  const formData = localStorage.getItem("plantsList");
 
-  const plantsCollection: FormValues[] =
-    (token && JSON.parse(localStorage.getItem("formData") || "")) || [];
+  const plantsCollection = formData
+    ? (JSON.parse(formData) as FormValues[])
+    : [];
 
   const { register, handleSubmit, reset } = useForm<FormValues>();
 
@@ -23,7 +24,7 @@ const Form = () => {
 
     plantsCollection.push(newPlant);
 
-    localStorage.setItem("formData", JSON.stringify(plantsCollection));
+    localStorage.setItem("plantsList", JSON.stringify(plantsCollection));
 
     reset();
   };
@@ -56,8 +57,7 @@ const Form = () => {
           <InputField
             height={"86px"}
             placeholder={
-              "niektóre z nas to uwielbiają, a inne \n" +
-              "nie mogą znieść, a ja..."
+              "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
             }
             type={"text"}
             {...register("misting")}
@@ -68,7 +68,7 @@ const Form = () => {
           światło - dużo czy mało
           <InputField
             height={"86px"}
-            placeholder={"słońce, słoneczko utrzymuje mnie\n" + "przy życiu..."}
+            placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
             type={"text"}
             {...register("light")}
           />
@@ -79,7 +79,7 @@ const Form = () => {
           <InputField
             height={"86px"}
             placeholder={
-              "uniwersalna, a może bigosik, hmm,\n" + "ja najbardziej lubię..."
+              "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
             }
             type={"text"}
             {...register("soil")}
@@ -90,7 +90,7 @@ const Form = () => {
           nawożenie
           <InputField
             height={"86px"}
-            placeholder={"witaminki dla roślinki, a moje\n" + "ulubione to..."}
+            placeholder={"witaminki dla roślinki, a moje ulubione to..."}
             type={"text"}
             {...register("fertilization")}
           />

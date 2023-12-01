@@ -10,7 +10,7 @@ import { PlantDetailPageProps } from "./PlantDetailPage.types.ts";
 
 const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
   const plantsCollection: FormValues[] =
-    JSON.parse(localStorage.getItem("formData") || "") || [];
+    JSON.parse(localStorage.getItem("plantsList") || "") || [];
 
   const currentPlant = plantsCollection.find(
     (singlePlant) => singlePlant.plantID === currentPlantId,
