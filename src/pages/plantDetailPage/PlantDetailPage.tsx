@@ -1,19 +1,22 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
 import PlantInfo from "../../components/plantDetails/PlantInfo.tsx";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes, useParams } from "react-router-dom";
 import Text from "../../components/text/Text.tsx";
 import { FormValues } from "../../components/form/Form.types.ts";
-import { PlantNavStyled } from "../../components/plantDetails/PlantDetail.styles.ts";
-import PlantNavItem from "../../components/plantDetails/PlantNavItem.tsx";
-import { PlantDetailPageProps } from "./PlantDetailPage.types.ts";
+import {
+  PlantNavItemStyled,
+  PlantNavStyled,
+} from "../../components/plantDetails/PlantDetail.styles.ts";
 
-const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
+const PlantDetailPage = () => {
   const plantsCollection: FormValues[] =
     JSON.parse(localStorage.getItem("plantsList") || "") || [];
 
+  const { plantId } = useParams();
+
   const currentPlant = plantsCollection.find(
-    (singlePlant) => singlePlant.plantID === currentPlantId,
+    (singlePlant) => singlePlant.plantID === plantId
   );
 
   return (
@@ -21,26 +24,27 @@ const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
       <NavItem linkTo={"/"} shouldDisplayOnTop={true}>
         moja kolekcja
       </NavItem>
+      <Outlet />
       {currentPlant && (
-        <div>
+        <>
           <h3>{currentPlant.plantName}</h3>
 
           <PlantNavStyled>
-            <PlantNavItem linkTo={`/${currentPlant.plantName}/podlewanie`}>
+            <PlantNavItemStyled to={`/${plantId}/podlewanie`}>
               podlewanie
-            </PlantNavItem>
-            <PlantNavItem linkTo={`/${currentPlant.plantName}/zraszanie`}>
+            </PlantNavItemStyled>
+            <PlantNavItemStyled to={`/${plantId}/zraszanie`}>
               zraszanie
-            </PlantNavItem>
-            <PlantNavItem linkTo={`/${currentPlant.plantName}/światło`}>
+            </PlantNavItemStyled>
+            <PlantNavItemStyled to={`/${plantId}/światło`}>
               światło
-            </PlantNavItem>
-            <PlantNavItem linkTo={`/${currentPlant.plantName}/gleba`}>
+            </PlantNavItemStyled>
+            <PlantNavItemStyled to={`/${plantId}/gleba`}>
               gleba
-            </PlantNavItem>
-            <PlantNavItem linkTo={`/${currentPlant.plantName}/nawożenie`}>
+            </PlantNavItemStyled>
+            <PlantNavItemStyled to={`/${plantId}/nawożenie`}>
               nawożenie
-            </PlantNavItem>
+            </PlantNavItemStyled>
           </PlantNavStyled>
 
           {/*using Routes here will render components below nav, one at a time*/}
@@ -90,7 +94,7 @@ const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
               }
             />
           </Routes>
-        </div>
+        </>
       )}
     </PageComponent>
   );
