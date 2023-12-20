@@ -16,7 +16,6 @@ const PlantCollection = () => {
           {item.plantName}
         </NavItem>
       ))}
-      )
     </PlantCollectionStyled>
   );
 };

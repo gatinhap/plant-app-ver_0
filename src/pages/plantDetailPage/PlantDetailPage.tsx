@@ -15,8 +15,8 @@ const PlantDetailPage = () => {
 
   const { plantId } = useParams();
 
-  const currentPlant = plantsCollection.find(
-    (singlePlant) => singlePlant.plantID === plantId
+  const currentPlantId = plantsCollection.find(
+    (singlePlant) => singlePlant.plantID === plantId,
   );
 
   return (
@@ -25,9 +25,9 @@ const PlantDetailPage = () => {
         moja kolekcja
       </NavItem>
       <Outlet />
-      {currentPlant && (
+      {currentPlantId && (
         <>
-          <h3>{currentPlant.plantName}</h3>
+          <h3>{currentPlantId.plantName}</h3>
 
           <PlantNavStyled>
             <PlantNavItemStyled to={`/${plantId}/podlewanie`}>
@@ -53,7 +53,7 @@ const PlantDetailPage = () => {
               path={"/podlewanie"}
               element={
                 <PlantInfo title={"podlewanie"}>
-                  <Text variant={"regular"}>{currentPlant.watering}</Text>
+                  <Text variant={"regular"}>{currentPlantId.watering}</Text>
                 </PlantInfo>
               }
             />
@@ -62,7 +62,7 @@ const PlantDetailPage = () => {
               path={"/zraszanie"}
               element={
                 <PlantInfo title={"zraszanie"}>
-                  <Text variant={"regular"}>{currentPlant.misting}</Text>
+                  <Text variant={"regular"}>{currentPlantId.misting}</Text>
                 </PlantInfo>
               }
             />
@@ -71,7 +71,7 @@ const PlantDetailPage = () => {
               path={"/światło"}
               element={
                 <PlantInfo title={"światło"}>
-                  <Text variant={"regular"}>{currentPlant.light}</Text>
+                  <Text variant={"regular"}>{currentPlantId.light}</Text>
                 </PlantInfo>
               }
             />
@@ -80,7 +80,7 @@ const PlantDetailPage = () => {
               path={"/gleba"}
               element={
                 <PlantInfo title={"gleba"}>
-                  <Text variant={"regular"}>{currentPlant.soil}</Text>
+                  <Text variant={"regular"}>{currentPlantId.soil}</Text>
                 </PlantInfo>
               }
             />
@@ -89,7 +89,9 @@ const PlantDetailPage = () => {
               path={"/nawożenie"}
               element={
                 <PlantInfo title={"nawożenie"}>
-                  <Text variant={"regular"}>{currentPlant.fertilization}</Text>
+                  <Text variant={"regular"}>
+                    {currentPlantId.fertilization}
+                  </Text>
                 </PlantInfo>
               }
             />
