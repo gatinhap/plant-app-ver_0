@@ -6,7 +6,8 @@ import GlobalStyle from "./theme/globalStyles.ts";
 import { theme } from "./theme/theme.ts";
 import { ThemeProvider } from "styled-components";
 import { FormValues } from "./components/form/Form.types.ts";
-import ToastContainer from "./components/toast/ToastContainer.tsx";
+import "react-toastify/dist/ReactToastify.min.css";
+import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
 
 const App = () => {
   const token = localStorage.getItem("formData");
@@ -34,7 +35,7 @@ const App = () => {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        <ToastContainer />
+        <StyledToastContainer />
       </ThemeProvider>
     </>
   );

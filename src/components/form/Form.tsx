@@ -6,6 +6,8 @@ import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 import { toast } from "react-toastify";
+import { ErrorMessage } from "@hookform/error-message";
+import Text from "../text/Text.tsx";
 
 const Form = () => {
   const token = localStorage.getItem("formData");
@@ -18,7 +20,7 @@ const Form = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<FormValues>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     const id = nanoid();
@@ -35,11 +37,6 @@ const Form = () => {
 
     reset();
   };
-
-  errors.plantName?.type === "required" &&
-    toast.warning(errors.plantName?.message);
-  errors.plantName?.type === "maxLength" &&
-    toast.error(errors.plantName?.message);
 
   return (
     <>
@@ -61,6 +58,11 @@ const Form = () => {
               },
             })}
           />
+          <ErrorMessage
+            name={"plantName"}
+            errors={errors}
+            as={<Text variant={"small"} />}
+          />
         </LabelField>
 
         <LabelField>
@@ -69,7 +71,17 @@ const Form = () => {
             height={"86px"}
             placeholder={"wpisz jak bardzo lubię wodę..."}
             type={"text"}
-            {...register("watering")}
+            {...register("watering", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"watering"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
@@ -81,7 +93,17 @@ const Form = () => {
               "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
             }
             type={"text"}
-            {...register("misting")}
+            {...register("misting", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"misting"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
@@ -91,7 +113,17 @@ const Form = () => {
             height={"86px"}
             placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
             type={"text"}
-            {...register("light")}
+            {...register("light", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />{" "}
+          <ErrorMessage
+            name={"light"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
@@ -103,7 +135,17 @@ const Form = () => {
               "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
             }
             type={"text"}
-            {...register("soil")}
+            {...register("soil", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"soil"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
@@ -113,7 +155,17 @@ const Form = () => {
             height={"86px"}
             placeholder={"witaminki dla roślinki, a moje ulubione to..."}
             type={"text"}
-            {...register("fertilization")}
+            {...register("fertilization", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"fertilization"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
