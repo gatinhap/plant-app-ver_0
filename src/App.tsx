@@ -5,15 +5,8 @@ import AddNewPlant from "./pages/addNewPlantPage/AddNewPlant.tsx";
 import GlobalStyle from "./theme/globalStyles.ts";
 import { theme } from "./theme/theme.ts";
 import { ThemeProvider } from "styled-components";
-import { FormValues } from "./components/form/Form.types.ts";
 
 const App = () => {
-  const formData = localStorage.getItem("plantsList");
-
-  const plantsCollection = formData
-    ? (JSON.parse(formData) as FormValues[])
-    : [];
-
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -21,16 +14,7 @@ const App = () => {
         <Routes>
           <Route path={"/"} element={<MyCollectionPage />} />
           <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
-
-          {plantsCollection.map((item) => {
-            return (
-              <Route
-                key={item.plantID}
-                path={`/${item.plantName}/*`}
-                element={<PlantDetailPage currentPlantId={item.plantID} />}
-              />
-            );
-          })}
+          <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
