@@ -13,7 +13,7 @@ const PlantDetailPage = ({ currentPlantId }: PlantDetailPageProps) => {
     JSON.parse(localStorage.getItem("formData") || "") || [];
 
   const currentPlant = plantsCollection.find(
-    (singlePlant) => singlePlant.plantID === currentPlantId,
+    (singlePlant) => singlePlant.id === currentPlantId,
   );
 
   return (

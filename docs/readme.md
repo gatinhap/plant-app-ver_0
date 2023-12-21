@@ -17,7 +17,39 @@ All the components will be styled with styled-components.
 ### Vite
 
 ## Backend
-The backend will be implemented using Typescript and deployed as lambda functions on AWS.
+The backend is implemented using Pocketbase - https://pocketbase.io/.
+
+### Installation for development
+For Mac download the correct version for the appropriate architecture (ARM = M1, x86 = Legacy).
+Further documentation on the installation steps can be found at https://pocketbase.io/docs/.
+
+### Running
+
+Once inside the backend directory, the backend can be started with one command:
+
+```bash
+pocketbase serve
+```
+
+### First setup
+
+For local development a local admin account is required. Use the following command inside the backend folder
+to create an admin account, change the respective fields with the desired data:
+
+```bash
+pocket base admin create your@email.com yourpassword
+```
+
+After this, load the application schema from the file `pb_schema.json`. To load the file Go to 
+`Settings -> Import Collections` and click on the button `Load from JSON File`.
+
+After these steps the database is ready to be used in development mode.
+
+### Exporting the schema
+
+When making changes to the schema, please export with `Export Collections`, and further use proper database migrations
+to create the changes required to migrate production data. Please refer to the command `pocketbase migrate` for further
+details.
 
 ## Plant Collection
 The plant collection will be consumed from iloveplants.com

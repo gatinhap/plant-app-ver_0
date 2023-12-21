@@ -26,9 +26,9 @@ const App = () => {
           {plantsCollection.map((item) => {
             return (
               <Route
-                key={item.plantID}
+                key={item.id}
                 path={`/${item.plantName}/*`}
-                element={<PlantDetailPage currentPlantId={item.plantID} />}
+                element={<PlantDetailPage currentPlantId={item.id} />}
               />
             );
           })}
