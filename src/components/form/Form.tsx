@@ -46,7 +46,6 @@ const Form = () => {
           <InputField
             height={"50px"}
             placeholder={"nazywam się..."}
-            type={"text"}
             {...register("plantName", {
               required: {
                 value: true,
@@ -70,7 +69,6 @@ const Form = () => {
           <InputField
             height={"86px"}
             placeholder={"wpisz jak bardzo lubię wodę..."}
-            type={"text"}
             {...register("watering", {
               maxLength: {
                 value: 512,
@@ -92,7 +90,6 @@ const Form = () => {
             placeholder={
               "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
             }
-            type={"text"}
             {...register("misting", {
               maxLength: {
                 value: 512,
@@ -112,14 +109,13 @@ const Form = () => {
           <InputField
             height={"86px"}
             placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
-            type={"text"}
             {...register("light", {
               maxLength: {
                 value: 512,
                 message: "Opis może zawierać maksymalnie 512 znaków!",
               },
             })}
-          />{" "}
+          />
           <ErrorMessage
             name={"light"}
             errors={errors}
@@ -134,7 +130,6 @@ const Form = () => {
             placeholder={
               "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
             }
-            type={"text"}
             {...register("soil", {
               maxLength: {
                 value: 512,
@@ -154,7 +149,6 @@ const Form = () => {
           <InputField
             height={"86px"}
             placeholder={"witaminki dla roślinki, a moje ulubione to..."}
-            type={"text"}
             {...register("fertilization", {
               maxLength: {
                 value: 512,
