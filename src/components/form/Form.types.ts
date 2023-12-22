@@ -7,8 +7,11 @@ export type FormButtonProps = {
 };
 
 export type FormValues = {
-  plantID: string;
+  id: string;
   plantName: string;
   watering: string;
   misting: string;
+  light: string;
+  soil: string;
+  fertilization: string;
 };

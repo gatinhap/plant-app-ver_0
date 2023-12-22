@@ -1,12 +1,30 @@
 import NavItem from "../navItem/NavItem.tsx";
 import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
+import { useEffect, useState } from "react";
+import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import { FormValues } from "../form/Form.types.ts";
 
 const PlantCollection = () => {
+  const [plantsCollection, setPlantsCollection] = useState<FormValues[] | []>(
+    [],
+  );
+
+  useEffect(() => {
+    pb.collection(PLANTS_COLLECTION)
+      .getList<FormValues>(1, 100)
+      .then((result) => setPlantsCollection(result.items));
+    console.log(plantsCollection);
+  }, []);
+
   return (
     <PlantCollectionStyled>
-      <NavItem linkTo={"/monstera/"}>monstera</NavItem>
-      <NavItem linkTo={"/monstera"}>zamio</NavItem>
-      <NavItem linkTo={"/monstera"}>grudnik</NavItem>
+      {plantsCollection.map((item) => {
+        return (
+          <NavItem key={item.id} linkTo={`/${item.plantName}`}>
+            {item.plantName}
+          </NavItem>
+        );
+      })}
     </PlantCollectionStyled>
   );
 };

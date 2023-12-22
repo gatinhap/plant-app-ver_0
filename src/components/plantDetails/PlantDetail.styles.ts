@@ -16,18 +16,20 @@ export const PlantImageContainerStyled = styled.div`
 export const PlantInfoStyled = styled.article`
   box-sizing: border-box;
   margin-block: 20px;
-  padding: 0 10px;
+  padding: 19px 22px;
   color: ${({ theme }) => theme.colors.cream};
   font-size: ${({ theme }) => theme.fontSizes.smallParagraph}px;
   line-height: ${({ theme }) => theme.lineHeight.smallParagraph};
   letter-spacing: ${({ theme }) => theme.letterSpacing.smallParagraph}px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.7);
+  background: ${({ theme }) => theme.colors.primaryGreenWithOverlay};
 `;
 
 export const PlantNavStyled = styled.nav`
   display: flex;
   flex-wrap: wrap;
   grid-gap: 10px;
-  margin-block: 20px;
+  margin-block: 20px 50px;
 `;
 
 export const PlantNavItemStyled = styled(Link)`

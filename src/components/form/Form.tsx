@@ -2,32 +2,30 @@ import LabelField from "../inputAndLabel/LabelField.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
 import { StyledForm } from "./Form.styles.ts";
-import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
-import NavItem from "../navItem/NavItem.tsx";
 import { FormValues } from "./Form.types.ts";
+import { toast } from "react-toastify";
+import { ErrorMessage } from "@hookform/error-message";
+import Text from "../text/Text.tsx";
+import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
 
 const Form = () => {
-  const plantsCollection: FormValues[] =
-    JSON.parse(localStorage.getItem("formData") || "") || [];
-
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const id = nanoid();
-    const newPlant = {
-      ...data,
-      plantID: id,
-    };
+    pb.collection(PLANTS_COLLECTION)
+      .create(data)
+      .then(() => {
+        toast.success("Roślinka dodana do kolekcji!");
 
-    plantsCollection.push(newPlant);
-
-    localStorage.setItem("formData", JSON.stringify(plantsCollection));
-
-    reset();
+        reset();
+      });
   };
-
-  console.log(plantsCollection);
 
   return (
     <>
@@ -37,46 +35,124 @@ const Form = () => {
           <InputField
             height={"50px"}
             placeholder={"nazywam się..."}
-            type={"text"}
-            {...register("plantName")}
+            {...register("plantName", {
+              required: {
+                value: true,
+                message: "Dodaj nazwę roślinki!",
+              },
+              maxLength: {
+                value: 20,
+                message: "Nazwa roślinki może zawierać maksymalnie 20 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"plantName"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
 
         <LabelField>
           jak chcesz ją podlewać
           <InputField
-            height={"50px"}
+            height={"86px"}
             placeholder={"wpisz jak bardzo lubię wodę..."}
-            type={"text"}
-            {...register("watering")}
+            {...register("watering", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"watering"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
+
         <LabelField>
           czy lubi zraszanie
           <InputField
-            height={"50px"}
+            height={"86px"}
             placeholder={
-              "niektóre z nas to uwielbiają, a inne \n" +
-              "nie mogą znieść, a ja..."
+              "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
             }
-            type={"text"}
-            {...register("misting")}
+            {...register("misting", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"misting"}
+            errors={errors}
+            as={<Text variant={"small"} />}
           />
         </LabelField>
+
+        <LabelField>
+          światło - dużo czy mało
+          <InputField
+            height={"86px"}
+            placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
+            {...register("light", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"light"}
+            errors={errors}
+            as={<Text variant={"small"} />}
+          />
+        </LabelField>
+
+        <LabelField>
+          gleba
+          <InputField
+            height={"86px"}
+            placeholder={
+              "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+            }
+            {...register("soil", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"soil"}
+            errors={errors}
+            as={<Text variant={"small"} />}
+          />
+        </LabelField>
+
+        <LabelField>
+          nawożenie
+          <InputField
+            height={"86px"}
+            placeholder={"witaminki dla roślinki, a moje ulubione to..."}
+            {...register("fertilization", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"fertilization"}
+            errors={errors}
+            as={<Text variant={"small"} />}
+          />
+        </LabelField>
+
         <FormButton type={"submit"}>zapisz</FormButton>
-
-        <h4>plants from local storage</h4>
-
-        {plantsCollection.map((item) => {
-          return (
-            <div key={item.plantID}>
-              <NavItem shouldDisplayOnTop={false} linkTo={`/${item.plantName}`}>
-                {item.plantName}
-              </NavItem>
-              <span>{item.watering}</span>
-            </div>
-          );
-        })}
       </StyledForm>
     </>
   );
