@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import Text from "../text/Text.tsx";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 
 const Form = () => {
   const {

@@ -8,7 +8,7 @@ import {
   PlantNavStyled,
 } from "../../components/plantDetails/PlantDetail.styles.ts";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const PlantDetailPage = () => {
   const { plantId } = useParams();

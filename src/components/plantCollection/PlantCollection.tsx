@@ -1,7 +1,7 @@
 import NavItem from "../navItem/NavItem.tsx";
 import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
 
 const PlantCollection = () => {
