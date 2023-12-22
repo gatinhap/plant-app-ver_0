@@ -23,12 +23,12 @@ const App = () => {
           <Route path={"/"} element={<MyCollectionPage />} />
           <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
 
-          {plantsCollection.map((item) => {
+          {plantsCollection.map((plant) => {
             return (
               <Route
-                key={item.id}
-                path={`/${item.plantName}/*`}
-                element={<PlantDetailPage currentPlantId={item.id} />}
+                key={plant.id}
+                path={`/${plant.plantName}/*`}
+                element={<PlantDetailPage currentPlantId={plant.id} />}
               />
             );
           })}
