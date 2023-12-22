@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import Text from "../text/Text.tsx";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import { useMutation } from "react-query";
 
 const Form = () => {
   const {
@@ -27,9 +28,13 @@ const Form = () => {
       });
   };
 
+  const { mutate } = useMutation({
+    mutationFn: (newPlant: FormValues) => onSubmit(newPlant),
+  });
+
   return (
     <>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm onSubmit={handleSubmit(mutate)}>
         <LabelField>
           podaj nazwę roślinki
           <InputField

@@ -7,21 +7,26 @@ import { theme } from "./theme/theme.ts";
 import { ThemeProvider } from "styled-components";
 import "react-toastify/dist/ReactToastify.min.css";
 import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
+
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Routes>
-          <Route path={"/"} element={<MyCollectionPage />} />
-          <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
-          <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Routes>
+            <Route path={"/"} element={<MyCollectionPage />} />
+            <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
+            <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-        <StyledToastContainer />
-      </ThemeProvider>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          <StyledToastContainer />
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 };
