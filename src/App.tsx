@@ -5,6 +5,8 @@ import AddNewPlant from "./pages/addNewPlantPage/AddNewPlant.tsx";
 import GlobalStyle from "./theme/globalStyles.ts";
 import { theme } from "./theme/theme.ts";
 import { ThemeProvider } from "styled-components";
+import "react-toastify/dist/ReactToastify.min.css";
+import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
 
 const App = () => {
   return (
@@ -18,6 +20,7 @@ const App = () => {
 
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <StyledToastContainer />
       </ThemeProvider>
     </>
   );
