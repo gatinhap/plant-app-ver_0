@@ -2,19 +2,14 @@ import LabelField from "../inputAndLabel/LabelField.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
 import { StyledForm } from "./Form.styles.ts";
-import { nanoid } from "nanoid";
 import InputField from "../inputAndLabel/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import Text from "../text/Text.tsx";
+import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
 
 const Form = () => {
-  const token = localStorage.getItem("formData");
-
-  const plantsCollection: FormValues[] =
-    (token && JSON.parse(localStorage.getItem("formData") || "")) || [];
-
   const {
     register,
     handleSubmit,
@@ -23,19 +18,13 @@ const Form = () => {
   } = useForm<FormValues>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const id = nanoid();
-    const newPlant = {
-      ...data,
-      plantID: id,
-    };
+    pb.collection(PLANTS_COLLECTION)
+      .create(data)
+      .then(() => {
+        toast.success("Roślinka dodana do kolekcji!");
 
-    plantsCollection.push(newPlant);
-
-    localStorage.setItem("formData", JSON.stringify(plantsCollection));
-
-    toast.success("Roślinka dodana do kolekcji!");
-
-    reset();
+        reset();
+      });
   };
 
   return (
