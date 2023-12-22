@@ -16,7 +16,7 @@ const PlantDetailPage = () => {
   const { plantId } = useParams();
 
   const currentPlantId = plantsCollection.find(
-    (singlePlant) => singlePlant.plantID === plantId,
+    (singlePlant) => singlePlant.id === plantId,
   );
 
   return (
