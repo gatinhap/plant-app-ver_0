@@ -7,8 +7,13 @@ import {
   PlantNavItemStyled,
   PlantNavStyled,
 } from "../../components/plantDetails/PlantDetail.styles.ts";
-import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import {
+  pb,
+  plantQueryKey,
+  PLANTS_COLLECTION,
+} from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
+import CallToActionAsLink from "../../components/callToActionButton/CallToActionAsLink.tsx";
 
 const PlantDetailPage = () => {
   const { plantId } = useParams();
@@ -19,7 +24,7 @@ const PlantDetailPage = () => {
   };
 
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["plants"],
+    queryKey: [plantQueryKey],
     queryFn: getPlantsList,
   });
 
@@ -114,6 +119,9 @@ const PlantDetailPage = () => {
             </Routes>
           </>
         )}
+        <CallToActionAsLink linkTo={`/${plantId}/edit`}>
+          edytuj dane
+        </CallToActionAsLink>
       </PageComponent>
     );
   }
