@@ -10,10 +10,12 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
 import { toast } from "react-toastify";
 import { StyledForm } from "./Form.styles.ts";
-import LabelField from "../inputAndLabel/LabelField.tsx";
-import InputField from "../inputAndLabel/InputField.tsx";
+import LabelField from "../formElements/LabelField.tsx";
+import InputField from "../formElements/InputField.tsx";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton.tsx";
+import TextArea from "../formElements/TextArea.tsx";
+import WarningText from "../text/WarningText.tsx";
 
 const EditForm = () => {
   const { plantId } = useParams();
@@ -67,7 +69,6 @@ const EditForm = () => {
           <LabelField>
             nazwa roślinki
             <InputField
-              height={"50px"}
               placeholder={"nazywam się..."}
               {...register("plantName", {
                 required: {
@@ -84,13 +85,12 @@ const EditForm = () => {
             <ErrorMessage
               name={"plantName"}
               errors={errors}
-              as={<Text variant={"small"} />}
+              as={<WarningText variant={"small"} />}
             />
           </LabelField>
           <LabelField>
             jak chcesz ją podlewać
-            <InputField
-              height={"86px"}
+            <TextArea
               placeholder={"wpisz jak bardzo lubię wodę..."}
               {...register("watering", {
                 maxLength: {
@@ -102,14 +102,13 @@ const EditForm = () => {
             <ErrorMessage
               name={"watering"}
               errors={errors}
-              as={<Text variant={"small"} />}
+              as={<WarningText variant={"small"} />}
             />
           </LabelField>
 
           <LabelField>
             czy lubi zraszanie
-            <InputField
-              height={"86px"}
+            <TextArea
               placeholder={
                 "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
               }
@@ -123,7 +122,63 @@ const EditForm = () => {
             <ErrorMessage
               name={"misting"}
               errors={errors}
-              as={<Text variant={"small"} />}
+              as={<WarningText variant={"small"} />}
+            />
+          </LabelField>
+
+          <LabelField>
+            światło - dużo czy mało
+            <TextArea
+              placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
+              {...register("light", {
+                maxLength: {
+                  value: 512,
+                  message: "Opis może zawierać maksymalnie 512 znaków!",
+                },
+              })}
+            />
+            <ErrorMessage
+              name={"light"}
+              errors={errors}
+              as={<WarningText variant={"small"} />}
+            />
+          </LabelField>
+
+          <LabelField>
+            gleba
+            <TextArea
+              placeholder={
+                "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+              }
+              {...register("soil", {
+                maxLength: {
+                  value: 512,
+                  message: "Opis może zawierać maksymalnie 512 znaków!",
+                },
+              })}
+            />
+            <ErrorMessage
+              name={"soil"}
+              errors={errors}
+              as={<WarningText variant={"small"} />}
+            />
+          </LabelField>
+
+          <LabelField>
+            nawożenie
+            <TextArea
+              placeholder={"witaminki dla roślinki, a moje ulubione to..."}
+              {...register("fertilization", {
+                maxLength: {
+                  value: 512,
+                  message: "Opis może zawierać maksymalnie 512 znaków!",
+                },
+              })}
+            />
+            <ErrorMessage
+              name={"fertilization"}
+              errors={errors}
+              as={<WarningText variant={"small"} />}
             />
           </LabelField>
 
