@@ -122,6 +122,9 @@ const PlantDetailPage = () => {
         <CallToActionAsLink linkTo={`/${plantId}/edit`}>
           edytuj dane
         </CallToActionAsLink>
+        <CallToActionAsLink linkTo={`/${plantId}/delete`}>
+          usuń roślinkę z kolekcji
+        </CallToActionAsLink>
       </PageComponent>
     );
   }
