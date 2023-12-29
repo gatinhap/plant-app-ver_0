@@ -9,3 +9,7 @@ export const TextStyled = styled.p<{
   line-height: ${({ $lineHeight }) => $lineHeight};
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing}px;
 `;
+
+export const WarningTextStyled = styled(TextStyled)`
+  color: ${({ theme }) => theme.colors.red};
+`;
