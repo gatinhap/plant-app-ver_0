@@ -8,6 +8,7 @@ import { ThemeProvider } from "styled-components";
 import "react-toastify/dist/ReactToastify.min.css";
 import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import EditPlant from "./pages/editPlantPage/EditPlant.tsx";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => {
             <Route path={"/"} element={<MyCollectionPage />} />
             <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
             <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
+            <Route path={"/:plantId/edit"} element={<EditPlant />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

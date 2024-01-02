@@ -9,6 +9,7 @@ export const theme = {
     lime: "#A7D129",
     cream: "#FFD",
     brown: "#92400E",
+    red: "#F87171",
     lightRed: "#FEF2F2",
     lightYellow: "#FFFBEB",
   },
