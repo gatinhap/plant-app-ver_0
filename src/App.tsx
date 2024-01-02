@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import EditPlant from "./pages/editPlantPage/EditPlant.tsx";
+import RemovePlant from "./pages/removePlantPage/RemovePlant.tsx";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => {
             <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
             <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
             <Route path={"/:plantId/edit"} element={<EditPlant />} />
+            <Route path={"/:plantId/delete"} element={<RemovePlant />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
