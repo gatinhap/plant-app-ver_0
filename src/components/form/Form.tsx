@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
 import TextArea from "../formElements/TextArea.tsx";
-import WarningText from "../text/WarningText.tsx";
+import Text from "../text/Text.tsx";
 
 const Form = () => {
   const {
@@ -49,7 +49,7 @@ const Form = () => {
           <ErrorMessage
             name={"plantName"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -67,7 +67,7 @@ const Form = () => {
           <ErrorMessage
             name={"watering"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -87,7 +87,7 @@ const Form = () => {
           <ErrorMessage
             name={"misting"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -105,7 +105,7 @@ const Form = () => {
           <ErrorMessage
             name={"light"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -125,7 +125,7 @@ const Form = () => {
           <ErrorMessage
             name={"soil"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -143,7 +143,7 @@ const Form = () => {
           <ErrorMessage
             name={"fertilization"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text alertType={"warning"} variant={"small"} />}
           />
         </LabelField>
 

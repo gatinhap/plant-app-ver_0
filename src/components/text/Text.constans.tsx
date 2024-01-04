@@ -17,3 +17,9 @@ export const ParagraphStylesMap = {
     letterSpacing: theme.letterSpacing.largeParagraph,
   },
 };
+
+export const TextColorsMap = {
+  warning: theme.colors.red,
+  success: theme.colors.lightGreen,
+  default: theme.colors.cream,
+};
