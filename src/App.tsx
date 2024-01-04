@@ -13,21 +13,19 @@ const App = () => {
   const queryClient = new QueryClient();
 
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Routes>
-            <Route path={"/"} element={<MyCollectionPage />} />
-            <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
-            <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Routes>
+          <Route path={"/"} element={<MyCollectionPage />} />
+          <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
+          <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
 
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-          <StyledToastContainer />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <StyledToastContainer />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
