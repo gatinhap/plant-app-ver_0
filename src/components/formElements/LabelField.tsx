@@ -1,4 +1,4 @@
-import { LabelFieldProps } from "./InputAndLabel.types.ts";
+import { LabelFieldProps } from "./FormElements.types.ts";
 
 const InputField = ({ children }: LabelFieldProps) => {
   return (
