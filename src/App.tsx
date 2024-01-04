@@ -7,10 +7,13 @@ import { theme } from "./theme/theme.ts";
 import { ThemeProvider } from "styled-components";
 import "react-toastify/dist/ReactToastify.min.css";
 import { StyledToastContainer } from "./components/toast/Toast.styles.ts";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
+
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes>
@@ -22,7 +25,7 @@ const App = () => {
         </Routes>
         <StyledToastContainer />
       </ThemeProvider>
-    </>
+    </QueryClientProvider>
   );
 };
 
