@@ -49,7 +49,7 @@ const Form = () => {
           <ErrorMessage
             name={"plantName"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -67,7 +67,7 @@ const Form = () => {
           <ErrorMessage
             name={"watering"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -87,7 +87,7 @@ const Form = () => {
           <ErrorMessage
             name={"misting"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -105,7 +105,7 @@ const Form = () => {
           <ErrorMessage
             name={"light"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -125,7 +125,7 @@ const Form = () => {
           <ErrorMessage
             name={"soil"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -143,7 +143,7 @@ const Form = () => {
           <ErrorMessage
             name={"fertilization"}
             errors={errors}
-            as={<Text alertType={"warning"} variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 

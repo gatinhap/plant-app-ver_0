@@ -4,18 +4,18 @@ import { TextTypes } from "./Text.types.tsx";
 
 const Text = ({
   variant = "small",
-  alertType = "default",
+  color = "default",
   children,
 }: TextTypes) => {
   const variantStyles = ParagraphStylesMap[variant];
-  const alertTypeStyles = TextColorsMap[alertType];
+  const colors = TextColorsMap[color];
 
   return (
     <TextStyled
       $lineHeight={variantStyles.lineHeight}
       $fontSize={variantStyles.fontSize}
       $letterSpacing={variantStyles.letterSpacing}
-      $color={alertTypeStyles}
+      $color={colors}
     >
       {children}
     </TextStyled>
