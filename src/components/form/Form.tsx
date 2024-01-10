@@ -1,12 +1,13 @@
-import LabelField from "../inputAndLabel/LabelField.tsx";
+import LabelField from "../formElements/LabelField.tsx";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FormButton from "./FormButton.tsx";
 import { StyledForm } from "./Form.styles.ts";
-import InputField from "../inputAndLabel/InputField.tsx";
+import InputField from "../formElements/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import Text from "../text/Text.tsx";
+import TextArea from "../formElements/TextArea.tsx";
 import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
 import { useMutation } from "@tanstack/react-query";
 
@@ -37,7 +38,6 @@ const Form = () => {
       <LabelField>
         podaj nazwę roślinki
         <InputField
-          height={"50px"}
           placeholder={"nazywam się..."}
           {...register("plantName", {
             required: {
@@ -53,108 +53,103 @@ const Form = () => {
         <ErrorMessage
           name={"plantName"}
           errors={errors}
-          as={<Text variant={"small"} />}
+          as={<Text color={"warning"} variant={"small"} />}
         />
       </LabelField>
 
-      <LabelField>
-        jak chcesz ją podlewać
-        <InputField
-          height={"86px"}
-          placeholder={"wpisz jak bardzo lubię wodę..."}
-          {...register("watering", {
-            maxLength: {
-              value: 512,
-              message: "Opis może zawierać maksymalnie 512 znaków!",
-            },
-          })}
-        />
-        <ErrorMessage
-          name={"watering"}
-          errors={errors}
-          as={<Text variant={"small"} />}
-        />
-      </LabelField>
+        <LabelField>
+          jak chcesz ją podlewać
+          <TextArea
+            placeholder={"wpisz jak bardzo lubię wodę..."}
+            {...register("watering", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"watering"}
+            errors={errors}
+            as={<Text color={"warning"} variant={"small"} />}
+          />
+        </LabelField>
 
-      <LabelField>
-        czy lubi zraszanie
-        <InputField
-          height={"86px"}
-          placeholder={
-            "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
-          }
-          {...register("misting", {
-            maxLength: {
-              value: 512,
-              message: "Opis może zawierać maksymalnie 512 znaków!",
-            },
-          })}
-        />
-        <ErrorMessage
-          name={"misting"}
-          errors={errors}
-          as={<Text variant={"small"} />}
-        />
-      </LabelField>
+        <LabelField>
+          czy lubi zraszanie
+          <TextArea
+            placeholder={
+              "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
+            }
+            {...register("misting", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"misting"}
+            errors={errors}
+            as={<Text color={"warning"} variant={"small"} />}
+          />
+        </LabelField>
 
-      <LabelField>
-        światło - dużo czy mało
-        <InputField
-          height={"86px"}
-          placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
-          {...register("light", {
-            maxLength: {
-              value: 512,
-              message: "Opis może zawierać maksymalnie 512 znaków!",
-            },
-          })}
-        />
-        <ErrorMessage
-          name={"light"}
-          errors={errors}
-          as={<Text variant={"small"} />}
-        />
-      </LabelField>
+        <LabelField>
+          światło - dużo czy mało
+          <TextArea
+            placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
+            {...register("light", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"light"}
+            errors={errors}
+            as={<Text color={"warning"} variant={"small"} />}
+          />
+        </LabelField>
 
-      <LabelField>
-        gleba
-        <InputField
-          height={"86px"}
-          placeholder={
-            "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
-          }
-          {...register("soil", {
-            maxLength: {
-              value: 512,
-              message: "Opis może zawierać maksymalnie 512 znaków!",
-            },
-          })}
-        />
-        <ErrorMessage
-          name={"soil"}
-          errors={errors}
-          as={<Text variant={"small"} />}
-        />
-      </LabelField>
+        <LabelField>
+          gleba
+          <TextArea
+            placeholder={
+              "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+            }
+            {...register("soil", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"soil"}
+            errors={errors}
+            as={<Text color={"warning"} variant={"small"} />}
+          />
+        </LabelField>
 
-      <LabelField>
-        nawożenie
-        <InputField
-          height={"86px"}
-          placeholder={"witaminki dla roślinki, a moje ulubione to..."}
-          {...register("fertilization", {
-            maxLength: {
-              value: 512,
-              message: "Opis może zawierać maksymalnie 512 znaków!",
-            },
-          })}
-        />
-        <ErrorMessage
-          name={"fertilization"}
-          errors={errors}
-          as={<Text variant={"small"} />}
-        />
-      </LabelField>
+        <LabelField>
+          nawożenie
+          <TextArea
+            placeholder={"witaminki dla roślinki, a moje ulubione to..."}
+            {...register("fertilization", {
+              maxLength: {
+                value: 512,
+                message: "Opis może zawierać maksymalnie 512 znaków!",
+              },
+            })}
+          />
+          <ErrorMessage
+            name={"fertilization"}
+            errors={errors}
+            as={<Text color={"warning"} variant={"small"} />}
+          />
+        </LabelField>
 
       <FormButton type={"submit"}>zapisz</FormButton>
     </StyledForm>
