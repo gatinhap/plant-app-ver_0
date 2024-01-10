@@ -1,6 +1,5 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
-import WarningText from "../../components/text/WarningText.tsx";
 import CallToActionAsLink from "../../components/callToActionButton/CallToActionAsLink.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -48,9 +47,9 @@ const RemovePlant = () => {
         <Text variant={"large"}>Usuwam...</Text>
       ) : (
         <>
-          <WarningText variant={"large"}>
+          <Text variant={"large"}>
             Czy na pewno chcesz usunąć tę roślinkę z kolekcji?
-          </WarningText>
+          </Text>
           <CallToActionButton handleClick={() => removePlantMutation.mutate()}>
             tak, usuń!
           </CallToActionButton>
