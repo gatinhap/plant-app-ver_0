@@ -20,20 +20,25 @@ const PlantDetailPage = () => {
 
   const getPlantsList = async () => {
     const res = await pb.collection(PLANTS_COLLECTION).getList(1, 100);
+
     return res.items;
   };
 
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey],
     queryFn: getPlantsList,
   });
 
   if (isPending) {
-    return <Text variant={"large"}>Loading...</Text>;
+    return <Text variant={"large"}>Pobieram dane...</Text>;
   }
 
   if (isError) {
-    return <Text variant={"large"}>Error: {error.message}</Text>;
+    return (
+      <Text variant={"large"}>
+        Nie udało się pobrać danych. Spróbuj odświeżyć stronę.
+      </Text>
+    );
   }
 
   const currentPlant =
