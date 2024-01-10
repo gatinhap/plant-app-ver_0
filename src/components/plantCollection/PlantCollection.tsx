@@ -1,6 +1,10 @@
 import NavItem from "../navItem/NavItem.tsx";
 import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
-import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import {
+  pb,
+  plantQueryKey,
+  PLANTS_COLLECTION,
+} from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
 
@@ -12,7 +16,7 @@ const PlantCollection = () => {
   };
 
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["plants"],
+    queryKey: [plantQueryKey],
     queryFn: getPlantsList,
   });
 

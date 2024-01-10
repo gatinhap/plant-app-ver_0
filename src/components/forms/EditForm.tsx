@@ -15,7 +15,6 @@ import InputField from "../formElements/InputField.tsx";
 import { ErrorMessage } from "@hookform/error-message";
 import FormButton from "./FormButton.tsx";
 import TextArea from "../formElements/TextArea.tsx";
-import WarningText from "../text/WarningText.tsx";
 
 const EditForm = () => {
   const { plantId } = useParams();
@@ -85,7 +84,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"plantName"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
           <LabelField>
@@ -102,7 +101,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"watering"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
 
@@ -122,7 +121,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"misting"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
 
@@ -140,7 +139,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"light"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
 
@@ -160,7 +159,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"soil"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
 
@@ -178,7 +177,7 @@ const EditForm = () => {
             <ErrorMessage
               name={"fertilization"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text variant={"small"} />}
             />
           </LabelField>
 
