@@ -27,13 +27,11 @@ const PlantCollection = () => {
   if (data) {
     return (
       <PlantCollectionStyled>
-        {data.map((plant) => {
-          return (
-            <NavItem key={plant.id} linkTo={`/${plant.id}`}>
-              {plant.plantName}
-            </NavItem>
-          );
-        })}
+        {data.map((plant) => (
+          <NavItem key={plant.id} linkTo={`/${plant.id}`}>
+            {plant.plantName}
+          </NavItem>
+        ))}
       </PlantCollectionStyled>
     );
   }

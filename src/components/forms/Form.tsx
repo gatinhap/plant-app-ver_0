@@ -6,9 +6,9 @@ import InputField from "../formElements/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
-import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import Text from "../text/Text.tsx";
 import TextArea from "../formElements/TextArea.tsx";
-import WarningText from "../text/WarningText.tsx";
+import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
 import { useMutation } from "@tanstack/react-query";
 
 const Form = () => {
@@ -29,34 +29,33 @@ const Form = () => {
       });
   };
 
-  const { mutate } = useMutation({
+  const mutation = useMutation({
     mutationFn: (newPlant: FormValues) => onSubmit(newPlant),
   });
 
   return (
-    <>
-      <StyledForm onSubmit={handleSubmit(mutate)}>
-        <LabelField>
-          podaj nazwę roślinki
-          <InputField
-            placeholder={"nazywam się..."}
-            {...register("plantName", {
-              required: {
-                value: true,
-                message: "Dodaj nazwę roślinki!",
-              },
-              maxLength: {
-                value: 20,
-                message: "Nazwa roślinki może zawierać maksymalnie 20 znaków!",
-              },
-            })}
-          />
-          <ErrorMessage
-            name={"plantName"}
-            errors={errors}
-            as={<WarningText variant={"small"} />}
-          />
-        </LabelField>
+    <StyledForm onSubmit={handleSubmit(mutation.mutate)}>
+      <LabelField>
+        podaj nazwę roślinki
+        <InputField
+          placeholder={"nazywam się..."}
+          {...register("plantName", {
+            required: {
+              value: true,
+              message: "Dodaj nazwę roślinki!",
+            },
+            maxLength: {
+              value: 20,
+              message: "Nazwa roślinki może zawierać maksymalnie 20 znaków!",
+            },
+          })}
+        />
+        <ErrorMessage
+          name={"plantName"}
+          errors={errors}
+          as={<Text color={"warning"} variant={"small"} />}
+        />
+      </LabelField>
 
         <LabelField>
           jak chcesz ją podlewać
@@ -72,7 +71,7 @@ const Form = () => {
           <ErrorMessage
             name={"watering"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -92,7 +91,7 @@ const Form = () => {
           <ErrorMessage
             name={"misting"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -110,7 +109,7 @@ const Form = () => {
           <ErrorMessage
             name={"light"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -130,7 +129,7 @@ const Form = () => {
           <ErrorMessage
             name={"soil"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
@@ -148,13 +147,12 @@ const Form = () => {
           <ErrorMessage
             name={"fertilization"}
             errors={errors}
-            as={<WarningText variant={"small"} />}
+            as={<Text color={"warning"} variant={"small"} />}
           />
         </LabelField>
 
-        <FormButton type={"submit"}>zapisz</FormButton>
-      </StyledForm>
-    </>
+      <FormButton type={"submit"}>zapisz</FormButton>
+    </StyledForm>
   );
 };
 
