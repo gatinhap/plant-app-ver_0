@@ -6,15 +6,14 @@ import InputField from "../formElements/InputField.tsx";
 import { FormValues } from "./Form.types.ts";
 import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
+import Text from "../text/Text.tsx";
 import {
   pb,
   plantQueryKey,
   PLANTS_COLLECTION,
 } from "../../Backend.constants.ts";
 import TextArea from "../formElements/TextArea.tsx";
-import WarningText from "../text/WarningText.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import Text from "../text/Text.tsx";
 
 const Form = () => {
   const queryClient = useQueryClient();
@@ -72,7 +71,7 @@ const Form = () => {
             <ErrorMessage
               name={"plantName"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 
@@ -90,7 +89,7 @@ const Form = () => {
             <ErrorMessage
               name={"watering"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 
@@ -110,7 +109,7 @@ const Form = () => {
             <ErrorMessage
               name={"misting"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 
@@ -128,7 +127,7 @@ const Form = () => {
             <ErrorMessage
               name={"light"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 
@@ -148,7 +147,7 @@ const Form = () => {
             <ErrorMessage
               name={"soil"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 
@@ -166,7 +165,7 @@ const Form = () => {
             <ErrorMessage
               name={"fertilization"}
               errors={errors}
-              as={<WarningText variant={"small"} />}
+              as={<Text color={"warning"} variant={"small"} />}
             />
           </LabelField>
 

@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
 	input,
     textarea {
-		font-size: ${(props) => props.theme.fontSizes.regularParagraph}px;
+		font-size: ${({ theme }) => theme.fontSizes.regularParagraph}px;
 		font-family: ${({ theme: { fonts } }) => fonts.primaryFont};
 
 		&::placeholder {

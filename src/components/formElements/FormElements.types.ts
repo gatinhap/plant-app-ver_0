@@ -12,5 +12,4 @@ export type LabelFieldProps = {
 
 export type TextAreaProps = {
   placeholder?: string;
-  accept?: string;
 };

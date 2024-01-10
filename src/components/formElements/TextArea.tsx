@@ -5,16 +5,9 @@ import { TextAreaStyled } from "./FormElements.styles.ts";
 const ForwardRefTextAreaField: ForwardRefRenderFunction<
   HTMLTextAreaElement,
   TextAreaProps
-> = ({ placeholder, accept, ...props }, forwardedRef) => {
+> = ({ placeholder, ...props }, forwardedRef) => {
   return (
-    <>
-      <TextAreaStyled
-        ref={forwardedRef}
-        placeholder={placeholder}
-        accept={accept}
-        {...props}
-      />
-    </>
+    <TextAreaStyled ref={forwardedRef} placeholder={placeholder} {...props} />
   );
 };
 

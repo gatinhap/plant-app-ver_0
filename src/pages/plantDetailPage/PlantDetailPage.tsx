@@ -18,15 +18,13 @@ import CallToActionAsLink from "../../components/callToActionButton/CallToAction
 const PlantDetailPage = () => {
   const { plantId } = useParams();
 
-  const getPlantsList = async () => {
-    const res = await pb.collection(PLANTS_COLLECTION).getList(1, 100);
-
-    return res.items;
+  const getPlant = async (id) => {
+    return await pb.collection(PLANTS_COLLECTION).getOne(id);
   };
 
-  const { isPending, isError, data } = useQuery({
-    queryKey: [plantQueryKey],
-    queryFn: getPlantsList,
+  const { isPending, isError, data, error } = useQuery({
+    queryKey: [plantQueryKey, plantId],
+    queryFn: () => getPlant(plantId),
   });
 
   if (isPending) {
@@ -41,9 +39,6 @@ const PlantDetailPage = () => {
     );
   }
 
-  const currentPlant =
-    data && data.find((singlePlant) => singlePlant.id === plantId);
-
   if (data) {
     return (
       <PageComponent>
@@ -51,9 +46,9 @@ const PlantDetailPage = () => {
           moja kolekcja
         </NavItem>
         <Outlet />
-        {currentPlant && (
+        {data && (
           <>
-            <h3>{currentPlant.plantName}</h3>
+            <h3>{data.plantName}</h3>
 
             <PlantNavStyled>
               <PlantNavItemStyled to={`/${plantId}/podlewanie`}>
@@ -79,7 +74,7 @@ const PlantDetailPage = () => {
                 path={"/podlewanie"}
                 element={
                   <PlantInfo title={"podlewanie"}>
-                    <Text variant={"regular"}>{currentPlant.watering}</Text>
+                    <Text variant={"regular"}>{data.watering}</Text>
                   </PlantInfo>
                 }
               />
@@ -88,7 +83,7 @@ const PlantDetailPage = () => {
                 path={"/zraszanie"}
                 element={
                   <PlantInfo title={"zraszanie"}>
-                    <Text variant={"regular"}>{currentPlant.misting}</Text>
+                    <Text variant={"regular"}>{data.misting}</Text>
                   </PlantInfo>
                 }
               />
@@ -97,7 +92,7 @@ const PlantDetailPage = () => {
                 path={"/światło"}
                 element={
                   <PlantInfo title={"światło"}>
-                    <Text variant={"regular"}>{currentPlant.light}</Text>
+                    <Text variant={"regular"}>{data.light}</Text>
                   </PlantInfo>
                 }
               />
@@ -106,7 +101,7 @@ const PlantDetailPage = () => {
                 path={"/gleba"}
                 element={
                   <PlantInfo title={"gleba"}>
-                    <Text variant={"regular"}>{currentPlant.soil}</Text>
+                    <Text variant={"regular"}>{data.soil}</Text>
                   </PlantInfo>
                 }
               />
@@ -115,9 +110,7 @@ const PlantDetailPage = () => {
                 path={"/nawożenie"}
                 element={
                   <PlantInfo title={"nawożenie"}>
-                    <Text variant={"regular"}>
-                      {currentPlant.fertilization}
-                    </Text>
+                    <Text variant={"regular"}>{data.fertilization}</Text>
                   </PlantInfo>
                 }
               />

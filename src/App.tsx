@@ -15,7 +15,6 @@ const App = () => {
   const queryClient = new QueryClient();
 
   return (
-    <>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
@@ -27,11 +26,10 @@ const App = () => {
             <Route path={"/:plantId/delete"} element={<RemovePlant />} />
 
             <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-          <StyledToastContainer />
-        </ThemeProvider>
-      </QueryClientProvider>
-    </>
+        </Routes>
+        <StyledToastContainer />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
