@@ -1,6 +1,10 @@
 import NavItem from "../navItem/NavItem.tsx";
 import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
-import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import {
+  pb,
+  plantQueryKey,
+  PLANTS_COLLECTION,
+} from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
 
@@ -11,17 +15,21 @@ const PlantCollection = () => {
     return res.items;
   };
 
-  const { isPending, isError, data, error } = useQuery({
-    queryKey: ["plants"],
+  const { isPending, isError, data } = useQuery({
+    queryKey: [plantQueryKey],
     queryFn: getPlantsList,
   });
 
   if (isPending) {
-    return <Text variant={"large"}>Loading...</Text>;
+    return <Text variant={"large"}>Pobieram dane...</Text>;
   }
 
   if (isError) {
-    return <Text variant={"large"}>Error: {error.message}</Text>;
+    return (
+      <Text variant={"large"}>
+        Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.
+      </Text>
+    );
   }
 
   if (data) {

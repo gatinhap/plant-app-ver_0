@@ -1,17 +1,17 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
-import Form from "../../components/forms/Form.tsx";
+import EditForm from "../../components/forms/EditForm.tsx";
 
-const AddNewPlant = () => {
+const EditPlant = () => {
   return (
     <PageComponent>
       <NavItem linkTo={"/"} shouldDisplayOnTop={true}>
         moja kolekcja
       </NavItem>
-      <h3>dodaj roślinkę</h3>
-      <Form />
+      <h3>tryb edycji</h3>
+      <EditForm />
     </PageComponent>
   );
 };
 
-export default AddNewPlant;
+export default EditPlant;

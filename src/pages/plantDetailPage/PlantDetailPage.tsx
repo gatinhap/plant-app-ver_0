@@ -7,8 +7,13 @@ import {
   PlantNavItemStyled,
   PlantNavStyled,
 } from "../../components/plantDetails/PlantDetail.styles.ts";
-import { pb, PLANTS_COLLECTION } from "../../Backend.constants.ts";
+import {
+  pb,
+  plantQueryKey,
+  PLANTS_COLLECTION,
+} from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
+import CallToActionAsLink from "../../components/callToActionButton/CallToActionAsLink.tsx";
 
 const PlantDetailPage = () => {
   const { plantId } = useParams();
@@ -18,16 +23,20 @@ const PlantDetailPage = () => {
   };
 
   const { isPending, isError, data, error } = useQuery({
-    queryKey: ["plants", plantId],
+    queryKey: [plantQueryKey, plantId],
     queryFn: () => getPlant(plantId),
   });
 
   if (isPending) {
-    return <Text variant={"large"}>Loading...</Text>;
+    return <Text variant={"large"}>Pobieram dane...</Text>;
   }
 
   if (isError) {
-    return <Text variant={"large"}>Error: {error.message}</Text>;
+    return (
+      <Text variant={"large"}>
+        Nie udało się pobrać danych. Spróbuj odświeżyć stronę.
+      </Text>
+    );
   }
 
   if (data) {
@@ -108,6 +117,12 @@ const PlantDetailPage = () => {
             </Routes>
           </>
         )}
+        <CallToActionAsLink linkTo={`/${plantId}/edit`}>
+          edytuj dane
+        </CallToActionAsLink>
+        <CallToActionAsLink linkTo={`/${plantId}/delete`}>
+          usuń roślinkę z kolekcji
+        </CallToActionAsLink>
       </PageComponent>
     );
   }
