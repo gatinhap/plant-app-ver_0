@@ -28,11 +28,15 @@ const PlantDetailPage = () => {
   });
 
   if (isPending) {
-    return <Text variant={"large"}>Loading...</Text>;
+    return <Text variant={"large"}>Pobieram dane...</Text>;
   }
 
   if (isError) {
-    return <Text variant={"large"}>Error: {error.message}</Text>;
+    return (
+      <Text variant={"large"}>
+        Nie udało się pobrać danych. Spróbuj odświeżyć stronę.
+      </Text>
+    );
   }
 
   if (data) {
@@ -115,6 +119,9 @@ const PlantDetailPage = () => {
         )}
         <CallToActionAsLink linkTo={`/${plantId}/edit`}>
           edytuj dane
+        </CallToActionAsLink>
+        <CallToActionAsLink linkTo={`/${plantId}/delete`}>
+          usuń roślinkę z kolekcji
         </CallToActionAsLink>
       </PageComponent>
     );
