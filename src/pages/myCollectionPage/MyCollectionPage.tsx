@@ -6,6 +6,9 @@ const MyCollectionPage = () => {
   return (
     <PageComponent>
       <h3>moja kolekcja</h3>
+      <CallToActionAsLink linkTo={"/registration"}>
+        zarejestruj się
+      </CallToActionAsLink>
       <CallToActionAsLink linkTo={"/dodaj-roślinkę"}>
         dodaj roślinkę do kolekcji
       </CallToActionAsLink>
