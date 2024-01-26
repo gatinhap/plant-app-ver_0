@@ -18,6 +18,7 @@ const UserRegistrationForm = () => {
     handleSubmit,
     reset,
     watch,
+    setError,
     formState: { errors },
   } = useForm<UserRegistrationFormValues>({ mode: "onChange" });
 
@@ -29,8 +30,23 @@ const UserRegistrationForm = () => {
       toast.success("Rejestracja przebiegła pomyślnie!");
       reset();
       navigateTo("/login");
-    } catch (error) {
-      console.log("Nie udało się stworzyć użytkownika", error.response.data);
+    } catch (e) {
+      const errors = e.response.data;
+
+      if (errors.username) {
+        setError("username", {
+          type: "server",
+          message: `${errors.username.message}`,
+        });
+      }
+
+      if (errors.email) {
+        setError("email", {
+          type: "server",
+          message: `${errors.email.message}`,
+        });
+      }
+
       toast.error("Wystąpił błąd podczas rejestracji. Spróbuj ponownie.");
     }
   };
