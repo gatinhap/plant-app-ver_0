@@ -1,5 +1,6 @@
 import PageComponent from "../../components/pageComponent/PageComponent.tsx";
 import NavItem from "../../components/navItem/NavItem.tsx";
+import LoginForm from "../../components/userForms/LoginForm.tsx";
 
 const LoginPage = () => {
   return (
@@ -8,6 +9,7 @@ const LoginPage = () => {
         moja kolekcja
       </NavItem>
       <h3>strona logowania</h3>
+      <LoginForm />
     </PageComponent>
   );
 };
