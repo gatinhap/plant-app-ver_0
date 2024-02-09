@@ -42,9 +42,7 @@ const UserRegistrationForm = () => {
       reset();
       navigateTo("/login");
 
-      return async () => {
-        await queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
-      };
+      return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
     onError: (e) => {
       const errors = e.response.data;
