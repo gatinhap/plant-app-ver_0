@@ -12,6 +12,9 @@ import EditPlant from "./pages/editPlantPage/EditPlant.tsx";
 import RemovePlant from "./pages/removePlantPage/RemovePlant.tsx";
 import UserRegistrationPage from "./pages/userRegistrationPage/UserRegistrationPage.tsx";
 import LoginPage from "./pages/loginPage/LoginPage.tsx";
+import PrivateRoute from "./authentication/PrivateRoute.tsx";
+import PublicRoute from "./authentication/PublicRoute.tsx";
+import WelcomePage from "./pages/welcomePage/WelcomePage.tsx";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -21,15 +24,21 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes>
-          <Route path={"/"} element={<MyCollectionPage />} />
-          <Route path={"/registration"} element={<UserRegistrationPage />} />
-          <Route path={"/login"} element={<LoginPage />} />
-          <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
-          <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
-          <Route path={"/:plantId/edit"} element={<EditPlant />} />
-          <Route path={"/:plantId/delete"} element={<RemovePlant />} />
+          <Route element={<PrivateRoute />}>
+            <Route path={"/"} element={<MyCollectionPage />} />
+            <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
+            <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
+            <Route path={"/:plantId/edit"} element={<EditPlant />} />
+            <Route path={"/:plantId/delete"} element={<RemovePlant />} />
 
-          <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+
+          <Route element={<PublicRoute />}>
+            <Route path={"/welcome"} element={<WelcomePage />} />
+            <Route path={"/registration"} element={<UserRegistrationPage />} />
+            <Route path={"/login"} element={<LoginPage />} />
+          </Route>
         </Routes>
         <StyledToastContainer />
       </ThemeProvider>
