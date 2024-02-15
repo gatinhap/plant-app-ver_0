@@ -15,9 +15,26 @@ import LoginPage from "./pages/loginPage/LoginPage.tsx";
 import PrivateRoute from "./authentication/PrivateRoute.tsx";
 import PublicRoute from "./authentication/PublicRoute.tsx";
 import WelcomePage from "./pages/welcomePage/WelcomePage.tsx";
+import { useEffect } from "react";
 
 const App = () => {
   const queryClient = new QueryClient();
+
+  // listen for the logout event
+  useEffect(() => {
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "logout") {
+        // Refresh the page when logout event is detected
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
