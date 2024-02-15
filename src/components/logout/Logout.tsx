@@ -26,12 +26,12 @@ const Logout = () => {
 
   return (
     <>
-      {logoutUserMutation.isError ? (
+      {logoutUserMutation.isError && (
         <Text variant={"large"}>
           Nastąpił błąd podczas wylogowywania. Odśwież stronę i spróbuj jeszcze
           raz.
         </Text>
-      ) : null}
+      )}
       {logoutUserMutation.isPending ? (
         <Text variant={"large"}>Wylogowuję...</Text>
       ) : (

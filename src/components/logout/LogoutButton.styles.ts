@@ -20,11 +20,8 @@ export const LogoutButtonStyled = styled.div<{
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   font-size: ${({ theme }) => theme.fontSizes.regularParagraph}px;
-  font-weight: ${({ theme }) => theme.fontWeights.normal};
   text-decoration: none;
-  -webkit-user-select: none;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
   background-color: ${({ theme }) => theme.colors.lightGreen};
   color: ${({ theme }) => theme.colors.mediumGreen};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
