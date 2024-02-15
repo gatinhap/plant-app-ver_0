@@ -12,8 +12,8 @@ import EditPlant from "./pages/editPlantPage/EditPlant.tsx";
 import RemovePlant from "./pages/removePlantPage/RemovePlant.tsx";
 import UserRegistrationPage from "./pages/userRegistrationPage/UserRegistrationPage.tsx";
 import LoginPage from "./pages/loginPage/LoginPage.tsx";
-import PrivateRoutes from "./authentication/privateRoutes.tsx";
-import PublicRoutes from "./authentication/publicRoutes.tsx";
+import PrivateRoute from "./authentication/PrivateRoute.tsx";
+import PublicRoute from "./authentication/PublicRoute.tsx";
 import WelcomePage from "./pages/welcomePage/WelcomePage.tsx";
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Routes>
-          <Route element={<PrivateRoutes />}>
+          <Route element={<PrivateRoute />}>
             <Route path={"/"} element={<MyCollectionPage />} />
             <Route path={"/dodaj-roślinkę"} element={<AddNewPlant />} />
             <Route path={"/:plantId/*"} element={<PlantDetailPage />} />
@@ -34,7 +34,7 @@ const App = () => {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
 
-          <Route element={<PublicRoutes />}>
+          <Route element={<PublicRoute />}>
             <Route path={"/welcome"} element={<WelcomePage />} />
             <Route path={"/registration"} element={<UserRegistrationPage />} />
             <Route path={"/login"} element={<LoginPage />} />
