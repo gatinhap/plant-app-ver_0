@@ -14,4 +14,5 @@ export type FormValues = {
   light: string;
   soil: string;
   fertilization: string;
+  user: string;
 };
