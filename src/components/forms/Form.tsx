@@ -18,6 +18,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 const Form = () => {
   const queryClient = useQueryClient();
 
+  const currentUserId = pb.authStore.model?.id;
+
   const {
     register,
     handleSubmit,
@@ -26,7 +28,9 @@ const Form = () => {
   } = useForm<FormValues>({ mode: "onChange" });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    return pb.collection(PLANTS_COLLECTION).create(data);
+    const plantData = { ...data, user: currentUserId };
+
+    return pb.collection(PLANTS_COLLECTION).create(plantData);
   };
 
   const addPlantMutation = useMutation({

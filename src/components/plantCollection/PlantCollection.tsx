@@ -9,8 +9,12 @@ import { useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
 
 const PlantCollection = () => {
+  const currentUserId = pb.authStore.model?.id;
+
   const getPlantsList = async () => {
-    const res = await pb.collection(PLANTS_COLLECTION).getList(1, 100);
+    const res = await pb.collection(PLANTS_COLLECTION).getList(1, 100, {
+      filter: `user = "${currentUserId}"`,
+    });
 
     return res.items;
   };
