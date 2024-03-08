@@ -9,7 +9,7 @@ const Logout = () => {
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     pb.authStore.clear();
     localStorage.setItem("logout", Date.now().toString());
   };

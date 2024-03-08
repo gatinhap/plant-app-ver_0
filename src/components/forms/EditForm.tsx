@@ -21,11 +21,13 @@ const EditForm = () => {
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
-  const getPlant = async (id) => {
-    return await pb.collection(PLANTS_COLLECTION).getOne(id);
+  const getPlant = async (id: string | undefined) => {
+    return await pb
+      .collection(PLANTS_COLLECTION)
+      .getOne<FormValues>(id as string);
   };
 
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey, plantId],
     queryFn: () => getPlant(plantId),
   });
@@ -37,14 +39,11 @@ const EditForm = () => {
     reset,
   } = useForm<FormValues>({ mode: "onChange", values: data });
 
-  const updatePlant: SubmitHandler<FormValues> = (newData) => {
-    return pb.collection(PLANTS_COLLECTION).update(plantId, {
-      ...newData,
-    });
-  };
-
   const updatePlantMutation = useMutation({
-    mutationFn: (newPlantData: FormValues) => updatePlant(newPlantData),
+    mutationFn: (newPlantData: FormValues) =>
+      pb.collection(PLANTS_COLLECTION).update(plantId as string, {
+        ...newPlantData,
+      }),
     onSuccess: () => {
       toast.success("Zmiany zostały zapisane!");
       reset();
@@ -55,6 +54,10 @@ const EditForm = () => {
       };
     },
   });
+
+  const updatePlant: SubmitHandler<FormValues> = (newData) => {
+    return updatePlantMutation.mutate(newData);
+  };
 
   if (isPending) {
     return <Text variant={"large"}>Pobieram dane...</Text>;
@@ -79,7 +82,7 @@ const EditForm = () => {
         {updatePlantMutation.isPending ? (
           <Text variant={"large"}>Zapisuję...</Text>
         ) : (
-          <StyledForm onSubmit={handleSubmit(updatePlantMutation.mutate)}>
+          <StyledForm onSubmit={handleSubmit(updatePlant)}>
             <LabelField>
               nazwa roślinki
               <InputField
@@ -120,81 +123,81 @@ const EditForm = () => {
               />
             </LabelField>
 
-          <LabelField>
-            czy lubi zraszanie
-            <TextArea
-              placeholder={
-                "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
-              }
-              {...register("misting", {
-                maxLength: {
-                  value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
-              })}
-            />
-            <ErrorMessage
-              name={"misting"}
-              errors={errors}
-              as={<Text variant={"small"} />}
-            />
-          </LabelField>
+            <LabelField>
+              czy lubi zraszanie
+              <TextArea
+                placeholder={
+                  "niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
+                }
+                {...register("misting", {
+                  maxLength: {
+                    value: 512,
+                    message: "Opis może zawierać maksymalnie 512 znaków!",
+                  },
+                })}
+              />
+              <ErrorMessage
+                name={"misting"}
+                errors={errors}
+                as={<Text variant={"small"} />}
+              />
+            </LabelField>
 
-          <LabelField>
-            światło - dużo czy mało
-            <TextArea
-              placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
-              {...register("light", {
-                maxLength: {
-                  value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
-              })}
-            />
-            <ErrorMessage
-              name={"light"}
-              errors={errors}
-              as={<Text variant={"small"} />}
-            />
-          </LabelField>
+            <LabelField>
+              światło - dużo czy mało
+              <TextArea
+                placeholder={"słońce, słoneczko utrzymuje mnie przy życiu..."}
+                {...register("light", {
+                  maxLength: {
+                    value: 512,
+                    message: "Opis może zawierać maksymalnie 512 znaków!",
+                  },
+                })}
+              />
+              <ErrorMessage
+                name={"light"}
+                errors={errors}
+                as={<Text variant={"small"} />}
+              />
+            </LabelField>
 
-          <LabelField>
-            gleba
-            <TextArea
-              placeholder={
-                "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
-              }
-              {...register("soil", {
-                maxLength: {
-                  value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
-              })}
-            />
-            <ErrorMessage
-              name={"soil"}
-              errors={errors}
-              as={<Text variant={"small"} />}
-            />
-          </LabelField>
+            <LabelField>
+              gleba
+              <TextArea
+                placeholder={
+                  "uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+                }
+                {...register("soil", {
+                  maxLength: {
+                    value: 512,
+                    message: "Opis może zawierać maksymalnie 512 znaków!",
+                  },
+                })}
+              />
+              <ErrorMessage
+                name={"soil"}
+                errors={errors}
+                as={<Text variant={"small"} />}
+              />
+            </LabelField>
 
-          <LabelField>
-            nawożenie
-            <TextArea
-              placeholder={"witaminki dla roślinki, a moje ulubione to..."}
-              {...register("fertilization", {
-                maxLength: {
-                  value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
-              })}
-            />
-            <ErrorMessage
-              name={"fertilization"}
-              errors={errors}
-              as={<Text variant={"small"} />}
-            />
-          </LabelField>
+            <LabelField>
+              nawożenie
+              <TextArea
+                placeholder={"witaminki dla roślinki, a moje ulubione to..."}
+                {...register("fertilization", {
+                  maxLength: {
+                    value: 512,
+                    message: "Opis może zawierać maksymalnie 512 znaków!",
+                  },
+                })}
+              />
+              <ErrorMessage
+                name={"fertilization"}
+                errors={errors}
+                as={<Text variant={"small"} />}
+              />
+            </LabelField>
 
             <FormButton type={"submit"}>zapisz zmiany</FormButton>
           </StyledForm>

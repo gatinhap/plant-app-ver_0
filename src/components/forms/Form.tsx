@@ -27,14 +27,9 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormValues>({ mode: "onChange" });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    const plantData = { ...data, user: currentUserId };
-
-    return pb.collection(PLANTS_COLLECTION).create(plantData);
-  };
-
   const addPlantMutation = useMutation({
-    mutationFn: (newPlant: FormValues) => onSubmit(newPlant),
+    mutationFn: (newPlant: FormValues) =>
+      pb.collection(PLANTS_COLLECTION).create(newPlant),
     onSuccess: () => {
       toast.success("Roślinka dodana do kolekcji!");
       reset();
@@ -44,6 +39,12 @@ const Form = () => {
       };
     },
   });
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    const plantData = { ...data, user: currentUserId };
+
+    return addPlantMutation.mutate(plantData);
+  };
 
   return (
     <>
@@ -55,7 +56,7 @@ const Form = () => {
       {addPlantMutation.isPending ? (
         <Text variant={"large"}>Dodaję...</Text>
       ) : (
-        <StyledForm onSubmit={handleSubmit(addPlantMutation.mutate)}>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <LabelField>
             podaj nazwę roślinki
             <InputField
