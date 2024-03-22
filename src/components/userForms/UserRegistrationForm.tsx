@@ -61,9 +61,7 @@ const UserRegistrationForm = () => {
 
   const submitUserData: SubmitHandler<UserRegistrationFormValues> = (
     userData,
-  ) => {
-    return addUserMutation.mutate(userData);
-  };
+  ) => addUserMutation.mutate(userData);
 
   return (
     <>

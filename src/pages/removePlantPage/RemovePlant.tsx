@@ -18,7 +18,7 @@ const RemovePlant = () => {
   const queryClient = useQueryClient();
 
   const removePlant = (id: string) => {
-    return pb.collection(PLANTS_COLLECTION).delete(id as string);
+    return pb.collection(PLANTS_COLLECTION).delete(id);
   };
 
   const removePlantMutation = useMutation({

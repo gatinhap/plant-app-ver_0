@@ -44,9 +44,7 @@ const LoginForm = () => {
   const submitUserLoginData: SubmitHandler<LoginFormValues> = ({
     email,
     password,
-  }) => {
-    return userLoginMutation.mutate({ email, password });
-  };
+  }) => userLoginMutation.mutate({ email, password });
 
   return (
     <>
