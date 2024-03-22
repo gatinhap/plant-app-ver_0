@@ -26,16 +26,9 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginFormValues>({ mode: "onChange" });
 
-  const submitUserLoginData: SubmitHandler<LoginFormValues> = (
-    email,
-    password,
-  ) => {
-    return pb.collection(USERS_COLLECTION).authWithPassword(email, password);
-  };
-
   const userLoginMutation = useMutation({
     mutationFn: ({ email, password }: LoginFormValues) =>
-      submitUserLoginData(email, password),
+      pb.collection(USERS_COLLECTION).authWithPassword(email, password),
     onSuccess: () => {
       toast.success("Użytkownik zalogowany!");
       reset();
@@ -48,11 +41,16 @@ const LoginForm = () => {
     },
   });
 
+  const submitUserLoginData: SubmitHandler<LoginFormValues> = ({
+    email,
+    password,
+  }) => userLoginMutation.mutate({ email, password });
+
   return (
     <>
       {errors.root && <Text variant={"large"}>{errors.root.message}</Text>}
 
-      <StyledForm onSubmit={handleSubmit(userLoginMutation.mutate)}>
+      <StyledForm onSubmit={handleSubmit(submitUserLoginData)}>
         <LabelField>
           email podany przy logowaniu
           <InputField

@@ -14,6 +14,7 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ClientResponseError } from "pocketbase";
 
 const UserRegistrationForm = () => {
   const navigateTo = useNavigate();
@@ -28,15 +29,9 @@ const UserRegistrationForm = () => {
     formState: { errors },
   } = useForm<UserRegistrationFormValues>({ mode: "onChange" });
 
-  const submitUserData: SubmitHandler<UserRegistrationFormValues> = (
-    userData,
-  ) => {
-    return pb.collection(USERS_COLLECTION).create(userData);
-  };
-
   const addUserMutation = useMutation({
     mutationFn: (newUser: UserRegistrationFormValues) =>
-      submitUserData(newUser),
+      pb.collection(USERS_COLLECTION).create(newUser),
     onSuccess: () => {
       toast.success("Rejestracja przebiegła pomyślnie!");
       reset();
@@ -44,7 +39,7 @@ const UserRegistrationForm = () => {
 
       return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
-    onError: (e) => {
+    onError: (e: ClientResponseError) => {
       const errors = e.response.data;
 
       if (errors.username) {
@@ -64,12 +59,16 @@ const UserRegistrationForm = () => {
     },
   });
 
+  const submitUserData: SubmitHandler<UserRegistrationFormValues> = (
+    userData,
+  ) => addUserMutation.mutate(userData);
+
   return (
     <>
       {addUserMutation.isPending ? (
         <Text variant={"large"}>Dodaję...</Text>
       ) : (
-        <StyledForm onSubmit={handleSubmit(addUserMutation.mutate)}>
+        <StyledForm onSubmit={handleSubmit(submitUserData)}>
           <LabelField>
             nazwa użytkownika
             <InputField

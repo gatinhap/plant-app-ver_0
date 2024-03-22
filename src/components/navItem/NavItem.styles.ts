@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const NavItemStyled = styled(Link)<{
-  $shouldDisplayOnTop: boolean;
+  $shouldDisplayOnTop?: boolean;
 }>`
   ${({ $shouldDisplayOnTop }) =>
     $shouldDisplayOnTop &&

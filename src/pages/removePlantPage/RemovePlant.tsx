@@ -13,16 +13,16 @@ import { toast } from "react-toastify";
 import Text from "../../components/text/Text.tsx";
 
 const RemovePlant = () => {
-  const { plantId } = useParams();
+  const { plantId } = useParams<{ plantId: string }>();
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
-  const removePlant = (id) => {
+  const removePlant = (id: string) => {
     return pb.collection(PLANTS_COLLECTION).delete(id);
   };
 
   const removePlantMutation = useMutation({
-    mutationFn: () => removePlant(plantId),
+    mutationFn: () => removePlant(plantId as string),
     onSuccess: () => {
       toast.success("Roślinka usunięta z kolekcji!");
       navigateTo("/");

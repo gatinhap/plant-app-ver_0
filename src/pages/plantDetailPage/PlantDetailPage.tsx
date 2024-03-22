@@ -18,11 +18,11 @@ import CallToActionAsLink from "../../components/callToActionButton/CallToAction
 const PlantDetailPage = () => {
   const { plantId } = useParams();
 
-  const getPlant = async (id) => {
-    return await pb.collection(PLANTS_COLLECTION).getOne(id);
+  const getPlant = async (id: string | undefined) => {
+    return await pb.collection(PLANTS_COLLECTION).getOne(id as string);
   };
 
-  const { isPending, isError, data, error } = useQuery({
+  const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey, plantId],
     queryFn: () => getPlant(plantId),
   });
