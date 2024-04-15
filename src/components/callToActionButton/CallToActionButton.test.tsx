@@ -4,8 +4,9 @@ import { fireEvent, render } from "@testing-library/react";
 import { theme } from "../../theme/theme.ts";
 import { ThemeProvider } from "styled-components";
 
+const onClickMock = vi.fn();
+
 test("CTA button onClick event calls function when button is clicked", () => {
-  const onClickMock = vi.fn();
   const { getByText } = render(
     <ThemeProvider theme={theme}>
       <CallToActionButton handleClick={onClickMock}>
@@ -14,6 +15,9 @@ test("CTA button onClick event calls function when button is clicked", () => {
     </ThemeProvider>,
   );
 
-  fireEvent.click(getByText("click me"));
+  const CTA = getByText("click me");
+
+  fireEvent.click(CTA);
+
   expect(onClickMock).toHaveBeenCalledTimes(1);
 });
