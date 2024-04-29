@@ -12,7 +12,7 @@ test("CTA button onClick event calls function when button is clicked", () => {
       <CallToActionButton handleClick={onClickMock}>
         click me
       </CallToActionButton>
-    </ThemeProvider>,
+    </ThemeProvider>
   );
 
   const CTA = getByText("click me");

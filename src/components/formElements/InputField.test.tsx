@@ -9,7 +9,7 @@ describe("Input field attributes are accepted", () => {
     render(
       <ThemeProvider theme={theme}>
         <InputField placeholder={"placeholder text"} />
-      </ThemeProvider>,
+      </ThemeProvider>
     );
 
     const inputElement: HTMLInputElement =
@@ -22,7 +22,7 @@ describe("Input field attributes are accepted", () => {
     render(
       <ThemeProvider theme={theme}>
         <InputField data-testid={"input"} type={"file"} />
-      </ThemeProvider>,
+      </ThemeProvider>
     );
 
     const inputElement: HTMLInputElement = screen.getByTestId("input");
@@ -34,18 +34,18 @@ describe("Input field attributes are accepted", () => {
     render(
       <ThemeProvider theme={theme}>
         <InputField data-testid={"input"} type={"file"} />
-      </ThemeProvider>,
+      </ThemeProvider>
     );
 
     const imageFile = new File(["image"], "image.png", {
-      type: "image/png",
+      type: "image/png"
     });
     const inputElement: HTMLInputElement = screen.getByTestId("input");
 
     await waitFor(() =>
       fireEvent.change(inputElement, {
-        target: { files: [imageFile] },
-      }),
+        target: { files: [imageFile] }
+      })
     );
 
     expect(inputElement.files[0].name).toBe("image.png");
