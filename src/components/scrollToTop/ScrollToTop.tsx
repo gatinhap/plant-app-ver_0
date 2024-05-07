@@ -5,7 +5,7 @@ const ScrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
-  return <ScrollToTopStyled onClick={scrollUp} />;
+  return <ScrollToTopStyled role="button" onClick={scrollUp} />;
 };
 
 export default ScrollToTop;
