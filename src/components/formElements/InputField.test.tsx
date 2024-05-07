@@ -1,5 +1,5 @@
 import { describe } from "vitest";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import InputField from "./InputField.tsx";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../theme/theme.ts";
@@ -40,15 +40,13 @@ describe("Input field attributes are accepted", () => {
     const imageFile = new File(["image"], "image.png", {
       type: "image/png"
     });
-    const inputElement: HTMLInputElement = screen.getByTestId("input");
+    const inputElement = screen.getByTestId<HTMLInputElement>("input");
 
-    await waitFor(() =>
-      fireEvent.change(inputElement, {
-        target: { files: [imageFile] }
-      })
-    );
+    fireEvent.change(inputElement, {
+      target: { files: [imageFile] }
+    });
 
-    expect(inputElement.files[0].name).toBe("image.png");
-    expect(inputElement.files.length).toBe(1);
+    expect(inputElement.files?.[0].name).toBe("image.png");
+    expect(inputElement.files?.length).toBe(1);
   });
 });
