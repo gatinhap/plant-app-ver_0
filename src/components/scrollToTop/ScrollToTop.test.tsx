@@ -1,16 +1,11 @@
 import { describe, vi } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../../theme/theme.ts";
+import { fireEvent, screen } from "@testing-library/react";
 import ScrollToTop from "./ScrollToTop.tsx";
+import { render } from "../../../tests/test-utlis.tsx";
 
 describe("element onClick event calls function when element is clicked", () => {
   it("calls scrollTo event when element is clicked", () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ScrollToTop />
-      </ThemeProvider>
-    );
+    render(<ScrollToTop />);
 
     const mockButtonElement = screen.getByRole("button");
 
