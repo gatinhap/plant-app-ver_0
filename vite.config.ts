@@ -7,10 +7,10 @@ export default defineConfig(() => {
     plugins: [react()],
     test: {
       coverage: {
-        provider: "istanbul",
+        provider: "istanbul"
       },
       globals: true,
-      environment: "jsdom",
-    },
+      environment: "happy-dom"
+    }
   };
 });
