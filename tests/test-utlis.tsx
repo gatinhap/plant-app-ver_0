@@ -12,7 +12,7 @@ export const customRender = (
 ) => {
   const queryClient = new QueryClient();
 
-  const AllTheProviders = ({ children }: { children?: ReactNode }) => {
+  const AppProviders = ({ children }: { children?: ReactNode }) => {
     return (
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
@@ -21,7 +21,7 @@ export const customRender = (
       </BrowserRouter>
     );
   };
-  return render(ui, { wrapper: AllTheProviders, ...options });
+  return render(ui, { wrapper: AppProviders, ...options });
 };
 
 export { customRender as render };
