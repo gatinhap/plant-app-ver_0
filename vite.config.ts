@@ -10,7 +10,7 @@ export default defineConfig(() => {
         provider: "istanbul"
       },
       globals: true,
-      environment: "happy-dom"
+      environment: "jsdom"
     }
   };
 });
