@@ -11,15 +11,16 @@ export const customRender = (
 ) => {
   const queryClient = new QueryClient();
 
-  const AllTheProviders = ({ children }: { children?: ReactNode }) => (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
-  );
-
-  return render(ui, { wrapper: AllTheProviders, ...options });
+  const AppProviders = ({ children }: { children?: ReactNode }) => {
+    return (
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    );
+  };
+  return render(ui, { wrapper: AppProviders, ...options });
 };
 
 export { customRender as render };
