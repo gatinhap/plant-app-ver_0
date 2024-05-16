@@ -3,8 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "../src/theme/theme";
 import { render, RenderOptions } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export const customRender = (
   ui: ReactElement,
