@@ -3,7 +3,7 @@ import { FormValues } from "./Form.types.ts";
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION,
+  PLANTS_COLLECTION_ENDPOINT
 } from "../../Backend.constants.ts";
 import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -23,26 +23,26 @@ const EditForm = () => {
 
   const getPlant = async (id: string | undefined) => {
     return await pb
-      .collection(PLANTS_COLLECTION)
+      .collection(PLANTS_COLLECTION_ENDPOINT)
       .getOne<FormValues>(id as string);
   };
 
   const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey, plantId],
-    queryFn: () => getPlant(plantId),
+    queryFn: () => getPlant(plantId)
   });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset
   } = useForm<FormValues>({ mode: "onChange", values: data });
 
   const updatePlantMutation = useMutation({
     mutationFn: (newPlantData: FormValues) =>
-      pb.collection(PLANTS_COLLECTION).update(plantId as string, {
-        ...newPlantData,
+      pb.collection(PLANTS_COLLECTION_ENDPOINT).update(plantId as string, {
+        ...newPlantData
       }),
     onSuccess: () => {
       toast.success("Zmiany zostały zapisane!");
@@ -52,7 +52,7 @@ const EditForm = () => {
       return async () => {
         await queryClient.invalidateQueries({ queryKey: [plantQueryKey] });
       };
-    },
+    }
   });
 
   const updatePlant: SubmitHandler<FormValues> = (newData) => {
@@ -90,13 +90,13 @@ const EditForm = () => {
                 {...register("plantName", {
                   required: {
                     value: true,
-                    message: "Dodaj nazwę roślinki!",
+                    message: "Dodaj nazwę roślinki!"
                   },
                   maxLength: {
                     value: 20,
                     message:
-                      "Nazwa roślinki może zawierać maksymalnie 20 znaków!",
-                  },
+                      "Nazwa roślinki może zawierać maksymalnie 20 znaków!"
+                  }
                 })}
               />
               <ErrorMessage
@@ -112,8 +112,8 @@ const EditForm = () => {
                 {...register("watering", {
                   maxLength: {
                     value: 512,
-                    message: "Opis może zawierać maksymalnie 512 znaków!",
-                  },
+                    message: "Opis może zawierać maksymalnie 512 znaków!"
+                  }
                 })}
               />
               <ErrorMessage
@@ -132,8 +132,8 @@ const EditForm = () => {
                 {...register("misting", {
                   maxLength: {
                     value: 512,
-                    message: "Opis może zawierać maksymalnie 512 znaków!",
-                  },
+                    message: "Opis może zawierać maksymalnie 512 znaków!"
+                  }
                 })}
               />
               <ErrorMessage
@@ -150,8 +150,8 @@ const EditForm = () => {
                 {...register("light", {
                   maxLength: {
                     value: 512,
-                    message: "Opis może zawierać maksymalnie 512 znaków!",
-                  },
+                    message: "Opis może zawierać maksymalnie 512 znaków!"
+                  }
                 })}
               />
               <ErrorMessage
@@ -170,8 +170,8 @@ const EditForm = () => {
                 {...register("soil", {
                   maxLength: {
                     value: 512,
-                    message: "Opis może zawierać maksymalnie 512 znaków!",
-                  },
+                    message: "Opis może zawierać maksymalnie 512 znaków!"
+                  }
                 })}
               />
               <ErrorMessage
@@ -188,8 +188,8 @@ const EditForm = () => {
                 {...register("fertilization", {
                   maxLength: {
                     value: 512,
-                    message: "Opis może zawierać maksymalnie 512 znaków!",
-                  },
+                    message: "Opis może zawierać maksymalnie 512 znaków!"
+                  }
                 })}
               />
               <ErrorMessage

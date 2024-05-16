@@ -3,7 +3,7 @@ import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION,
+  PLANTS_COLLECTION_ENDPOINT
 } from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
 import Text from "../text/Text.tsx";
@@ -12,16 +12,18 @@ const PlantCollection = () => {
   const currentUserId = pb.authStore.model?.id;
 
   const getPlantsList = async () => {
-    const res = await pb.collection(PLANTS_COLLECTION).getList(1, 100, {
-      filter: `user = "${currentUserId}"`,
-    });
+    const res = await pb
+      .collection(PLANTS_COLLECTION_ENDPOINT)
+      .getList(1, 100, {
+        filter: `user = "${currentUserId}"`
+      });
 
     return res.items;
   };
 
   const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey],
-    queryFn: getPlantsList,
+    queryFn: getPlantsList
   });
 
   if (isPending) {

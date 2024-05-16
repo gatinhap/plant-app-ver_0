@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION,
+  PLANTS_COLLECTION_ENDPOINT
 } from "../../Backend.constants.ts";
 import CallToActionButton from "../../components/callToActionButton/CallToActionButton.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -18,7 +18,7 @@ const RemovePlant = () => {
   const queryClient = useQueryClient();
 
   const removePlant = (id: string) => {
-    return pb.collection(PLANTS_COLLECTION).delete(id);
+    return pb.collection(PLANTS_COLLECTION_ENDPOINT).delete(id);
   };
 
   const removePlantMutation = useMutation({
@@ -30,7 +30,7 @@ const RemovePlant = () => {
       return async () => {
         await queryClient.invalidateQueries({ queryKey: [plantQueryKey] });
       };
-    },
+    }
   });
 
   return (

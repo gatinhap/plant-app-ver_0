@@ -5,12 +5,12 @@ import { Outlet, Route, Routes, useParams } from "react-router-dom";
 import Text from "../../components/text/Text.tsx";
 import {
   PlantNavItemStyled,
-  PlantNavStyled,
+  PlantNavStyled
 } from "../../components/plantDetails/PlantDetail.styles.ts";
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION,
+  PLANTS_COLLECTION_ENDPOINT
 } from "../../Backend.constants.ts";
 import { useQuery } from "@tanstack/react-query";
 import CallToActionAsLink from "../../components/callToActionButton/CallToActionAsLink.tsx";
@@ -19,12 +19,12 @@ const PlantDetailPage = () => {
   const { plantId } = useParams();
 
   const getPlant = async (id: string | undefined) => {
-    return await pb.collection(PLANTS_COLLECTION).getOne(id as string);
+    return await pb.collection(PLANTS_COLLECTION_ENDPOINT).getOne(id as string);
   };
 
   const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey, plantId],
-    queryFn: () => getPlant(plantId),
+    queryFn: () => getPlant(plantId)
   });
 
   if (isPending) {

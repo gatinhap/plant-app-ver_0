@@ -1,12 +1,12 @@
 import PocketBase from "pocketbase";
 
-export const PLANTS_COLLECTION = "plant_app_data";
+export const PLANTS_COLLECTION_ENDPOINT = "plant_app_data";
 
-export const USERS_COLLECTION = "users";
+export const USERS_COLLECTION_ENDPOINT = "users";
 
-export const API_ENDPOINT = "http://130.61.124.188/";
+export const HOST = "http://130.61.124.188/";
 
-export const pb = new PocketBase(API_ENDPOINT);
+export const pb = new PocketBase(HOST);
 
 export const plantQueryKey = "plants";
 

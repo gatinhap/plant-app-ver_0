@@ -8,8 +8,8 @@ import FormButton from "../forms/FormButton.tsx";
 import { StyledForm } from "../forms/Form.styles.ts";
 import {
   pb,
-  USERS_COLLECTION,
-  usersQueryKey,
+  USERS_COLLECTION_ENDPOINT,
+  usersQueryKey
 } from "../../Backend.constants.ts";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -23,12 +23,14 @@ const LoginForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<LoginFormValues>({ mode: "onChange" });
 
   const userLoginMutation = useMutation({
     mutationFn: ({ email, password }: LoginFormValues) =>
-      pb.collection(USERS_COLLECTION).authWithPassword(email, password),
+      pb
+        .collection(USERS_COLLECTION_ENDPOINT)
+        .authWithPassword(email, password),
     onSuccess: () => {
       toast.success("Użytkownik zalogowany!");
       reset();
@@ -38,12 +40,12 @@ const LoginForm = () => {
     },
     onError: () => {
       toast.error("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
-    },
+    }
   });
 
   const submitUserLoginData: SubmitHandler<LoginFormValues> = ({
     email,
-    password,
+    password
   }) => userLoginMutation.mutate({ email, password });
 
   return (
@@ -59,12 +61,12 @@ const LoginForm = () => {
             {...register("email", {
               required: {
                 value: true,
-                message: "Email jest wymagany!",
+                message: "Email jest wymagany!"
               },
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Niewłaściwy format maila!",
-              },
+                message: "Niewłaściwy format maila!"
+              }
             })}
           />
           <ErrorMessage
@@ -81,8 +83,8 @@ const LoginForm = () => {
             {...register("password", {
               required: {
                 value: true,
-                message: "Hasło jest wymagane",
-              },
+                message: "Hasło jest wymagane"
+              }
             })}
           />
           <ErrorMessage
