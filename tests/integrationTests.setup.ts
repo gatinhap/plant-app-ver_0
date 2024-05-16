@@ -8,6 +8,6 @@ export const returnUserData = (path: string) => {
   return `${HOST}api/collections/${USERS_COLLECTION_ENDPOINT}/${path}`;
 };
 
-export const returnPlantData = (path: string) => {
-  return `${HOST}api/collections/${PLANTS_COLLECTION_ENDPOINT}/${path}`;
+export const returnPlantData = () => {
+  return `${HOST}api/collections/${PLANTS_COLLECTION_ENDPOINT}/records`;
 };
