@@ -4,8 +4,8 @@ import { PlantData } from "../src/components/plantCollection/PlantCollection.moc
 
 export const getUserSuccessHandler = http.get(
   returnUserData("auth-with-password"),
-  () => {
-    return HttpResponse.json({
+  () =>
+    HttpResponse.json({
       record: {
         avatar: "",
         collectionId: "_pb_users_auth_",
@@ -21,14 +21,13 @@ export const getUserSuccessHandler = http.get(
       },
       token:
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2xsZWN0aW9uSWQiOiJfcGJfdXNlcnNfYXV0aF8iLCJleHAiOjE3MTcwNzQxODgsImlkIjoidDd3aG8zcHVnemxod3AwIiwidHlwZSI6ImF1dGhSZWNvcmQifQ._-1uan-tvc_cawimk_oPGGYDTIaZ9aFTS9VYTaHe5SY"
-    });
-  }
+    })
 );
 
-export const getPlantsListSuccessHandler = http.get(returnPlantData(), () => {
-  return HttpResponse.json({
+export const getPlantsListSuccessHandler = http.get(returnPlantData(), () =>
+  HttpResponse.json({
     items: PlantData
-  });
-});
+  })
+);
 
 export const handlers = [getUserSuccessHandler, getPlantsListSuccessHandler];
