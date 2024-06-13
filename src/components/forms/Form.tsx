@@ -10,7 +10,7 @@ import Text from "../text/Text.tsx";
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION,
+  PLANTS_COLLECTION_ENDPOINT
 } from "../../Backend.constants.ts";
 import TextArea from "../formElements/TextArea.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -24,12 +24,12 @@ const Form = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormValues>({ mode: "onChange" });
 
   const addPlantMutation = useMutation({
     mutationFn: (newPlant: FormValues) =>
-      pb.collection(PLANTS_COLLECTION).create(newPlant),
+      pb.collection(PLANTS_COLLECTION_ENDPOINT).create(newPlant),
     onSuccess: () => {
       toast.success("Roślinka dodana do kolekcji!");
       reset();
@@ -37,7 +37,7 @@ const Form = () => {
       return async () => {
         await queryClient.invalidateQueries({ queryKey: [plantQueryKey] });
       };
-    },
+    }
   });
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
@@ -64,13 +64,12 @@ const Form = () => {
               {...register("plantName", {
                 required: {
                   value: true,
-                  message: "Dodaj nazwę roślinki!",
+                  message: "Dodaj nazwę roślinki!"
                 },
                 maxLength: {
                   value: 20,
-                  message:
-                    "Nazwa roślinki może zawierać maksymalnie 20 znaków!",
-                },
+                  message: "Nazwa roślinki może zawierać maksymalnie 20 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -87,8 +86,8 @@ const Form = () => {
               {...register("watering", {
                 maxLength: {
                   value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
+                  message: "Opis może zawierać maksymalnie 512 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -107,8 +106,8 @@ const Form = () => {
               {...register("misting", {
                 maxLength: {
                   value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
+                  message: "Opis może zawierać maksymalnie 512 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -125,8 +124,8 @@ const Form = () => {
               {...register("light", {
                 maxLength: {
                   value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
+                  message: "Opis może zawierać maksymalnie 512 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -145,8 +144,8 @@ const Form = () => {
               {...register("soil", {
                 maxLength: {
                   value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
+                  message: "Opis może zawierać maksymalnie 512 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -163,8 +162,8 @@ const Form = () => {
               {...register("fertilization", {
                 maxLength: {
                   value: 512,
-                  message: "Opis może zawierać maksymalnie 512 znaków!",
-                },
+                  message: "Opis może zawierać maksymalnie 512 znaków!"
+                }
               })}
             />
             <ErrorMessage

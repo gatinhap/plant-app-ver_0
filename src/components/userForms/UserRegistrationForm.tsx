@@ -8,8 +8,8 @@ import Text from "../text/Text.tsx";
 import FormButton from "../forms/FormButton.tsx";
 import {
   pb,
-  USERS_COLLECTION,
-  usersQueryKey,
+  USERS_COLLECTION_ENDPOINT,
+  usersQueryKey
 } from "../../Backend.constants.ts";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -26,12 +26,12 @@ const UserRegistrationForm = () => {
     reset,
     watch,
     setError,
-    formState: { errors },
+    formState: { errors }
   } = useForm<UserRegistrationFormValues>({ mode: "onChange" });
 
   const addUserMutation = useMutation({
     mutationFn: (newUser: UserRegistrationFormValues) =>
-      pb.collection(USERS_COLLECTION).create(newUser),
+      pb.collection(USERS_COLLECTION_ENDPOINT).create(newUser),
     onSuccess: () => {
       toast.success("Rejestracja przebiegła pomyślnie!");
       reset();
@@ -45,22 +45,22 @@ const UserRegistrationForm = () => {
       if (errors.username) {
         setError("username", {
           type: "server",
-          message: `${errors.username.message}`,
+          message: `${errors.username.message}`
         });
       }
 
       if (errors.email) {
         setError("email", {
           type: "server",
-          message: `${errors.email.message}`,
+          message: `${errors.email.message}`
         });
       }
       toast.error("Wystąpił błąd podczas rejestracji. Spróbuj ponownie.");
-    },
+    }
   });
 
   const submitUserData: SubmitHandler<UserRegistrationFormValues> = (
-    userData,
+    userData
   ) => addUserMutation.mutate(userData);
 
   return (
@@ -76,13 +76,13 @@ const UserRegistrationForm = () => {
               {...register("username", {
                 required: {
                   value: true,
-                  message: "Podaj nazwę użytkownika!",
+                  message: "Podaj nazwę użytkownika!"
                 },
                 maxLength: {
                   value: 30,
                   message:
-                    "Nazwa użytkownika może zawierać maksymalnie 30 znaków!",
-                },
+                    "Nazwa użytkownika może zawierać maksymalnie 30 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -99,12 +99,12 @@ const UserRegistrationForm = () => {
               {...register("email", {
                 required: {
                   value: true,
-                  message: "Podaj swój email!",
+                  message: "Podaj swój email!"
                 },
                 pattern: {
                   value: /\S+@\S+\.\S+/,
-                  message: "Niewłaściwy format maila!",
-                },
+                  message: "Niewłaściwy format maila!"
+                }
               })}
             />
             <ErrorMessage
@@ -121,16 +121,16 @@ const UserRegistrationForm = () => {
               {...register("password", {
                 required: {
                   value: true,
-                  message: "Hasło jest wymagane",
+                  message: "Hasło jest wymagane"
                 },
                 maxLength: {
                   value: 20,
-                  message: "Hasło nie może przekroczyć 20 znaków!",
+                  message: "Hasło nie może przekroczyć 20 znaków!"
                 },
                 minLength: {
                   value: 8,
-                  message: "Hasło musi zawierać co najmniej 8 znaków!",
-                },
+                  message: "Hasło musi zawierać co najmniej 8 znaków!"
+                }
               })}
             />
             <ErrorMessage
@@ -147,13 +147,13 @@ const UserRegistrationForm = () => {
               {...register("passwordConfirm", {
                 required: {
                   value: true,
-                  message: "Powtórzenie hasła jest wymagane!",
+                  message: "Powtórzenie hasła jest wymagane!"
                 },
                 validate: (val: string) => {
                   if (watch("password") != val) {
                     return "Hasła nie pasują do siebie";
                   }
-                },
+                }
               })}
             />
             <ErrorMessage

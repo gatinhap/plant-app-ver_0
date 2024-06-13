@@ -10,7 +10,8 @@ export default defineConfig(() => {
         provider: "istanbul"
       },
       globals: true,
-      environment: "jsdom"
+      environment: "jsdom",
+      setupFiles: ["./tests/setupTests.ts"]
     }
   };
 });
