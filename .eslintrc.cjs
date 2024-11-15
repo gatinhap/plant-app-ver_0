@@ -21,12 +21,23 @@ module.exports = {
     "react-refresh",
     "@typescript-eslint",
     "react",
-    "styled-components-a11y"
+    "styled-components-a11y",
+    "prefer-arrow-functions"
   ],
   rules: {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true }
+    ],
+    "prefer-arrow-functions/prefer-arrow-functions": [
+      "warn",
+      {
+        allowNamedFunctions: false,
+        classPropertiesAllowed: false,
+        disallowPrototype: false,
+        returnStyle: "implicit",
+        singleReturnOnly: true
+      }
     ]
   }
 };
