@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const TextStyled = styled.p<{
+const TextStyled = styled.p<{
   $fontSize: number;
   $lineHeight: number;
   $letterSpacing: number;
@@ -11,3 +11,5 @@ export const TextStyled = styled.p<{
   letter-spacing: ${({ $letterSpacing }) => $letterSpacing}px;
   color: ${({ $color }) => $color};
 `;
+
+export default TextStyled;

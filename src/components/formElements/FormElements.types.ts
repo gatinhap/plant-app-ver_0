@@ -1,15 +1,23 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type InputFieldProps = {
+export interface InputFieldProps {
   type?: string;
   placeholder?: string;
   accept?: string;
-};
+  className?: string;
+  id?: string;
+  name?: string;
+  value?: string;
+}
 
-export type LabelFieldProps = {
+export interface LabelFieldProps {
   children: ReactNode;
-};
+  htmlFor?: string;
+}
 
-export type TextAreaProps = {
+export interface TextAreaProps {
   placeholder?: string;
-};
+  id?: string;
+  name?: string;
+  value?: string;
+}

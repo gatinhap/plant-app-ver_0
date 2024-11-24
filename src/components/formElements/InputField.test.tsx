@@ -1,39 +1,43 @@
-import { describe } from "vitest";
-import { fireEvent, screen } from "@testing-library/react";
-import InputField from "./InputField.tsx";
-import { render } from "../../../tests/test-utlis.tsx";
+import { describe } from 'vitest';
+import { fireEvent, screen } from '@testing-library/react';
+import InputField from './InputField.tsx';
+import { render } from '../../../tests/test-utlis.tsx';
 
-describe("Input field attributes are accepted", () => {
-  it("renders placeholder text", () => {
-    render(<InputField placeholder={"placeholder text"} />);
+const mockInputPlaceholder = 'placeholder text';
+const mockDataTestId = 'input';
+const mockInputType = 'file';
+
+describe('Input field attributes are accepted', () => {
+  it('renders placeholder text', () => {
+    render(<InputField placeholder={mockInputPlaceholder} />);
 
     const inputElement: HTMLInputElement =
-      screen.getByPlaceholderText("placeholder text");
+      screen.getByPlaceholderText('placeholder text');
 
-    expect(inputElement.placeholder).toBe("placeholder text");
+    expect(inputElement.placeholder).toBe('placeholder text');
   });
 
-  it("allows adding type attribute", () => {
-    render(<InputField data-testid={"input"} type={"file"} />);
+  it('allows adding type attribute', () => {
+    render(<InputField data-testid={mockDataTestId} type={mockInputType} />);
 
-    const inputElement: HTMLInputElement = screen.getByTestId("input");
+    const inputElement: HTMLInputElement = screen.getByTestId('input');
 
-    expect(inputElement.type).toBe("file");
+    expect(inputElement.type).toBe('file');
   });
 
-  it("allows to upload image file", async () => {
-    render(<InputField data-testid={"input"} type={"file"} />);
+  it('allows to upload image file', () => {
+    render(<InputField data-testid={mockDataTestId} type={mockInputType} />);
 
-    const imageFile = new File(["image"], "image.png", {
-      type: "image/png"
+    const imageFile = new File(['image'], 'image.png', {
+      type: 'image/png',
     });
-    const inputElement = screen.getByTestId<HTMLInputElement>("input");
+    const inputElement = screen.getByTestId<HTMLInputElement>('input');
 
     fireEvent.change(inputElement, {
-      target: { files: [imageFile] }
+      target: { files: [imageFile] },
     });
 
-    expect(inputElement.files?.[0].name).toBe("image.png");
+    expect(inputElement.files?.[0].name).toBe('image.png');
     expect(inputElement.files?.length).toBe(1);
   });
 });

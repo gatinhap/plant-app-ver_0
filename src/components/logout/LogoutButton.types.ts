@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type LogoutButtonProps = {
+export interface LogoutButtonProps {
   children: ReactNode;
   handleClick?: () => void | undefined;
   shouldDisplayOnTop?: boolean;
-};
+}

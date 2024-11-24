@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { CallToActionButtonStyled } from "../callToActionButton/CallToActionButton.styles.ts";
+import styled from 'styled-components';
+import { CallToActionButtonStyled } from '../callToActionButton/CallToActionButton.styles.ts';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -9,7 +9,7 @@ export const StyledForm = styled.form`
 `;
 
 export const FormButtonStyled = styled(CallToActionButtonStyled).attrs({
-  as: "button",
+  as: 'button',
 })`
   outline: unset;
   border: unset;

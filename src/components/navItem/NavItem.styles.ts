@@ -1,12 +1,11 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const NavItemStyled = styled(Link)<{
   $shouldDisplayOnTop?: boolean;
 }>`
-  ${({ $shouldDisplayOnTop }) =>
-    $shouldDisplayOnTop &&
-    `
+  ${({ $shouldDisplayOnTop }) => $shouldDisplayOnTop
+    && `
     position: absolute;
     top: 10px;
     right: 0;

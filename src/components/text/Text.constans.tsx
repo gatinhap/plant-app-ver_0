@@ -1,4 +1,4 @@
-import { theme } from "../../theme/theme.ts";
+import { theme } from '../../theme/theme.ts';
 
 export const ParagraphStylesMap = {
   small: {

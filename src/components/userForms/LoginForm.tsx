@@ -1,21 +1,21 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginFormValues } from "./LoginForm.types.ts";
-import LabelField from "../formElements/LabelField.tsx";
-import InputField from "../formElements/InputField.tsx";
-import { ErrorMessage } from "@hookform/error-message";
-import Text from "../text/Text.tsx";
-import FormButton from "../forms/FormButton.tsx";
-import { StyledForm } from "../forms/Form.styles.ts";
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { LoginFormValues } from './LoginForm.types.ts';
+import LabelField from '../formElements/LabelField.tsx';
+import InputField from '../formElements/InputField.tsx';
+import Text from '../text/Text.tsx';
+import FormButton from '../forms/FormButton.tsx';
+import { StyledForm } from '../forms/Form.styles.ts';
 import {
   pb,
   USERS_COLLECTION_ENDPOINT,
-  usersQueryKey
-} from "../../Backend.constants.ts";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+  usersQueryKey,
+} from '../../Backend.constants.ts';
 
-const LoginForm = () => {
+function LoginForm() {
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
@@ -23,80 +23,83 @@ const LoginForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
-  } = useForm<LoginFormValues>({ mode: "onChange" });
+    formState: { errors },
+  } = useForm<LoginFormValues>({ mode: 'onChange' });
 
   const userLoginMutation = useMutation({
-    mutationFn: ({ email, password }: LoginFormValues) =>
-      pb
-        .collection(USERS_COLLECTION_ENDPOINT)
-        .authWithPassword(email, password),
+    mutationFn: ({ email, password }: LoginFormValues) => pb
+      .collection(USERS_COLLECTION_ENDPOINT)
+      .authWithPassword(email, password),
     onSuccess: () => {
-      toast.success("Użytkownik zalogowany!");
+      toast.success('Użytkownik zalogowany!');
       reset();
-      navigateTo("/");
+      navigateTo('/');
 
       return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
     onError: () => {
-      toast.error("Wystąpił błąd podczas logowania. Spróbuj ponownie.");
-    }
+      toast.error('Wystąpił błąd podczas logowania. Spróbuj ponownie.');
+    },
   });
 
   const submitUserLoginData: SubmitHandler<LoginFormValues> = ({
     email,
-    password
+    password,
   }) => userLoginMutation.mutate({ email, password });
 
   return (
     <>
-      {errors.root && <Text variant={"large"}>{errors.root.message}</Text>}
+      {errors.root ? <Text variant="large">{errors.root.message}</Text> : null}
 
       <StyledForm onSubmit={handleSubmit(submitUserLoginData)}>
         <LabelField>
           email podany przy logowaniu
           <InputField
-            type={"email"}
-            placeholder={"mój email to..."}
-            {...register("email", {
+            placeholder="mój email to..."
+            type="email"
+            {...register('email', {
               required: {
                 value: true,
-                message: "Email jest wymagany!"
+                message: 'Email jest wymagany!',
               },
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Niewłaściwy format maila!"
-              }
+                message: 'Niewłaściwy format maila!',
+              },
             })}
           />
+
           <ErrorMessage
-            name={"email"}
+            as={<Text color="warning" variant="small" />}
             errors={errors}
-            as={<Text color={"warning"} variant={"small"} />}
+            name="email"
           />
         </LabelField>
+
         <LabelField>
           Twoje hasło
           <InputField
-            type={"password"}
-            placeholder={"moje hasło..."}
-            {...register("password", {
+            placeholder="moje hasło..."
+            type="password"
+            {...register('password', {
               required: {
                 value: true,
-                message: "Hasło jest wymagane"
-              }
+                message: 'Hasło jest wymagane',
+              },
             })}
           />
+
           <ErrorMessage
-            name={"password"}
+            as={<Text color="warning" variant="small" />}
             errors={errors}
-            as={<Text color={"warning"} variant={"small"} />}
+            name="password"
           />
         </LabelField>
-        <FormButton type={"submit"}>Zaloguj się</FormButton>
+
+        <FormButton type="submit">Zaloguj się</FormButton>
       </StyledForm>
     </>
   );
-};
+}
 
 export default LoginForm;

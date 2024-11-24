@@ -1,15 +1,15 @@
-import { CallToActionAsLinkStyled } from "./CallToActionButton.styles.ts";
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
+import { CallToActionAsLinkStyled } from './CallToActionButton.styles.ts';
 
-type CallToActionAsLinkProps = {
-  children: ReactNode;
-  linkTo: string;
-};
+interface CallToActionAsLinkProps {
+  readonly children: ReactNode;
+  readonly linkTo: string;
+}
 
-const CallToActionAsLink = ({ children, linkTo }: CallToActionAsLinkProps) => {
+function CallToActionAsLink({ children, linkTo }: CallToActionAsLinkProps) {
   return (
     <CallToActionAsLinkStyled to={linkTo}>{children}</CallToActionAsLinkStyled>
   );
-};
+}
 
 export default CallToActionAsLink;

@@ -1,13 +1,14 @@
-import PageComponent from "../../components/pageComponent/PageComponent.tsx";
-import LoginForm from "../../components/userForms/LoginForm.tsx";
+import PageComponent from '../../components/pageComponent/PageComponent.tsx';
+import LoginForm from '../../components/userForms/LoginForm.tsx';
 
-const LoginPage = () => {
+function LoginPage() {
   return (
     <PageComponent>
       <h3>strona logowania</h3>
+
       <LoginForm />
     </PageComponent>
   );
-};
+}
 
 export default LoginPage;

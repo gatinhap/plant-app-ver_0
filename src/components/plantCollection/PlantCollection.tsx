@@ -1,21 +1,21 @@
-import NavItem from "../navItem/NavItem.tsx";
-import { PlantCollectionStyled } from "./PlantCollection.styles.ts";
+import { useQuery } from '@tanstack/react-query';
+import NavItem from '../navItem/NavItem.tsx';
+import { PlantCollectionStyled } from './PlantCollection.styles.ts';
 import {
   pb,
   plantQueryKey,
-  PLANTS_COLLECTION_ENDPOINT
-} from "../../Backend.constants.ts";
-import { useQuery } from "@tanstack/react-query";
-import Text from "../text/Text.tsx";
+  PLANTS_COLLECTION_ENDPOINT,
+} from '../../Backend.constants.ts';
+import Text from '../text/Text.tsx';
 
-const PlantCollection = () => {
+function PlantCollection() {
   const currentUserId = pb.authStore.model?.id;
 
   const getPlantsList = async () => {
     const res = await pb
       .collection(PLANTS_COLLECTION_ENDPOINT)
       .getList(1, 100, {
-        filter: `user = "${currentUserId}"`
+        filter: `user = "${currentUserId}"`,
       });
 
     return res.items;
@@ -23,16 +23,16 @@ const PlantCollection = () => {
 
   const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey],
-    queryFn: getPlantsList
+    queryFn: getPlantsList,
   });
 
   if (isPending) {
-    return <Text variant={"large"}>Pobieram dane...</Text>;
+    return <Text variant="large">Pobieram dane...</Text>;
   }
 
   if (isError) {
     return (
-      <Text variant={"large"}>
+      <Text variant="large">
         Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.
       </Text>
     );
@@ -49,6 +49,6 @@ const PlantCollection = () => {
       </PlantCollectionStyled>
     );
   }
-};
+}
 
 export default PlantCollection;

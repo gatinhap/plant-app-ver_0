@@ -1,11 +1,7 @@
-import { LabelFieldProps } from "./FormElements.types.ts";
+import { LabelFieldProps } from './FormElements.types.ts';
 
-const InputField = ({ children }: LabelFieldProps) => {
-  return (
-    <>
-      <label>{children}</label>
-    </>
-  );
-};
+const LabelField = ({ children, htmlFor }: LabelFieldProps) => (
+  <label htmlFor={htmlFor}>{children}</label>
+);
 
-export default InputField;
+export default LabelField;

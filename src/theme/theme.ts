@@ -1,17 +1,17 @@
 export const theme = {
   colors: {
-    primaryGreen: "#02383C",
+    primaryGreen: '#02383C',
     primaryGreenWithOverlay:
-      "linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%), #02383C",
-    mediumGreen: "#065F46",
-    lightGreen: "#D1FAE5",
-    paleGreen: "#ECFDF5",
-    lime: "#A7D129",
-    cream: "#FFD",
-    brown: "#92400E",
-    red: "#F87171",
-    lightRed: "#FEF2F2",
-    lightYellow: "#FFFBEB",
+      'linear-gradient(0deg, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0.10) 100%), #02383C',
+    mediumGreen: '#065F46',
+    lightGreen: '#D1FAE5',
+    paleGreen: '#ECFDF5',
+    lime: '#A7D129',
+    cream: '#FFD',
+    brown: '#92400E',
+    red: '#F87171',
+    lightRed: '#FEF2F2',
+    lightYellow: '#FFFBEB',
   },
   fonts: {
     primaryFont: "'Ubuntu', Arial, sans-serif",
@@ -53,6 +53,6 @@ export const theme = {
     largeParagraph: 1,
   },
   transitions: {
-    primaryTransition: "all .3s ease",
+    primaryTransition: 'all .3s ease',
   },
 } as const;

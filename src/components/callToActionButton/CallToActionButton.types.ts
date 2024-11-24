@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type CallToActionProps = {
+export interface CallToActionProps {
   children: ReactNode;
   handleClick?: () => void | undefined;
-};
+}

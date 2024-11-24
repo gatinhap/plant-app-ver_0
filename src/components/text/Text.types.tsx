@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import { ParagraphStylesMap, TextColorsMap } from "./Text.constans.tsx";
+import { PropsWithChildren } from 'react';
+import { ParagraphStylesMap, TextColorsMap } from './Text.constans.tsx';
 
 export type TextTypes = PropsWithChildren<{
   variant: keyof typeof ParagraphStylesMap;

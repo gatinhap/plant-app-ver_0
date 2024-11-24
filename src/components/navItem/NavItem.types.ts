@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type NavItemProps = {
+export interface NavItemProps {
   children: ReactNode;
   linkTo: string;
   shouldDisplayOnTop?: boolean;
-};
+}

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const LogoutButtonStyled = styled.div<{
+const LogoutButtonStyled = styled.div<{
   $shouldDisplayOnTop: boolean | undefined;
 }>`
   ${({ $shouldDisplayOnTop }) =>
@@ -32,3 +32,5 @@ export const LogoutButtonStyled = styled.div<{
     cursor: pointer;
   }
 `;
+
+export default LogoutButtonStyled;
