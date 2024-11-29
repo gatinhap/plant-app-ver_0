@@ -6,7 +6,7 @@ import LabelField from '../formElements/LabelField.tsx';
 import FormButton from './FormButton.tsx';
 import { StyledForm } from './Form.styles.ts';
 import InputField from '../formElements/InputField.tsx';
-import { FormValues } from './Form.types.ts';
+import { ButtonTypes, FormValues } from './Form.types.ts';
 import Text from '../text/Text.tsx';
 import {
   pb,
@@ -69,12 +69,11 @@ const AddNewPlantForm = () => {
               {...register('plantName', {
                 required: {
                   value: true,
-                  message: 'Dodaj nazwę roślinki!',
+                  message: StaticText.FORM_FIELDS.PLANT_NAME.NAME_REQUIRED,
                 },
                 maxLength: {
                   value: 20,
-                  message:
-                    'Nazwa roślinki może zawierać maksymalnie 20 znaków!',
+                  message: StaticText.FORM_FIELDS.PLANT_NAME.NAME_MAXLENGTH,
                 },
               })}
             />
@@ -86,13 +85,15 @@ const AddNewPlantForm = () => {
           </LabelField>
 
           <LabelField>
-            jak chcesz ją podlewać
+            {StaticText.FORM_FIELDS.PLANT_WATERING.ADD_FORM_LABEL_TEXT}
             <TextArea
-              placeholder="wpisz jak bardzo lubię wodę..."
+              placeholder={
+                StaticText.FORM_FIELDS.PLANT_WATERING.FIELD_PLACEHOLDER
+              }
               {...register('watering', {
                 maxLength: {
                   value: 512,
-                  message: 'Opis może zawierać maksymalnie 512 znaków!',
+                  message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                 },
               })}
             />
@@ -104,13 +105,15 @@ const AddNewPlantForm = () => {
           </LabelField>
 
           <LabelField>
-            czy lubi zraszanie
+            {StaticText.FORM_FIELDS.PLANT_MISTING.ADD_FORM_LABEL_TEXT}
             <TextArea
-              placeholder="niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
+              placeholder={
+                StaticText.FORM_FIELDS.PLANT_MISTING.FIELD_PLACEHOLDER
+              }
               {...register('misting', {
                 maxLength: {
                   value: 512,
-                  message: 'Opis może zawierać maksymalnie 512 znaków!',
+                  message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                 },
               })}
             />
@@ -122,13 +125,13 @@ const AddNewPlantForm = () => {
           </LabelField>
 
           <LabelField>
-            światło - dużo czy mało
+            {StaticText.FORM_FIELDS.PLANT_LIGHT.ADD_FORM_LABEL_TEXT}
             <TextArea
-              placeholder="słońce, słoneczko utrzymuje mnie przy życiu..."
+              placeholder={StaticText.FORM_FIELDS.PLANT_LIGHT.FIELD_PLACEHOLDER}
               {...register('light', {
                 maxLength: {
                   value: 512,
-                  message: 'Opis może zawierać maksymalnie 512 znaków!',
+                  message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                 },
               })}
             />
@@ -140,13 +143,13 @@ const AddNewPlantForm = () => {
           </LabelField>
 
           <LabelField>
-            gleba
+            {StaticText.FORM_FIELDS.PLANT_SOIL.ADD_FORM_LABEL_TEXT}
             <TextArea
-              placeholder="uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+              placeholder={StaticText.FORM_FIELDS.PLANT_SOIL.FIELD_PLACEHOLDER}
               {...register('soil', {
                 maxLength: {
                   value: 512,
-                  message: 'Opis może zawierać maksymalnie 512 znaków!',
+                  message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                 },
               })}
             />
@@ -158,13 +161,15 @@ const AddNewPlantForm = () => {
           </LabelField>
 
           <LabelField>
-            nawożenie
+            {StaticText.FORM_FIELDS.PLANT_FERTILIZATION.ADD_FORM_LABEL_TEXT}
             <TextArea
-              placeholder="witaminki dla roślinki, a moje ulubione to..."
+              placeholder={
+                StaticText.FORM_FIELDS.PLANT_FERTILIZATION.FIELD_PLACEHOLDER
+              }
               {...register('fertilization', {
                 maxLength: {
                   value: 512,
-                  message: 'Opis może zawierać maksymalnie 512 znaków!',
+                  message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                 },
               })}
             />
@@ -175,7 +180,9 @@ const AddNewPlantForm = () => {
             />
           </LabelField>
 
-          <FormButton type="submit">zapisz</FormButton>
+          <FormButton type={ButtonTypes.SUBMIT}>
+            {StaticText.ADD_NEW_PLANT_FORM.SUBMIT_BUTTON}
+          </FormButton>
         </StyledForm>
       )}
     </>

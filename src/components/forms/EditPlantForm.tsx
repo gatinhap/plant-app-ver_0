@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { ErrorMessage } from '@hookform/error-message';
-import { FormValues } from './Form.types.ts';
+import { ButtonTypes, FormValues } from './Form.types.ts';
 import {
   pb,
   plantQueryKey,
@@ -15,6 +15,7 @@ import LabelField from '../formElements/LabelField.tsx';
 import InputField from '../formElements/InputField.tsx';
 import FormButton from './FormButton.tsx';
 import TextArea from '../formElements/TextArea.tsx';
+import StaticText from './Form.constants.ts';
 
 const EditPlantForm = () => {
   const { plantId } = useParams();
@@ -42,7 +43,7 @@ const EditPlantForm = () => {
         ...newPlantData,
       }),
     onSuccess: () => {
-      toast.success('Zmiany zostały zapisane!');
+      toast.success(StaticText.EDIT_PLANT_FORM.UPDATE_ACTION_IS_SUCCESS);
       reset();
       navigateTo(`/${plantId}`);
 
@@ -56,11 +57,19 @@ const EditPlantForm = () => {
     updatePlantMutation.mutate(newData);
 
   if (isPending) {
-    return <Text variant="large">Pobieram dane...</Text>;
+    return (
+      <Text variant="large">
+        {StaticText.EDIT_PLANT_FORM.RETRIEVING_DATA_IS_PENDING}
+      </Text>
+    );
   }
 
   if (isError) {
-    return <Text variant="large">Nie udało się pobrać danych z serwera.</Text>;
+    return (
+      <Text variant="large">
+        {StaticText.EDIT_PLANT_FORM.RETRIEVING_DATA_IS_ERROR}
+      </Text>
+    );
   }
 
   if (data) {
@@ -68,30 +77,32 @@ const EditPlantForm = () => {
       <>
         {updatePlantMutation.isError ? (
           <Text variant="large">
-            Nastąpił błąd podczas aktualizowania danych. Spróbuj proszę jeszcze
-            raz.
+            {StaticText.EDIT_PLANT_FORM.UPDATE_ACTION_IS_ERROR}
           </Text>
         ) : null}
 
         <h4>{data.plantName}</h4>
 
         {updatePlantMutation.isPending ? (
-          <Text variant="large">Zapisuję...</Text>
+          <Text variant="large">
+            {StaticText.EDIT_PLANT_FORM.UPDATE_ACTION_IS_PENDING}
+          </Text>
         ) : (
           <StyledForm onSubmit={handleSubmit(updatePlant)}>
             <LabelField>
-              nazwa roślinki
+              {StaticText.FORM_FIELDS.PLANT_NAME.EDIT_FORM_LABEL_TEXT}
               <InputField
-                placeholder="nazywam się..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_NAME.FIELD_PLACEHOLDER
+                }
                 {...register('plantName', {
                   required: {
                     value: true,
-                    message: 'Dodaj nazwę roślinki!',
+                    message: StaticText.FORM_FIELDS.PLANT_NAME.NAME_REQUIRED,
                   },
                   maxLength: {
                     value: 20,
-                    message:
-                      'Nazwa roślinki może zawierać maksymalnie 20 znaków!',
+                    message: StaticText.FORM_FIELDS.PLANT_NAME.NAME_MAXLENGTH,
                   },
                 })}
               />
@@ -103,13 +114,15 @@ const EditPlantForm = () => {
             </LabelField>
 
             <LabelField>
-              jak chcesz ją podlewać
+              {StaticText.FORM_FIELDS.PLANT_WATERING.EDIT_FORM_LABEL_TEXT}
               <TextArea
-                placeholder="wpisz jak bardzo lubię wodę..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_WATERING.FIELD_PLACEHOLDER
+                }
                 {...register('watering', {
                   maxLength: {
                     value: 512,
-                    message: 'Opis może zawierać maksymalnie 512 znaków!',
+                    message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                   },
                 })}
               />
@@ -121,13 +134,15 @@ const EditPlantForm = () => {
             </LabelField>
 
             <LabelField>
-              czy lubi zraszanie
+              {StaticText.FORM_FIELDS.PLANT_MISTING.EDIT_FORM_LABEL_TEXT}
               <TextArea
-                placeholder="niektóre z nas to uwielbiają, a inne nie mogą znieść, a ja..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_MISTING.FIELD_PLACEHOLDER
+                }
                 {...register('misting', {
                   maxLength: {
                     value: 512,
-                    message: 'Opis może zawierać maksymalnie 512 znaków!',
+                    message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                   },
                 })}
               />
@@ -139,13 +154,15 @@ const EditPlantForm = () => {
             </LabelField>
 
             <LabelField>
-              światło - dużo czy mało
+              {StaticText.FORM_FIELDS.PLANT_LIGHT.EDIT_FORM_LABEL_TEXT}
               <TextArea
-                placeholder="słońce, słoneczko utrzymuje mnie przy życiu..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_LIGHT.FIELD_PLACEHOLDER
+                }
                 {...register('light', {
                   maxLength: {
                     value: 512,
-                    message: 'Opis może zawierać maksymalnie 512 znaków!',
+                    message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                   },
                 })}
               />
@@ -157,13 +174,15 @@ const EditPlantForm = () => {
             </LabelField>
 
             <LabelField>
-              gleba
+              {StaticText.FORM_FIELDS.PLANT_SOIL.EDIT_FORM_LABEL_TEXT}
               <TextArea
-                placeholder="uniwersalna, a może bigosik, hmm, ja najbardziej lubię..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_SOIL.FIELD_PLACEHOLDER
+                }
                 {...register('soil', {
                   maxLength: {
                     value: 512,
-                    message: 'Opis może zawierać maksymalnie 512 znaków!',
+                    message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                   },
                 })}
               />
@@ -175,13 +194,15 @@ const EditPlantForm = () => {
             </LabelField>
 
             <LabelField>
-              nawożenie
+              {StaticText.FORM_FIELDS.PLANT_FERTILIZATION.EDIT_FORM_LABEL_TEXT}
               <TextArea
-                placeholder="witaminki dla roślinki, a moje ulubione to..."
+                placeholder={
+                  StaticText.FORM_FIELDS.PLANT_FERTILIZATION.FIELD_PLACEHOLDER
+                }
                 {...register('fertilization', {
                   maxLength: {
                     value: 512,
-                    message: 'Opis może zawierać maksymalnie 512 znaków!',
+                    message: StaticText.FORM_FIELDS.MAX_LENGTH_TEXTAREA,
                   },
                 })}
               />
@@ -192,7 +213,9 @@ const EditPlantForm = () => {
               />
             </LabelField>
 
-            <FormButton type="submit">zapisz zmiany</FormButton>
+            <FormButton type={ButtonTypes.SUBMIT}>
+              {StaticText.EDIT_PLANT_FORM.SUBMIT_BUTTON}
+            </FormButton>
           </StyledForm>
         )}
       </>
