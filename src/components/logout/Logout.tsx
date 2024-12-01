@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { pb, usersQueryKey } from "../../Backend.constants.ts";
-import { toast } from "react-toastify";
-import LogoutButton from "./LogoutButton.tsx";
-import Text from "../text/Text.tsx";
+import { useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
+import { pb, usersQueryKey } from '../../Backend.constants.ts';
+import LogoutButton from './LogoutButton.tsx';
+import Text from '../text/Text.tsx';
+import StaticText from './Logout.constants.ts';
 
 const Logout = () => {
   const navigateTo = useNavigate();
@@ -11,14 +12,14 @@ const Logout = () => {
 
   const logoutUser = async () => {
     pb.authStore.clear();
-    localStorage.setItem("logout", Date.now().toString());
+    localStorage.setItem('logout', Date.now().toString());
   };
 
   const logoutUserMutation = useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
-      navigateTo("/welcome");
-      toast.success("Użytkownik wylogowany!");
+      navigateTo('/welcome');
+      toast.success(StaticText.LOGOUT_IS_SUCCESS);
 
       return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
@@ -26,20 +27,18 @@ const Logout = () => {
 
   return (
     <>
-      {logoutUserMutation.isError && (
-        <Text variant={"large"}>
-          Nastąpił błąd podczas wylogowywania. Odśwież stronę i spróbuj jeszcze
-          raz.
-        </Text>
-      )}
+      {logoutUserMutation.isError ? (
+        <Text variant="large">{StaticText.LOGOUT_IS_ERROR}</Text>
+      ) : null}
+
       {logoutUserMutation.isPending ? (
-        <Text variant={"large"}>Wylogowuję...</Text>
+        <Text variant="large">{StaticText.LOGOUT_IS_PENDING}</Text>
       ) : (
         <LogoutButton
-          shouldDisplayOnTop={true}
           handleClick={logoutUserMutation.mutate}
+          shouldDisplayOnTop
         >
-          Wyloguj
+          {StaticText.LOGOUT_BUTTON_TEXT}
         </LogoutButton>
       )}
     </>

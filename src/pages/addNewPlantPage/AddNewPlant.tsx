@@ -1,17 +1,17 @@
-import PageComponent from "../../components/pageComponent/PageComponent.tsx";
-import NavItem from "../../components/navItem/NavItem.tsx";
-import Form from "../../components/forms/Form.tsx";
+import PageComponent from '../../components/pageComponent/PageComponent.tsx';
+import NavItem from '../../components/navItem/NavItem.tsx';
+import AddNewPlantForm from '../../components/forms/AddNewPlantForm.tsx';
 
-const AddNewPlant = () => {
-  return (
-    <PageComponent>
-      <NavItem linkTo={"/"} shouldDisplayOnTop={true}>
-        moja kolekcja
-      </NavItem>
-      <h3>dodaj roślinkę</h3>
-      <Form />
-    </PageComponent>
-  );
-};
+const AddNewPlant = () => (
+  <PageComponent>
+    <NavItem linkTo="/" shouldDisplayOnTop>
+      moja kolekcja
+    </NavItem>
+
+    <h3>dodaj roślinkę</h3>
+
+    <AddNewPlantForm />
+  </PageComponent>
+);
 
 export default AddNewPlant;

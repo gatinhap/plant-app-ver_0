@@ -1,12 +1,12 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type FormButtonProps = {
+export interface FormButtonProps {
   children: ReactNode;
   handleClick?: () => void | undefined;
-  type?: "button" | "submit" | "reset" | undefined;
-};
+  type?: 'button' | 'submit' | 'reset' | undefined;
+}
 
-export type FormValues = {
+export interface FormValues {
   id: string;
   plantName: string;
   watering: string;
@@ -15,4 +15,4 @@ export type FormValues = {
   soil: string;
   fertilization: string;
   user: string;
-};
+}

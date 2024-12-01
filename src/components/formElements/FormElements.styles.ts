@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const InputFieldStyled = styled.input`
   box-sizing: border-box;
@@ -12,7 +12,7 @@ export const InputFieldStyled = styled.input`
 `;
 
 export const TextAreaStyled = styled(InputFieldStyled).attrs({
-  as: "textarea",
+  as: 'textarea',
 })`
   max-width: 100%;
   min-height: 70px;

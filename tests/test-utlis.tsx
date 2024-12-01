@@ -1,17 +1,17 @@
-import { ReactElement, ReactNode } from "react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../src/theme/theme";
-import { render, RenderOptions } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactElement, ReactNode } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { render, RenderOptions } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { theme } from '../src/theme/theme';
 
 export const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, "wrapper">
+  options?: Omit<RenderOptions, 'wrapper'>,
 ) => {
   const queryClient = new QueryClient();
 
-  const AppProviders = ({ children }: { children?: ReactNode }) => {
+  function AppProviders({ children }: { readonly children?: ReactNode }) {
     return (
       <BrowserRouter>
         <QueryClientProvider client={queryClient}>
@@ -19,7 +19,7 @@ export const customRender = (
         </QueryClientProvider>
       </BrowserRouter>
     );
-  };
+  }
   return render(ui, { wrapper: AppProviders, ...options });
 };
 

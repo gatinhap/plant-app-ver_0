@@ -1,7 +1,9 @@
-import { pb } from "../Backend.constants.ts";
+import { pb } from '../Backend.constants.ts';
 
-export const useAuth = () => {
+const useAuth = () => {
   const user = pb.authStore.token;
 
   return !!user;
 };
+
+export default useAuth;

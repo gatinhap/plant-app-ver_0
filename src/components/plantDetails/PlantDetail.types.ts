@@ -1,16 +1,16 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-export type PlantImageProps = {
+export interface PlantImageProps {
   imgSrc: string;
   isCustomImage: boolean;
-};
+}
 
-export type PlantInfoProps = {
+export interface PlantInfoProps {
   children: ReactNode;
   title: string;
-};
+}
 
-export type PlantNavItemProps = {
+export interface PlantNavItemProps {
   children: ReactNode;
   linkTo: string;
-};
+}
