@@ -1,9 +1,17 @@
 import { ReactNode } from 'react';
 
+export const ButtonTypes = {
+  BUTTON: 'button',
+  SUBMIT: 'submit',
+  RESET: 'reset',
+} as const;
+
+type ButtonType = (typeof ButtonTypes)[keyof typeof ButtonTypes];
+
 export interface FormButtonProps {
   children: ReactNode;
   handleClick?: () => void | undefined;
-  type?: 'button' | 'submit' | 'reset' | undefined;
+  type?: ButtonType | undefined;
 }
 
 export interface FormValues {

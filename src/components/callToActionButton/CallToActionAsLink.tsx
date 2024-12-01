@@ -6,10 +6,8 @@ interface CallToActionAsLinkProps {
   readonly linkTo: string;
 }
 
-function CallToActionAsLink({ children, linkTo }: CallToActionAsLinkProps) {
-  return (
-    <CallToActionAsLinkStyled to={linkTo}>{children}</CallToActionAsLinkStyled>
-  );
-}
+const CallToActionAsLink = ({ children, linkTo }: CallToActionAsLinkProps) => (
+  <CallToActionAsLinkStyled to={linkTo}>{children}</CallToActionAsLinkStyled>
+);
 
 export default CallToActionAsLink;
