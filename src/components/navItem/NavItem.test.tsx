@@ -2,8 +2,11 @@ import { fireEvent, screen } from '@testing-library/react';
 import { render } from '../../../tests/test-utlis.tsx';
 import NavItem from './NavItem.tsx';
 
+const mockLinkPath = '/test-page';
+const mockLinkText = 'link';
+
 test('path of the current page should match link path', () => {
-  render(<NavItem linkTo="/test-page">link</NavItem>);
+  render(<NavItem linkTo={mockLinkPath}>{mockLinkText}</NavItem>);
 
   const linkElement = screen.getByText('link');
 

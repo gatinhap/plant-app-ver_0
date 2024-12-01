@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const NavItemStyled = styled(Link)<{
+const NavItemStyled = styled(Link)<{
   $shouldDisplayOnTop?: boolean;
 }>`
-  ${({ $shouldDisplayOnTop }) => $shouldDisplayOnTop
-    && `
+  ${({ $shouldDisplayOnTop }) =>
+    $shouldDisplayOnTop &&
+    `
     position: absolute;
     top: 10px;
     right: 0;
@@ -33,3 +34,5 @@ export const NavItemStyled = styled(Link)<{
     cursor: pointer;
   }
 `;
+
+export default NavItemStyled;
