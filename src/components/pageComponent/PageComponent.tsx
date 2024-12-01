@@ -1,15 +1,13 @@
 import ScrollToTop from '../scrollToTop/ScrollToTop.tsx';
-import { StyledPageComponent } from './PageComponent.styles.ts';
+import StyledPageComponent from './PageComponent.styles.ts';
 import { PageComponentProps } from './PageComponent.types.ts';
 
-function PageComponent({ children }: PageComponentProps) {
-  return (
-    <StyledPageComponent>
-      {children}
+const PageComponent = ({ children }: PageComponentProps) => (
+  <StyledPageComponent>
+    {children}
 
-      <ScrollToTop />
-    </StyledPageComponent>
-  );
-}
+    <ScrollToTop />
+  </StyledPageComponent>
+);
 
 export default PageComponent;
