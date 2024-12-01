@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledPageComponent = styled.section`
+const StyledPageComponent = styled.section`
   position: relative;
   margin-inline: auto;
   box-sizing: border-box;
@@ -9,3 +9,5 @@ export const StyledPageComponent = styled.section`
   padding-inline: 30px;
   max-width: 400px;
 `;
+
+export default StyledPageComponent;
