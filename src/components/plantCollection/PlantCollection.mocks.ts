@@ -1,4 +1,4 @@
-export const PlantData = [
+const PlantData = [
   {
     collectionId: '6jl6usebnke05a7',
     collectionName: 'plant_app_data',
@@ -56,3 +56,5 @@ export const PlantData = [
     watering: 'fljdalf',
   },
 ];
+
+export default PlantData;

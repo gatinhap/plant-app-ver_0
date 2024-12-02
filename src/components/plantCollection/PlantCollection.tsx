@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import NavItem from '../navItem/NavItem.tsx';
-import { PlantCollectionStyled } from './PlantCollection.styles.ts';
+import PlantCollectionStyled from './PlantCollection.styles.ts';
 import {
   pb,
   plantQueryKey,
   PLANTS_COLLECTION_ENDPOINT,
 } from '../../Backend.constants.ts';
 import Text from '../text/Text.tsx';
+import StaticText from './PlantCollection.constants.ts';
 
-function PlantCollection() {
+const PlantCollection = () => {
   const currentUserId = pb.authStore.model?.id;
 
   const getPlantsList = async () => {
@@ -27,14 +28,14 @@ function PlantCollection() {
   });
 
   if (isPending) {
-    return <Text variant="large">Pobieram dane...</Text>;
+    return (
+      <Text variant="large">{StaticText.PLANT_DATA_DISPLAY_IS_PENDING}</Text>
+    );
   }
 
   if (isError) {
     return (
-      <Text variant="large">
-        Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.
-      </Text>
+      <Text variant="large">{StaticText.PLANT_DATA_DISPLAY_IS_ERROR}</Text>
     );
   }
 
@@ -49,6 +50,6 @@ function PlantCollection() {
       </PlantCollectionStyled>
     );
   }
-}
+};
 
 export default PlantCollection;

@@ -63,6 +63,11 @@ const AppStaticTexts = {
         },
       },
     },
+    PLANT_COLLECTION: {
+      PLANT_DATA_DISPLAY_IS_PENDING: 'Pobieram dane...',
+      PLANT_DATA_DISPLAY_IS_ERROR:
+        'Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.',
+    },
   },
 };
 
