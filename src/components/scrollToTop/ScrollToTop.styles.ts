@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ScrollToTopStyled = styled.div`
+const ScrollToTopStyled = styled.div`
   position: absolute;
   bottom: 8px;
   right: 8px;
@@ -17,3 +17,5 @@ export const ScrollToTopStyled = styled.div`
     filter: drop-shadow(2px 2px 0 rgba(0, 0, 0, 1));
   }
 `;
+
+export default ScrollToTopStyled;
