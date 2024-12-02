@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
 import { theme } from '../../theme/theme.ts';
 
-export const StyledToastContainer = styled(ToastContainer)`
+const StyledToastContainer = styled(ToastContainer)`
   .Toastify {
     &__toast {
       border-radius: 6px;
@@ -25,3 +25,5 @@ export const StyledToastContainer = styled(ToastContainer)`
     }
   }
 `;
+
+export default StyledToastContainer;
