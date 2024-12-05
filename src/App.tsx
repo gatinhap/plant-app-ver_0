@@ -5,7 +5,7 @@ import GlobalStyle from './theme/globalStyles.ts';
 import { theme } from './theme/theme.ts';
 import 'react-toastify/dist/ReactToastify.min.css';
 import StyledToastContainer from './components/toast/Toast.styles.ts';
-import AppRoutes from './navigation/AppRoutes.tsx';
+import AppRoutes from './routes/AppRoutes.tsx';
 
 const App = () => {
   const queryClient = new QueryClient();
