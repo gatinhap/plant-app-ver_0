@@ -15,8 +15,10 @@ import {
   USERS_COLLECTION_ENDPOINT,
   usersQueryKey,
 } from '../../Backend.constants.ts';
+import StaticText from './UserForm.constants.ts';
+import { ButtonTypes } from '../forms/Form.types.ts';
 
-function UserRegistrationForm() {
+const UserRegistrationForm = () => {
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
@@ -30,31 +32,33 @@ function UserRegistrationForm() {
   } = useForm<UserRegistrationFormValues>({ mode: 'onChange' });
 
   const addUserMutation = useMutation({
-    mutationFn: (newUser: UserRegistrationFormValues) => pb.collection(USERS_COLLECTION_ENDPOINT).create(newUser),
+    mutationFn: (newUser: UserRegistrationFormValues) =>
+      pb.collection(USERS_COLLECTION_ENDPOINT).create(newUser),
     onSuccess: () => {
-      toast.success('Rejestracja przebiegła pomyślnie!');
+      toast.success(StaticText.REGISTRATION_FORM.ADD_USER_IS_SUCCESS);
       reset();
       navigateTo('/login');
 
       return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
     onError: (e: ClientResponseError) => {
-      const errors = e.response.data;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const registrationErrors = e.response.data;
 
-      if (errors.username) {
+      if (registrationErrors.username) {
         setError('username', {
           type: 'server',
-          message: `${errors.username.message}`,
+          message: `${registrationErrors.username.message}`,
         });
       }
 
-      if (errors.email) {
+      if (registrationErrors.email) {
         setError('email', {
           type: 'server',
-          message: `${errors.email.message}`,
+          message: `${registrationErrors.email.message}`,
         });
       }
-      toast.error('Wystąpił błąd podczas rejestracji. Spróbuj ponownie.');
+      toast.error(StaticText.REGISTRATION_FORM.ADD_USER_IS_ERROR);
     },
   });
 
@@ -65,26 +69,30 @@ function UserRegistrationForm() {
   return (
     <>
       {addUserMutation.isPending ? (
-        <Text variant="large">Dodaję...</Text>
+        <Text variant="large">
+          {StaticText.REGISTRATION_FORM.ADD_USER_IS_PENDING}
+        </Text>
       ) : (
         <StyledForm onSubmit={handleSubmit(submitUserData)}>
           <LabelField>
-            nazwa użytkownika
+            {StaticText.REGISTRATION_FORM.USERNAME.USERNAME_LABEL}
             <InputField
-              placeholder="mów na mnie..."
+              placeholder={
+                StaticText.REGISTRATION_FORM.USERNAME.USERNAME_PLACEHOLDER
+              }
               {...register('username', {
                 required: {
                   value: true,
-                  message: 'Podaj nazwę użytkownika!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USERNAME.USERNAME_REQUIRED,
                 },
                 maxLength: {
                   value: 30,
                   message:
-                    'Nazwa użytkownika może zawierać maksymalnie 30 znaków!',
+                    StaticText.REGISTRATION_FORM.USERNAME.USERNAME_MAXLENGTH,
                 },
               })}
             />
-
             <ErrorMessage
               as={<Text color="warning" variant="small" />}
               errors={errors}
@@ -93,22 +101,25 @@ function UserRegistrationForm() {
           </LabelField>
 
           <LabelField>
-            email
+            {StaticText.REGISTRATION_FORM.USER_EMAIL.EMAIL_LABEL}
             <InputField
-              placeholder="mój email to..."
+              placeholder={
+                StaticText.REGISTRATION_FORM.USER_EMAIL.EMAIL_PLACEHOLDER
+              }
               type="email"
               {...register('email', {
                 required: {
                   value: true,
-                  message: 'Podaj swój email!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_EMAIL.EMAIL_REQUIRED,
                 },
                 pattern: {
                   value: /\S+@\S+\.\S+/,
-                  message: 'Niewłaściwy format maila!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_EMAIL.EMAIL_WRONG_PATTERN,
                 },
               })}
             />
-
             <ErrorMessage
               as={<Text color="warning" variant="small" />}
               errors={errors}
@@ -117,26 +128,33 @@ function UserRegistrationForm() {
           </LabelField>
 
           <LabelField>
-            hasło
+            {StaticText.REGISTRATION_FORM.USER_PASSWORD.PASSWORD_LABEL}
             <InputField
-              placeholder="moje hasło..."
+              placeholder={
+                StaticText.REGISTRATION_FORM.USER_PASSWORD.PASSWORD_PLACEHOLDER
+              }
               type="password"
               {...register('password', {
                 required: {
                   value: true,
-                  message: 'Hasło jest wymagane',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_PASSWORD
+                      .PASSWORD_REQUIRED,
                 },
                 maxLength: {
                   value: 20,
-                  message: 'Hasło nie może przekroczyć 20 znaków!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_PASSWORD
+                      .PASSWORD_MAXLENGTH,
                 },
                 minLength: {
                   value: 8,
-                  message: 'Hasło musi zawierać co najmniej 8 znaków!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_PASSWORD
+                      .PASSWORD_MINLENGTH,
                 },
               })}
             />
-
             <ErrorMessage
               as={<Text color="warning" variant="small" />}
               errors={errors}
@@ -145,35 +163,40 @@ function UserRegistrationForm() {
           </LabelField>
 
           <LabelField>
-            powtórz hasło
+            {StaticText.REGISTRATION_FORM.USER_PASSWORD_REPEAT.PASSWORD_LABEL}
             <InputField
-              placeholder="moje hasło..."
+              placeholder={
+                StaticText.REGISTRATION_FORM.USER_PASSWORD_REPEAT
+                  .PASSWORD_PLACEHOLDER
+              }
               type="password"
               {...register('passwordConfirm', {
                 required: {
                   value: true,
-                  message: 'Powtórzenie hasła jest wymagane!',
+                  message:
+                    StaticText.REGISTRATION_FORM.USER_PASSWORD_REPEAT
+                      .PASSWORD_REQUIRED,
                 },
-                validate: (val: string) => {
-                  if (watch('password') != val) {
-                    return 'Hasła nie pasują do siebie';
-                  }
-                },
+                validate: (val: string) =>
+                  watch('password') !== val
+                    ? StaticText.REGISTRATION_FORM.USER_PASSWORD_REPEAT
+                        .PASSWORD_NOT_MATCHING
+                    : true,
               })}
             />
-
             <ErrorMessage
               as={<Text color="warning" variant="small" />}
               errors={errors}
               name="passwordConfirm"
             />
           </LabelField>
-
-          <FormButton type="submit">stwórz konto</FormButton>
+          <FormButton type={ButtonTypes.SUBMIT}>
+            {StaticText.REGISTRATION_FORM.CREATE_USER_BUTTON}
+          </FormButton>
         </StyledForm>
       )}
     </>
   );
-}
+};
 
 export default UserRegistrationForm;

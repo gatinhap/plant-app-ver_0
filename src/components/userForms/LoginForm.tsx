@@ -14,8 +14,10 @@ import {
   USERS_COLLECTION_ENDPOINT,
   usersQueryKey,
 } from '../../Backend.constants.ts';
+import StaticText from './UserForm.constants.ts';
+import { ButtonTypes } from '../forms/Form.types.ts';
 
-function LoginForm() {
+const LoginForm = () => {
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
@@ -27,18 +29,19 @@ function LoginForm() {
   } = useForm<LoginFormValues>({ mode: 'onChange' });
 
   const userLoginMutation = useMutation({
-    mutationFn: ({ email, password }: LoginFormValues) => pb
-      .collection(USERS_COLLECTION_ENDPOINT)
-      .authWithPassword(email, password),
+    mutationFn: ({ email, password }: LoginFormValues) =>
+      pb
+        .collection(USERS_COLLECTION_ENDPOINT)
+        .authWithPassword(email, password),
     onSuccess: () => {
-      toast.success('Użytkownik zalogowany!');
+      toast.success(StaticText.LOGIN_FORM.LOGIN_IS_SUCCESS);
       reset();
       navigateTo('/');
 
       return queryClient.invalidateQueries({ queryKey: [usersQueryKey] });
     },
     onError: () => {
-      toast.error('Wystąpił błąd podczas logowania. Spróbuj ponownie.');
+      toast.error(StaticText.LOGIN_FORM.LOGIN_IS_ERROR);
     },
   });
 
@@ -53,9 +56,9 @@ function LoginForm() {
 
       <StyledForm onSubmit={handleSubmit(submitUserLoginData)}>
         <LabelField>
-          email podany przy logowaniu
+          {StaticText.LOGIN_FORM.EMAIL_LABEL_TEXT}
           <InputField
-            placeholder="mój email to..."
+            placeholder={StaticText.LOGIN_FORM.EMAIL_PLACEHOLDER}
             type="email"
             {...register('email', {
               required: {
@@ -68,7 +71,6 @@ function LoginForm() {
               },
             })}
           />
-
           <ErrorMessage
             as={<Text color="warning" variant="small" />}
             errors={errors}
@@ -77,9 +79,9 @@ function LoginForm() {
         </LabelField>
 
         <LabelField>
-          Twoje hasło
+          {StaticText.LOGIN_FORM.PASSWORD_LABEL_TEXT}
           <InputField
-            placeholder="moje hasło..."
+            placeholder={StaticText.LOGIN_FORM.PASSWORD_PLACEHOLDER}
             type="password"
             {...register('password', {
               required: {
@@ -88,7 +90,6 @@ function LoginForm() {
               },
             })}
           />
-
           <ErrorMessage
             as={<Text color="warning" variant="small" />}
             errors={errors}
@@ -96,10 +97,12 @@ function LoginForm() {
           />
         </LabelField>
 
-        <FormButton type="submit">Zaloguj się</FormButton>
+        <FormButton type={ButtonTypes.SUBMIT}>
+          {StaticText.LOGIN_FORM.LOGIN_BUTTON}
+        </FormButton>
       </StyledForm>
     </>
   );
-}
+};
 
 export default LoginForm;
