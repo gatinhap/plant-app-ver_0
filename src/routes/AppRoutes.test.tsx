@@ -4,7 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { render } from '../../tests/test-utlis.tsx';
 import AppRoutes from './AppRoutes.tsx';
 
-describe('react router functionality', async () => {
+describe('react router functionality', () => {
   it('should navigate between two routes and render corresponding components', () => {
     render(<AppRoutes />);
 
