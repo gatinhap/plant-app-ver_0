@@ -63,6 +63,51 @@ const AppStaticTexts = {
         },
       },
     },
+    USER_FORM: {
+      LOGIN_FORM: {
+        LOGIN_IS_SUCCESS: 'Użytkownik zalogowany!',
+        LOGIN_IS_ERROR:
+          'Nastąpił błąd podczas logowania. Odśwież stronę i spróbuj jeszcze raz.',
+        EMAIL_LABEL_TEXT: 'email podany przy logowaniu',
+        EMAIL_PLACEHOLDER: 'mój email to...',
+        PASSWORD_LABEL_TEXT: 'Twoje hasło',
+        PASSWORD_PLACEHOLDER: 'moje hasło...',
+        LOGIN_BUTTON: 'Zaloguj się',
+      },
+      REGISTRATION_FORM: {
+        ADD_USER_IS_SUCCESS: 'Rejestracja przebiegła pomyślnie!',
+        ADD_USER_IS_PENDING: 'Dodaję...',
+        ADD_USER_IS_ERROR:
+          'Wystąpił błąd podczas rejestracji. Spróbuj ponownie.',
+        CREATE_USER_BUTTON: 'stwórz konto',
+        USERNAME: {
+          USERNAME_LABEL: 'nazwa użytkownika',
+          USERNAME_PLACEHOLDER: 'mów na mnie...',
+          USERNAME_REQUIRED: 'Podaj nazwę użytkownika!',
+          USERNAME_MAXLENGTH:
+            'Nazwa użytkownika może zawierać maksymalnie 30 znaków!',
+        },
+        USER_EMAIL: {
+          EMAIL_LABEL: 'email',
+          EMAIL_PLACEHOLDER: 'mój email to...',
+          EMAIL_REQUIRED: 'Podaj swój email!',
+          EMAIL_WRONG_PATTERN: 'Niewłaściwy format maila!',
+        },
+        USER_PASSWORD: {
+          PASSWORD_LABEL: 'hasło',
+          PASSWORD_PLACEHOLDER: 'moje hasło...',
+          PASSWORD_REQUIRED: 'Hasło jest wymagane',
+          PASSWORD_MAXLENGTH: 'Hasło nie może przekroczyć 20 znaków!',
+          PASSWORD_MINLENGTH: 'Hasło musi zawierać co najmniej 8 znaków!',
+        },
+        USER_PASSWORD_REPEAT: {
+          PASSWORD_LABEL: 'powtórz hasło',
+          PASSWORD_PLACEHOLDER: 'moje hasło...',
+          PASSWORD_REQUIRED: 'Powtórzenie hasła jest wymagane!',
+          PASSWORD_NOT_MATCHING: 'Hasła nie pasują do siebie',
+        },
+      },
+    },
     PLANT_COLLECTION: {
       PLANT_DATA_DISPLAY_IS_PENDING: 'Pobieram dane...',
       PLANT_DATA_DISPLAY_IS_ERROR:
