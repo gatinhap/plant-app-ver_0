@@ -10,6 +10,7 @@ import Text from '../text/Text.tsx';
 import StaticText from './PlantCollection.constants.ts';
 
 const PlantCollection = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const currentUserId = pb.authStore.model?.id;
 
   const getPlantsList = async () => {

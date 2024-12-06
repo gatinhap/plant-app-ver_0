@@ -19,19 +19,20 @@ describe('Input field attributes are accepted', () => {
 
   it('allows adding type attribute', () => {
     render(<InputField data-testid={mockDataTestId} type={mockInputType} />);
+    screen.debug();
 
-    const inputElement: HTMLInputElement = screen.getByTestId('input');
+    const inputElement: HTMLInputElement = screen.getByTestId(mockDataTestId);
 
     expect(inputElement.type).toBe('file');
   });
 
-  it('allows to upload image file', () => {
+  it('allows to upload image file', async () => {
     render(<InputField data-testid={mockDataTestId} type={mockInputType} />);
 
     const imageFile = new File(['image'], 'image.png', {
       type: 'image/png',
     });
-    const inputElement = screen.getByTestId<HTMLInputElement>('input');
+    const inputElement = screen.getByTestId<HTMLInputElement>(mockDataTestId);
 
     fireEvent.change(inputElement, {
       target: { files: [imageFile] },

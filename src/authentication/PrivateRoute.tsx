@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import useAuth from './useAuth.ts';
 
-function PrivateRoute() {
+const PrivateRoute = () => {
   const token = useAuth();
   const redirectPath = '/welcome';
 

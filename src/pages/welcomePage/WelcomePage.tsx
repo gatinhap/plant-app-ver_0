@@ -2,8 +2,7 @@ import PageComponent from '../../components/pageComponent/PageComponent.tsx';
 import CallToActionAsLink from '../../components/callToActionButton/CallToActionAsLink.tsx';
 import Text from '../../components/text/Text.tsx';
 
-function WelcomePage() {
-  return (
+const WelcomePage = () => (
     <PageComponent>
       <h3>hej, tu PlantMomma</h3>
 
@@ -17,7 +16,6 @@ function WelcomePage() {
         Zarejestruj
       </CallToActionAsLink>
     </PageComponent>
-  );
-}
+  )
 
 export default WelcomePage;
