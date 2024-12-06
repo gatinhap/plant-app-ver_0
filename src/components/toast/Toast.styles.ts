@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ToastContainer } from 'react-toastify';
-import { theme } from '../../theme/theme.ts';
+import theme from '../../theme/theme.ts';
 
 const StyledToastContainer = styled(ToastContainer)`
   .Toastify {
