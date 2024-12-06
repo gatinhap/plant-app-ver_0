@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import GlobalStyle from './theme/globalStyles.ts';
-import { theme } from './theme/theme.ts';
+import theme from './theme/theme.ts';
 import 'react-toastify/dist/ReactToastify.min.css';
 import StyledToastContainer from './components/toast/Toast.styles.ts';
 import AppRoutes from './routes/AppRoutes.tsx';

@@ -1,4 +1,4 @@
-export const theme = {
+const theme = {
   colors: {
     primaryGreen: '#02383C',
     primaryGreenWithOverlay:
@@ -56,3 +56,5 @@ export const theme = {
     primaryTransition: 'all .3s ease',
   },
 } as const;
+
+export default theme;
