@@ -3,8 +3,7 @@ import PlantCollection from '../../components/plantCollection/PlantCollection.ts
 import CallToActionAsLink from '../../components/callToActionButton/CallToActionAsLink.tsx';
 import Logout from '../../components/logout/Logout.tsx';
 
-function MyCollectionPage() {
-  return (
+const MyCollectionPage = () => (
     <PageComponent>
       <Logout />
 
@@ -16,7 +15,6 @@ function MyCollectionPage() {
 
       <PlantCollection />
     </PageComponent>
-  );
-}
+  )
 
 export default MyCollectionPage;

@@ -12,7 +12,7 @@ import {
 import CallToActionButton from '../../components/callToActionButton/CallToActionButton.tsx';
 import Text from '../../components/text/Text.tsx';
 
-function RemovePlant() {
+const RemovePlant = () => {
   const { plantId } = useParams<{ plantId: string }>();
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();

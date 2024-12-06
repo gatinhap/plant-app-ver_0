@@ -1,6 +1,6 @@
 import { describe } from 'vitest';
 import { screen } from '@testing-library/react';
-import { server } from '../../../tests/setupMockServer.ts';
+import server from '../../../tests/setupMockServer.ts';
 import PlantCollection from './PlantCollection.tsx';
 import { render } from '../../../tests/test-utlis.tsx';
 import {
@@ -18,6 +18,6 @@ describe('list of plants is displayed', () => {
 
     const plantElement = await screen.findByText('monstera');
 
-    await expect(plantElement).toBeVisible();
+    expect(plantElement).toBeVisible();
   });
 });

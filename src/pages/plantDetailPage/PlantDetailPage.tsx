@@ -17,7 +17,7 @@ import {
 } from '../../Backend.constants.ts';
 import CallToActionAsLink from '../../components/callToActionButton/CallToActionAsLink.tsx';
 
-function PlantDetailPage() {
+const PlantDetailPage = () => {
   const { plantId } = useParams();
 
   const getPlant = async (id: string | undefined) => await pb.collection(PLANTS_COLLECTION_ENDPOINT).getOne(id!);

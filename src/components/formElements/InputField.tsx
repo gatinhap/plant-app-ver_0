@@ -5,12 +5,13 @@ import { InputFieldProps } from './FormElements.types.ts';
 const ForwardRefInputField: ForwardRefRenderFunction<
   HTMLInputElement,
   InputFieldProps
-> = ({ type, placeholder, accept }, forwardedRef) => (
+> = ({ type, placeholder, accept, ...props }, forwardedRef) => (
   <InputFieldStyled
     ref={forwardedRef}
     accept={accept}
     placeholder={placeholder}
     type={type}
+    {...props}
   />
 );
 
