@@ -1,11 +1,9 @@
 import { PropsWithChildren } from 'react';
 import { ParagraphStylesMap, TextColorsMap } from './Text.constans.tsx';
+import { createEnumObject } from '../../generics/enums.ts';
 
 type ColorVariant = keyof typeof TextColorsMap;
 type ParagraphVariant = keyof typeof ParagraphStylesMap;
-
-const createEnumObject = <T extends string>(enumObject: { [P in T]: P }) =>
-  enumObject;
 
 export const ColorVariantEnum = createEnumObject<ColorVariant>({
   default: 'default',
