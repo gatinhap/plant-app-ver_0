@@ -16,6 +16,7 @@ import {
 } from '../../Backend.constants.ts';
 import StaticText from './UserForm.constants.ts';
 import { ButtonTypes } from '../forms/Form.types.ts';
+import { ColorVariantEnum, ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const LoginForm = () => {
   const navigateTo = useNavigate();
@@ -52,7 +53,9 @@ const LoginForm = () => {
 
   return (
     <>
-      {errors.root ? <Text variant="large">{errors.root.message}</Text> : null}
+      {errors.root ? (
+        <Text variant={ParagraphVariantEnum.large}>{errors.root.message}</Text>
+      ) : null}
 
       <StyledForm onSubmit={handleSubmit(submitUserLoginData)}>
         <LabelField>
@@ -72,7 +75,12 @@ const LoginForm = () => {
             })}
           />
           <ErrorMessage
-            as={<Text color="warning" variant="small" />}
+            as={
+              <Text
+                color={ColorVariantEnum.warning}
+                variant={ParagraphVariantEnum.small}
+              />
+            }
             errors={errors}
             name="email"
           />
@@ -91,7 +99,12 @@ const LoginForm = () => {
             })}
           />
           <ErrorMessage
-            as={<Text color="warning" variant="small" />}
+            as={
+              <Text
+                color={ColorVariantEnum.warning}
+                variant={ParagraphVariantEnum.small}
+              />
+            }
             errors={errors}
             name="password"
           />

@@ -45,12 +45,21 @@ module.exports = {
         'react/jsx-filename-extension': [2, { 'extensions': ['.js', '.jsx', '.ts', '.tsx'] }],
         'react/react-in-jsx-scope': 'off',
         'react/require-default-props': 'off',
+        'react/jsx-props-no-spreading': 'off',
         'react/function-component-definition': [
             'error',
             {
                 'namedComponents': 'arrow-function',
                 'unnamedComponents': 'arrow-function'
             }
-        ]
+        ],
+        'react/jsx-no-literals': [
+            'error',
+            {
+                noStrings: true,
+                allowedStrings: ['password', 'email']
+            }
+        ],
+        'react/jsx-max-depth': ['error', { "max": 3 }]
     }
 };

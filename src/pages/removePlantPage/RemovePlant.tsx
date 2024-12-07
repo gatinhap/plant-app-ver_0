@@ -11,13 +11,15 @@ import {
 } from '../../Backend.constants.ts';
 import CallToActionButton from '../../components/callToActionButton/CallToActionButton.tsx';
 import Text from '../../components/text/Text.tsx';
+import { ParagraphVariantEnum } from '../../components/text/Text.types.tsx';
 
 const RemovePlant = () => {
   const { plantId } = useParams<{ plantId: string }>();
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
 
-  const removePlant = (id: string) => pb.collection(PLANTS_COLLECTION_ENDPOINT).delete(id);
+  const removePlant = (id: string) =>
+    pb.collection(PLANTS_COLLECTION_ENDPOINT).delete(id);
 
   const removePlantMutation = useMutation({
     mutationFn: () => removePlant(plantId!),
@@ -38,16 +40,16 @@ const RemovePlant = () => {
       </NavItem>
 
       {removePlantMutation.isError ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           Nastąpił błąd podczas usuwania roślinki. Spróbuj proszę jeszcze raz.
         </Text>
       ) : null}
 
       {removePlantMutation.isPending ? (
-        <Text variant="large">Usuwam...</Text>
+        <Text variant={ParagraphVariantEnum.large}>Usuwam...</Text>
       ) : (
         <>
-          <Text variant="large">
+          <Text variant={ParagraphVariantEnum.large}>
             Czy na pewno chcesz usunąć tę roślinkę z kolekcji?
           </Text>
 
@@ -62,6 +64,6 @@ const RemovePlant = () => {
       )}
     </PageComponent>
   );
-}
+};
 
 export default RemovePlant;
