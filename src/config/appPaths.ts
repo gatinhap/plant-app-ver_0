@@ -13,9 +13,20 @@ const PrivatePaths = {
   FallbackRoute: '*',
 } as const;
 
+const PlantDetailPaths = {
+  Watering: '/podlewanie',
+  Misting: '/zraszanie',
+  Light: '/światło',
+  Soil: '/gleba',
+  Fertilization: '/nawożenie',
+  EditData: '/edit',
+  RemovePlant: '/delete',
+} as const;
+
 const AppPaths = {
   Public: PublicPaths,
   Private: PrivatePaths,
+  PlantDetails: PlantDetailPaths,
 } as const;
 
 export default AppPaths;

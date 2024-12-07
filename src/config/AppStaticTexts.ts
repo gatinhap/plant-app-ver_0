@@ -111,13 +111,39 @@ const AppStaticTexts = {
     PLANT_COLLECTION: {
       PLANT_DATA_DISPLAY_IS_PENDING: 'Pobieram dane...',
       PLANT_DATA_DISPLAY_IS_ERROR:
-        'Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.',
+        'Nie udało się pobrać listy roślinek. Odśwież stronę i spróbuj jeszcze raz.',
     },
   },
   PAGES: {
-    ADD_NEW_PLANT: {
-      NAV_ITEM: 'moja kolekcja',
-      ADD_PLANT_HEADING: 'dodaj roślinkę',
+    TOP_LINK: 'moja kolekcja',
+    ADD_PLANT_HEADING: 'dodaj roślinkę',
+    EDIT_PLANT_HEADING: 'tryb edycji',
+    LOGIN_PAGE_HEADING: 'strona logowania',
+    PLANT_LIST_HEADING: 'moja kolekcja',
+    PLANT_LIST_ADD_BUTTON: 'dodaj roślinkę do kolekcji',
+    REGISTRATION_PAGE_HEADING:
+      'hej, stwórz konto, aby móc korzystać z aplikacji',
+    PLANT_DETAIL_PAGE: {
+      LOADING_DATA_IS_PENDING: 'Pobieram dane...',
+      LOADING_DATA_IS_ERROR:
+        'Nie udało się pobrać danych. Odśwież stronę i spróbuj jeszcze raz.',
+      WATERING: 'podlewanie',
+      MISTING: 'zraszanie',
+      LIGHT: 'światło',
+      SOIL: 'gleba',
+      FERTILIZATION: 'nawożenie',
+      EDIT_PLANT_DETAILS_BUTTON: 'edytuj dane',
+      REMOVE_PLANT_LINK: 'usuń roślinkę z kolekcji',
+    },
+    REMOVE_PLANT_PAGE: {
+      REMOVAL_IS_SUCCESS: 'Roślinka usunięta z kolekcji!',
+      REMOVAL_IS_ERROR:
+        'Nastąpił błąd podczas usuwania roślinki. Odśwież stronę i spróbuj jeszcze raz.',
+      REMOVAL_IS_PENDING: 'Usuwam...',
+      REMOVAL_PROMPT_QUESTION:
+        'Czy na pewno chcesz usunąć tę roślinkę z kolekcji?',
+      REMOVE_PLANT_BUTTON: 'tak, usuń!',
+      RETURN_BUTTON: 'nie, wróć!',
     },
   },
 };

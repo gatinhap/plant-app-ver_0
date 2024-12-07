@@ -11,19 +11,23 @@ import {
 } from '../../Backend.constants.ts';
 import CallToActionButton from '../../components/callToActionButton/CallToActionButton.tsx';
 import Text from '../../components/text/Text.tsx';
+import AppPaths from '../../config/appPaths.ts';
+import StaticText from '../pages.constants.ts';
 
 const RemovePlant = () => {
   const { plantId } = useParams<{ plantId: string }>();
   const navigateTo = useNavigate();
   const queryClient = useQueryClient();
+  const plantIdPath = `/${plantId}`;
 
-  const removePlant = (id: string) => pb.collection(PLANTS_COLLECTION_ENDPOINT).delete(id);
+  const removePlant = (id: string) =>
+    pb.collection(PLANTS_COLLECTION_ENDPOINT).delete(id);
 
   const removePlantMutation = useMutation({
     mutationFn: () => removePlant(plantId!),
     onSuccess: () => {
-      toast.success('Roślinka usunięta z kolekcji!');
-      navigateTo('/');
+      toast.success(StaticText.REMOVE_PLANT_PAGE.REMOVAL_IS_SUCCESS);
+      navigateTo(AppPaths.Private.PlantCollection);
 
       return async () => {
         await queryClient.invalidateQueries({ queryKey: [plantQueryKey] });
@@ -33,35 +37,37 @@ const RemovePlant = () => {
 
   return (
     <PageComponent>
-      <NavItem linkTo="/" shouldDisplayOnTop>
-        moja kolekcja
+      <NavItem linkTo={AppPaths.Private.PlantCollection} shouldDisplayOnTop>
+        {StaticText.TOP_LINK}
       </NavItem>
 
       {removePlantMutation.isError ? (
         <Text variant="large">
-          Nastąpił błąd podczas usuwania roślinki. Spróbuj proszę jeszcze raz.
+          {StaticText.REMOVE_PLANT_PAGE.REMOVAL_IS_ERROR}
         </Text>
       ) : null}
 
       {removePlantMutation.isPending ? (
-        <Text variant="large">Usuwam...</Text>
+        <Text variant="large">
+          {StaticText.REMOVE_PLANT_PAGE.REMOVAL_IS_PENDING}
+        </Text>
       ) : (
         <>
           <Text variant="large">
-            Czy na pewno chcesz usunąć tę roślinkę z kolekcji?
+            {StaticText.REMOVE_PLANT_PAGE.REMOVAL_PROMPT_QUESTION}
           </Text>
 
           <CallToActionButton handleClick={() => removePlantMutation.mutate()}>
-            tak, usuń!
+            {StaticText.REMOVE_PLANT_PAGE.REMOVE_PLANT_BUTTON}
           </CallToActionButton>
 
-          <CallToActionAsLink linkTo={`/${plantId}`}>
-            nie, wróć!
+          <CallToActionAsLink linkTo={plantIdPath}>
+            {StaticText.REMOVE_PLANT_PAGE.RETURN_BUTTON}
           </CallToActionAsLink>
         </>
       )}
     </PageComponent>
   );
-}
+};
 
 export default RemovePlant;
