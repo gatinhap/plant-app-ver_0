@@ -15,6 +15,7 @@ import {
 } from '../../Backend.constants.ts';
 import TextArea from '../formElements/TextArea.tsx';
 import StaticText from './Form.constants.ts';
+import { ColorVariantEnum, ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const AddNewPlantForm = () => {
   const queryClient = useQueryClient();
@@ -51,13 +52,13 @@ const AddNewPlantForm = () => {
   return (
     <>
       {addPlantMutation.isError ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           {StaticText.ADD_NEW_PLANT_FORM.ADD_ACTION_IS_ERROR}
         </Text>
       ) : null}
 
       {addPlantMutation.isPending ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           {StaticText.ADD_NEW_PLANT_FORM.ADD_ACTION_IS_PENDING}
         </Text>
       ) : (
@@ -78,7 +79,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="plantName"
             />
@@ -98,7 +104,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="watering"
             />
@@ -118,7 +129,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="misting"
             />
@@ -136,7 +152,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="light"
             />
@@ -154,7 +175,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="soil"
             />
@@ -174,7 +200,12 @@ const AddNewPlantForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="fertilization"
             />

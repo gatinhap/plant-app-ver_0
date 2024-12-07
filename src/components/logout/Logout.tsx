@@ -5,6 +5,7 @@ import { pb, usersQueryKey } from '../../Backend.constants.ts';
 import LogoutButton from './LogoutButton.tsx';
 import Text from '../text/Text.tsx';
 import StaticText from './Logout.constants.ts';
+import { ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const Logout = () => {
   const navigateTo = useNavigate();
@@ -28,11 +29,15 @@ const Logout = () => {
   return (
     <>
       {logoutUserMutation.isError ? (
-        <Text variant="large">{StaticText.LOGOUT_IS_ERROR}</Text>
+        <Text variant={ParagraphVariantEnum.large}>
+          {StaticText.LOGOUT_IS_ERROR}
+        </Text>
       ) : null}
 
       {logoutUserMutation.isPending ? (
-        <Text variant="large">{StaticText.LOGOUT_IS_PENDING}</Text>
+        <Text variant={ParagraphVariantEnum.large}>
+          {StaticText.LOGOUT_IS_PENDING}
+        </Text>
       ) : (
         <LogoutButton
           handleClick={logoutUserMutation.mutate}

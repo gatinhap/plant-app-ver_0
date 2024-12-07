@@ -1,6 +1,4 @@
-import {
-  Outlet, Route, Routes, useParams,
-} from 'react-router-dom';
+import { Outlet, Route, Routes, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import PageComponent from '../../components/pageComponent/PageComponent.tsx';
 import NavItem from '../../components/navItem/NavItem.tsx';
@@ -16,11 +14,13 @@ import {
   PLANTS_COLLECTION_ENDPOINT,
 } from '../../Backend.constants.ts';
 import CallToActionAsLink from '../../components/callToActionButton/CallToActionAsLink.tsx';
+import { ParagraphVariantEnum } from '../../components/text/Text.types.tsx';
 
 const PlantDetailPage = () => {
   const { plantId } = useParams();
 
-  const getPlant = async (id: string | undefined) => await pb.collection(PLANTS_COLLECTION_ENDPOINT).getOne(id!);
+  const getPlant = async (id: string | undefined) =>
+    await pb.collection(PLANTS_COLLECTION_ENDPOINT).getOne(id!);
 
   const { isPending, isError, data } = useQuery({
     queryKey: [plantQueryKey, plantId],
@@ -28,12 +28,12 @@ const PlantDetailPage = () => {
   });
 
   if (isPending) {
-    return <Text variant="large">Pobieram dane...</Text>;
+    return <Text variant={ParagraphVariantEnum.large}>Pobieram dane...</Text>;
   }
 
   if (isError) {
     return (
-      <Text variant="large">
+      <Text variant={ParagraphVariantEnum.large}>
         Nie udało się pobrać danych. Spróbuj odświeżyć stronę.
       </Text>
     );
@@ -77,47 +77,57 @@ const PlantDetailPage = () => {
             {/* using Routes here will render components below nav, one at a time */}
             <Routes>
               <Route
-                element={(
+                element={
                   <PlantInfo title="podlewanie">
-                    <Text variant="regular">{data.watering}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.watering}
+                    </Text>
                   </PlantInfo>
-                )}
+                }
                 path="/podlewanie"
               />
 
               <Route
-                element={(
+                element={
                   <PlantInfo title="zraszanie">
-                    <Text variant="regular">{data.misting}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.misting}
+                    </Text>
                   </PlantInfo>
-                )}
+                }
                 path="/zraszanie"
               />
 
               <Route
-                element={(
+                element={
                   <PlantInfo title="światło">
-                    <Text variant="regular">{data.light}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.light}
+                    </Text>
                   </PlantInfo>
-                )}
+                }
                 path="/światło"
               />
 
               <Route
-                element={(
+                element={
                   <PlantInfo title="gleba">
-                    <Text variant="regular">{data.soil}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.soil}
+                    </Text>
                   </PlantInfo>
-                )}
+                }
                 path="/gleba"
               />
 
               <Route
-                element={(
+                element={
                   <PlantInfo title="nawożenie">
-                    <Text variant="regular">{data.fertilization}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.fertilization}
+                    </Text>
                   </PlantInfo>
-                )}
+                }
                 path="/nawożenie"
               />
             </Routes>
@@ -134,6 +144,6 @@ const PlantDetailPage = () => {
       </PageComponent>
     );
   }
-}
+};
 
 export default PlantDetailPage;
