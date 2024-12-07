@@ -114,6 +114,12 @@ const AppStaticTexts = {
         'Nie udało się pobrać listy roślinek. Spróbuj odświeżyć stronę.',
     },
   },
+  PAGES: {
+    ADD_NEW_PLANT: {
+      NAV_ITEM: 'moja kolekcja',
+      ADD_PLANT_HEADING: 'dodaj roślinkę',
+    },
+  },
 };
 
 export default AppStaticTexts;
