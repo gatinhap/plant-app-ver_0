@@ -123,6 +123,7 @@ const AppStaticTexts = {
     PLANT_LIST_ADD_BUTTON: 'dodaj roślinkę do kolekcji',
     REGISTRATION_PAGE_HEADING:
       'hej, stwórz konto, aby móc korzystać z aplikacji',
+    WELCOME_PAGE_HEADING: 'hej, tu PlantMomma',
     PLANT_DETAIL_PAGE: {
       LOADING_DATA_IS_PENDING: 'Pobieram dane...',
       LOADING_DATA_IS_ERROR:
@@ -144,6 +145,11 @@ const AppStaticTexts = {
         'Czy na pewno chcesz usunąć tę roślinkę z kolekcji?',
       REMOVE_PLANT_BUTTON: 'tak, usuń!',
       RETURN_BUTTON: 'nie, wróć!',
+    },
+    WELCOME_PAGE: {
+      WELCOME_TEXT: 'Zaloguj się lub zarejestruj, aby korzystać z aplikacji!',
+      LOGIN_LINK: 'Zaloguj',
+      REGISTRATION_LINK: 'Zarejestruj',
     },
   },
 };

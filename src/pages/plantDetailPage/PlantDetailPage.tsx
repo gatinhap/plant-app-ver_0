@@ -16,6 +16,7 @@ import {
 import CallToActionAsLink from '../../components/callToActionButton/CallToActionAsLink.tsx';
 import AppPaths from '../../config/appPaths.ts';
 import StaticText from '../pages.constants.ts';
+import { ParagraphVariantEnum } from '../../components/text/Text.types.tsx';
 
 const PlantDetailPage = () => {
   const { plantId } = useParams();
@@ -31,7 +32,7 @@ const PlantDetailPage = () => {
 
   if (isPending) {
     return (
-      <Text variant="large">
+      <Text variant={ParagraphVariantEnum.large}>
         {StaticText.PLANT_DETAIL_PAGE.LOADING_DATA_IS_PENDING}
       </Text>
     );
@@ -39,7 +40,7 @@ const PlantDetailPage = () => {
 
   if (isError) {
     return (
-      <Text variant="large">
+      <Text variant={ParagraphVariantEnum.large}>
         {StaticText.PLANT_DETAIL_PAGE.LOADING_DATA_IS_ERROR}
       </Text>
     );
@@ -93,7 +94,9 @@ const PlantDetailPage = () => {
               <Route
                 element={
                   <PlantInfo title={StaticText.PLANT_DETAIL_PAGE.WATERING}>
-                    <Text variant="regular">{data.watering}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.watering}
+                    </Text>
                   </PlantInfo>
                 }
                 path={AppPaths.PlantDetails.Watering}
@@ -102,7 +105,9 @@ const PlantDetailPage = () => {
               <Route
                 element={
                   <PlantInfo title={StaticText.PLANT_DETAIL_PAGE.MISTING}>
-                    <Text variant="regular">{data.misting}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.misting}
+                    </Text>
                   </PlantInfo>
                 }
                 path={AppPaths.PlantDetails.Misting}
@@ -111,7 +116,9 @@ const PlantDetailPage = () => {
               <Route
                 element={
                   <PlantInfo title={StaticText.PLANT_DETAIL_PAGE.LIGHT}>
-                    <Text variant="regular">{data.light}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.light}
+                    </Text>
                   </PlantInfo>
                 }
                 path={AppPaths.PlantDetails.Light}
@@ -120,7 +127,9 @@ const PlantDetailPage = () => {
               <Route
                 element={
                   <PlantInfo title={StaticText.PLANT_DETAIL_PAGE.SOIL}>
-                    <Text variant="regular">{data.soil}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.soil}
+                    </Text>
                   </PlantInfo>
                 }
                 path={AppPaths.PlantDetails.Soil}
@@ -129,7 +138,9 @@ const PlantDetailPage = () => {
               <Route
                 element={
                   <PlantInfo title={StaticText.PLANT_DETAIL_PAGE.FERTILIZATION}>
-                    <Text variant="regular">{data.fertilization}</Text>
+                    <Text variant={ParagraphVariantEnum.regular}>
+                      {data.fertilization}
+                    </Text>
                   </PlantInfo>
                 }
                 path={AppPaths.PlantDetails.Fertilization}

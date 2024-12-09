@@ -8,6 +8,7 @@ import {
 } from '../../Backend.constants.ts';
 import Text from '../text/Text.tsx';
 import StaticText from './PlantCollection.constants.ts';
+import { ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const PlantCollection = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -30,13 +31,17 @@ const PlantCollection = () => {
 
   if (isPending) {
     return (
-      <Text variant="large">{StaticText.PLANT_DATA_DISPLAY_IS_PENDING}</Text>
+      <Text variant={ParagraphVariantEnum.large}>
+        {StaticText.PLANT_DATA_DISPLAY_IS_PENDING}
+      </Text>
     );
   }
 
   if (isError) {
     return (
-      <Text variant="large">{StaticText.PLANT_DATA_DISPLAY_IS_ERROR}</Text>
+      <Text variant={ParagraphVariantEnum.large}>
+        {StaticText.PLANT_DATA_DISPLAY_IS_ERROR}
+      </Text>
     );
   }
 

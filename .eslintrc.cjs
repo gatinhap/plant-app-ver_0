@@ -51,6 +51,14 @@ module.exports = {
                 'namedComponents': 'arrow-function',
                 'unnamedComponents': 'arrow-function'
             }
-        ]
+        ],
+        'react/jsx-no-literals': [
+            'error',
+            {
+                noStrings: true,
+                allowedStrings: ['password', 'email']
+            }
+        ],
+        'react/jsx-max-depth': ['error', { 'max': 3 }]
     }
 };

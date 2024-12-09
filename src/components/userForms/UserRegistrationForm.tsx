@@ -17,6 +17,7 @@ import {
 } from '../../Backend.constants.ts';
 import StaticText from './UserForm.constants.ts';
 import { ButtonTypes } from '../forms/Form.types.ts';
+import { ColorVariantEnum, ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const UserRegistrationForm = () => {
   const navigateTo = useNavigate();
@@ -69,7 +70,7 @@ const UserRegistrationForm = () => {
   return (
     <>
       {addUserMutation.isPending ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           {StaticText.REGISTRATION_FORM.ADD_USER_IS_PENDING}
         </Text>
       ) : (
@@ -94,7 +95,7 @@ const UserRegistrationForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={<Text color="warning" variant={ParagraphVariantEnum.small} />}
               errors={errors}
               name="username"
             />
@@ -121,7 +122,12 @@ const UserRegistrationForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="email"
             />
@@ -156,7 +162,12 @@ const UserRegistrationForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="password"
             />
@@ -185,7 +196,12 @@ const UserRegistrationForm = () => {
               })}
             />
             <ErrorMessage
-              as={<Text color="warning" variant="small" />}
+              as={
+                <Text
+                  color={ColorVariantEnum.warning}
+                  variant={ParagraphVariantEnum.small}
+                />
+              }
               errors={errors}
               name="passwordConfirm"
             />

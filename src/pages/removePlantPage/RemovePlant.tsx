@@ -13,6 +13,7 @@ import CallToActionButton from '../../components/callToActionButton/CallToAction
 import Text from '../../components/text/Text.tsx';
 import AppPaths from '../../config/appPaths.ts';
 import StaticText from '../pages.constants.ts';
+import { ParagraphVariantEnum } from '../../components/text/Text.types.tsx';
 
 const RemovePlant = () => {
   const { plantId } = useParams<{ plantId: string }>();
@@ -42,18 +43,18 @@ const RemovePlant = () => {
       </NavItem>
 
       {removePlantMutation.isError ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           {StaticText.REMOVE_PLANT_PAGE.REMOVAL_IS_ERROR}
         </Text>
       ) : null}
 
       {removePlantMutation.isPending ? (
-        <Text variant="large">
+        <Text variant={ParagraphVariantEnum.large}>
           {StaticText.REMOVE_PLANT_PAGE.REMOVAL_IS_PENDING}
         </Text>
       ) : (
         <>
-          <Text variant="large">
+          <Text variant={ParagraphVariantEnum.large}>
             {StaticText.REMOVE_PLANT_PAGE.REMOVAL_PROMPT_QUESTION}
           </Text>
 
