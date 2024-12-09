@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { returnPlantData, returnUserData } from './integrationTests.setup.ts';
 import PlantData from '../src/components/plantCollection/PlantCollection.mocks.ts';
+import FlowerData from '../src/components/flowerSchema/FlowerSchema.mocks.ts';
 
 export const getUserSuccessHandler = http.get(
   returnUserData('auth-with-password'),
@@ -30,4 +31,14 @@ export const getPlantsListSuccessHandler = http.get(returnPlantData(), () =>
   }),
 );
 
-export const handlers = [getUserSuccessHandler, getPlantsListSuccessHandler];
+export const getFlowersListSuccessHandler = http.get('mock-api/flowers', () =>
+  HttpResponse.json({
+    items: FlowerData,
+  }),
+);
+
+export const handlers = [
+  getUserSuccessHandler,
+  getPlantsListSuccessHandler,
+  getFlowersListSuccessHandler,
+];
