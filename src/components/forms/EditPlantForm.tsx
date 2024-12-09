@@ -16,6 +16,7 @@ import InputField from '../formElements/InputField.tsx';
 import FormButton from './FormButton.tsx';
 import TextArea from '../formElements/TextArea.tsx';
 import StaticText from './Form.constants.ts';
+import { ParagraphVariantEnum } from '../text/Text.types.tsx';
 
 const EditPlantForm = () => {
   const { plantId } = useParams();
@@ -58,7 +59,7 @@ const EditPlantForm = () => {
 
   if (isPending) {
     return (
-      <Text variant="large">
+      <Text variant={ParagraphVariantEnum.large}>
         {StaticText.EDIT_PLANT_FORM.RETRIEVING_DATA_IS_PENDING}
       </Text>
     );
@@ -66,7 +67,7 @@ const EditPlantForm = () => {
 
   if (isError) {
     return (
-      <Text variant="large">
+      <Text variant={ParagraphVariantEnum.large}>
         {StaticText.EDIT_PLANT_FORM.RETRIEVING_DATA_IS_ERROR}
       </Text>
     );
@@ -76,7 +77,7 @@ const EditPlantForm = () => {
     return (
       <>
         {updatePlantMutation.isError ? (
-          <Text variant="large">
+          <Text variant={ParagraphVariantEnum.large}>
             {StaticText.EDIT_PLANT_FORM.UPDATE_ACTION_IS_ERROR}
           </Text>
         ) : null}
@@ -84,7 +85,7 @@ const EditPlantForm = () => {
         <h4>{data.plantName}</h4>
 
         {updatePlantMutation.isPending ? (
-          <Text variant="large">
+          <Text variant={ParagraphVariantEnum.large}>
             {StaticText.EDIT_PLANT_FORM.UPDATE_ACTION_IS_PENDING}
           </Text>
         ) : (
@@ -107,7 +108,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="plantName"
               />
@@ -127,7 +128,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="watering"
               />
@@ -147,7 +148,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="misting"
               />
@@ -167,7 +168,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="light"
               />
@@ -187,7 +188,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="soil"
               />
@@ -207,7 +208,7 @@ const EditPlantForm = () => {
                 })}
               />
               <ErrorMessage
-                as={<Text variant="small" />}
+                as={<Text variant={ParagraphVariantEnum.small} />}
                 errors={errors}
                 name="fertilization"
               />
