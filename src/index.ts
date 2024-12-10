@@ -7,3 +7,10 @@ type CustomTheme = typeof theme;
 declare module 'styled-components' {
   export interface DefaultTheme extends CustomTheme {}
 }
+
+if (
+  import.meta.env.MODE === 'development' &&
+  import.meta.env.VITE_MSW === 'true'
+) {
+  await import('./config/setupWorker.ts').then(({ worker }) => worker.start());
+}
