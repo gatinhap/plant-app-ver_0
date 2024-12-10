@@ -11,3 +11,5 @@ export const pb = new PocketBase(HOST);
 export const plantQueryKey = 'plants';
 
 export const usersQueryKey = 'users';
+
+export const flowerQueryKey = 'flowers';

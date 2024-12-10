@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { returnPlantData, returnUserData } from './integrationTests.setup.ts';
 import PlantData from '../src/components/plantCollection/PlantCollection.mocks.ts';
-import FlowerData from '../src/components/flowerSchema/FlowerSchema.mocks.ts';
+import FlowerData from '../src/components/flowersPage/FlowerSchema.mocks.ts';
 
 export const getUserSuccessHandler = http.get(
   returnUserData('auth-with-password'),
