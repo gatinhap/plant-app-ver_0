@@ -37,7 +37,7 @@ const PlantCollection = () => {
     );
   }
 
-  if (isError) {
+  if (isError || !data) {
     return (
       <Text variant={ParagraphVariantEnum.large}>
         {StaticText.PLANT_DATA_DISPLAY_IS_ERROR}
@@ -45,17 +45,15 @@ const PlantCollection = () => {
     );
   }
 
-  if (data) {
-    return (
-      <PlantCollectionStyled>
-        {data.map((plant) => (
-          <NavItem key={plant.id} linkTo={`/${plant.id}`}>
-            {plant.plantName}
-          </NavItem>
-        ))}
-      </PlantCollectionStyled>
-    );
-  }
+  return (
+    <PlantCollectionStyled>
+      {data.map((plant) => (
+        <NavItem key={plant.id} linkTo={`/${plant.id}`}>
+          {plant.plantName}
+        </NavItem>
+      ))}
+    </PlantCollectionStyled>
+  );
 };
 
 export default PlantCollection;

@@ -1,32 +1,35 @@
-import { useQuery } from '@tanstack/react-query';
-import { flowerQueryKey } from '../../Backend.constants.ts';
+import Text from '../text/Text.tsx';
+import { ParagraphVariantEnum } from '../text/Text.types.tsx';
+import StaticText from '../plantCollection/PlantCollection.constants.ts';
+import { useFlowerData } from './hooks/useFlowerData.ts';
 
 const FlowersPage = () => {
-  const getData = async () => {
-    const response = await fetch('mock-api/flowers');
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    const data = await response.json();
+  const { data, isError, isPending } = useFlowerData();
 
-    return data.items;
-  };
-
-  const { data } = useQuery({
-    queryKey: [flowerQueryKey],
-    queryFn: getData,
-  });
-
-  if (data) {
+  if (isPending) {
     return (
-      <>
-        <h3>Flower schema component</h3>
-        {data.map((flower) => (
-          <h6 key={flower.name}>{flower.name}</h6>
-        ))}
-      </>
+      <Text variant={ParagraphVariantEnum.large}>
+        {StaticText.PLANT_DATA_DISPLAY_IS_PENDING}
+      </Text>
     );
   }
+
+  if (isError || !data) {
+    return (
+      <Text variant={ParagraphVariantEnum.large}>
+        {StaticText.PLANT_DATA_DISPLAY_IS_ERROR}
+      </Text>
+    );
+  }
+
+  return (
+    <>
+      <h3>Flower schema component</h3>
+      {data.map((flower) => (
+        <h6 key={flower.name}>{flower.name}</h6>
+      ))}
+    </>
+  );
 };
 
 export default FlowersPage;
