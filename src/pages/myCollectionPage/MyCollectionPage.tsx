@@ -4,6 +4,7 @@ import CallToActionAsLink from '../../components/callToActionButton/CallToAction
 import Logout from '../../components/logout/Logout.tsx';
 import StaticText from '../pages.constants.ts';
 import AppPaths from '../../config/appPaths.ts';
+import FlowersPage from '../../components/flowersPage/FlowersPage.tsx';
 
 const MyCollectionPage = () => (
   <PageComponent>
@@ -16,6 +17,7 @@ const MyCollectionPage = () => (
     </CallToActionAsLink>
 
     <PlantCollection />
+    <FlowersPage />
   </PageComponent>
 );
 
