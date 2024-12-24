@@ -1,7 +1,7 @@
 import Text from '../text/Text.tsx';
 import { ParagraphVariantEnum } from '../text/Text.types.tsx';
 import StaticText from '../plantCollection/PlantCollection.constants.ts';
-import { useFlowerData } from './hooks/useFlowerData.ts';
+import { useFlowerData } from '../../customHooks/useFlowerData.ts';
 
 const FlowersPage = () => {
   const { data, isError, isPending } = useFlowerData();
