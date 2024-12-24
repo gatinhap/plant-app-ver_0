@@ -59,6 +59,7 @@ module.exports = {
                 allowedStrings: ['password', 'email']
             }
         ],
-        'react/jsx-max-depth': ['error', { 'max': 3 }]
+        'react/jsx-max-depth': ['error', { 'max': 3 }],
+        "import/prefer-default-export": "off",
     }
 };
