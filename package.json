@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
+    "@radix-ui/themes": "^3.1.6",
     "@tanstack/react-query": "^5.14.2",
     "msw": "^2.6.8",
     "nanoid": "^5.0.1",

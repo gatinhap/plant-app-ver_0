@@ -1,6 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Theme } from '@radix-ui/themes';
 import GlobalStyle from './theme/globalStyles.ts';
 import theme from './theme/theme.ts';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -29,10 +30,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-
-        <AppRoutes />
-
+        <Theme appearance="dark">
+          <GlobalStyle />
+          <AppRoutes />
+        </Theme>
         <StyledToastContainer />
       </ThemeProvider>
     </QueryClientProvider>
