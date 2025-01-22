@@ -1,7 +1,7 @@
 const FlowerData = [
   {
     id: '2f14d1d0-bf82-4bdf-8c79-7dcefd131fa0',
-    image: 'public/assets/flower_images/rose.jpg',
+    image: 'rose.jpg',
     name: 'Rose',
     species: 'Rosa spp.',
     color: 'Red',
@@ -35,7 +35,7 @@ const FlowerData = [
   },
   {
     id: 'c7d5a627-5f6b-46d2-9d2d-c8dfe97e4db0',
-    image: 'public/assets/flower_images/tulip.jpg',
+    image: 'tulip.jpg',
     name: 'Tulip',
     species: 'Tulipa spp.',
     color: 'Pink',
@@ -70,7 +70,7 @@ const FlowerData = [
 
   {
     id: '35e74ed6-8b5f-4a73-9d01-bf577bda2560',
-    image: 'public/assets/flower_images/lily.jpg',
+    image: 'lily.jpg',
     name: 'Lily',
     species: 'Lilium spp.',
     color: 'White',
@@ -104,7 +104,7 @@ const FlowerData = [
   },
   {
     id: '9812b22e-b2c0-402d-8b35-736fd3925e0b',
-    image: 'public/assets/flower_images/daffodil.jpg',
+    image: 'daffodil.jpg',
     name: 'Daffodil',
     species: 'Narcissus spp.',
     color: 'Yellow',
@@ -138,7 +138,7 @@ const FlowerData = [
   },
   {
     id: 'abe78ad4-3a6d-46d8-93fe-890a3ad5f460',
-    image: 'public/assets/flower_images/chrysanthemum.jpg',
+    image: 'chrysanthemum.jpg',
     name: 'Chrysanthemum',
     species: 'Chrysanthemum morifolium',
     color: 'Purple',
@@ -172,7 +172,7 @@ const FlowerData = [
   },
   {
     id: 'a8d0f1a4-cc1b-4069-8b2a-cb179f9fe377',
-    image: 'public/assets/flower_images/iris.jpg',
+    image: 'iris.jpg',
     name: 'Iris',
     species: 'Iris germanica',
     color: 'Blue',
@@ -206,7 +206,7 @@ const FlowerData = [
   },
   {
     id: 'bbf2e2b1-bc0f-4374-a87a-b2d019fad378',
-    image: 'public/assets/flower_images/Orchid.jpg',
+    image: 'Orchid.jpg',
     name: 'Orchid',
     species: 'Orchidaceae spp.',
     color: 'Pink',
@@ -240,7 +240,7 @@ const FlowerData = [
   },
   {
     id: 'b47d7277-e3e9-4192-9232-0306580a3ad6',
-    image: 'public/assets/flower_images/lavender.jpg',
+    image: 'lavender.jpg',
     name: 'Lavender',
     species: 'Lavandula angustifolia',
     color: 'Purple',
@@ -274,7 +274,7 @@ const FlowerData = [
   },
   {
     id: '028dbfd3-39c7-47d7-b951-d3d4405fd818',
-    image: 'public/assets/flower_images/violet.jpg',
+    image: 'violet.jpg',
     name: 'Violet',
     species: 'Viola spp.',
     color: 'Purple',
@@ -308,7 +308,7 @@ const FlowerData = [
   },
   {
     id: 'f5db22b3-c93a-406f-b4b5-bdc98d05efb3',
-    image: 'public/assets/flower_images/Begonia.jpg',
+    image: 'Begonia.jpg',
     name: 'Begonia',
     species: 'Begonia spp.',
     color: 'Red',
@@ -342,7 +342,7 @@ const FlowerData = [
   },
   {
     id: 'cb33b156-2150-43ba-bf96-0e91d8bc8c82',
-    image: 'public/assets/flower_images/snapdragon.jpg',
+    image: 'snapdragon.jpg',
     name: 'Snapdragon',
     species: 'Antirrhinum majus',
     color: 'Orange',
@@ -376,7 +376,7 @@ const FlowerData = [
   },
   {
     id: '8ba5d027-d77b-44ab-b3ba-d3569b156d70',
-    image: 'public/assets/flower_images/camellia.jpg',
+    image: 'camellia.jpg',
     name: 'Camellia',
     species: 'Camellia japonica',
     color: 'White',
@@ -410,7 +410,7 @@ const FlowerData = [
   },
   {
     id: 'ddc7b410-79b2-4475-bc5c-3728ef7e44a1',
-    image: 'public/assets/flower_images/zinnia.jpg',
+    image: 'zinnia.jpg',
     name: 'Zinnia',
     species: 'Zinnia elegans',
     color: 'Orange',
@@ -444,7 +444,7 @@ const FlowerData = [
   },
   {
     id: 'ea5502f2-53c1-4199-a5c9-9db6c4d97f2d',
-    image: 'public/assets/flower_images/canna.jpg',
+    image: 'canna.jpg',
     name: 'Canna Lily',
     species: 'Canna indica',
     color: 'Red',
@@ -478,7 +478,7 @@ const FlowerData = [
   },
   {
     id: 'b477f1c2-cd4a-4675-9f1c-bf4d83231c77',
-    image: 'public/assets/flower_images/daisy.jpg',
+    image: 'daisy.jpg',
     name: 'Gerbera Daisy',
     species: 'Gerbera jamesonii',
     color: 'Pink',
@@ -512,7 +512,7 @@ const FlowerData = [
   },
   {
     id: '9e79d1d0-7552-46a1-8a96-3d40b86424e4',
-    image: 'public/assets/flower_images/Aster.jpg',
+    image: 'Aster.jpg',
     name: 'Aster',
     species: 'Aster spp.',
     color: 'Purple',
@@ -546,7 +546,7 @@ const FlowerData = [
   },
   {
     id: 'a7cda3a8-d443-49cc-946f-973d1e0ac6bc',
-    image: 'public/assets/flower_images/lilac.jpg',
+    image: 'lilac.jpg',
     name: 'Lilac',
     species: 'Syringa vulgaris',
     color: 'Purple',
@@ -580,7 +580,7 @@ const FlowerData = [
   },
   {
     id: '4a3f5e5e-4e58-4ef9-90cd-595bc6d6a4c5',
-    image: 'public/assets/flower_images/Peony.jpg',
+    image: 'Peony.jpg',
     name: 'Peony',
     species: 'Paeonia spp.',
     color: 'Pink',
@@ -615,7 +615,7 @@ const FlowerData = [
   },
   {
     id: '3fcbebfd-b72d-4e02-b7b9-f92cc47674b5',
-    image: 'public/assets/flower_images/susan.jpg',
+    image: 'susan.jpg',
     name: 'Black-eyed Susan',
     species: 'Rudbeckia hirta',
     color: 'Yellow',
@@ -649,7 +649,7 @@ const FlowerData = [
   },
   {
     id: 'bde69e82-cf8c-4787-99cb-8a4de98e8e48',
-    image: 'public/assets/flower_images/Freesia.jpg',
+    image: 'Freesia.jpg',
     name: 'Freesia',
     species: 'Freesia spp.',
     color: 'Yellow',
@@ -683,7 +683,7 @@ const FlowerData = [
   },
   {
     id: 'ea9302e7-bd34-45b4-888f-79ec7e699f96',
-    image: 'public/assets/flower_images/Hibiscus.jpg',
+    image: 'Hibiscus.jpg',
     name: 'Hibiscus',
     species: 'Hibiscus rosa-sinensis',
     color: 'Red',
@@ -717,7 +717,7 @@ const FlowerData = [
   },
   {
     id: 'c56e233b-6f79-4cf7-9141-b9e3e713f720',
-    image: 'public/assets/flower_images/geranium.jpg',
+    image: 'geranium.jpg',
     name: 'Geranium',
     species: 'Pelargonium spp.',
     color: 'Pink',
@@ -751,7 +751,7 @@ const FlowerData = [
   },
   {
     id: '4f02ec7b-5321-4421-8ef1-63c0225e0e2e',
-    image: 'public/assets/flower_images/dahlia.jpg',
+    image: 'dahlia.jpg',
     name: 'Dahlia',
     species: 'Dahlia pinnata',
     color: 'Red',
@@ -785,7 +785,7 @@ const FlowerData = [
   },
   {
     id: '4f418e8f-f62f-4c79-92ab-fc6ff520eb5f',
-    image: 'public/assets/flower_images/magnolia.jpg',
+    image: 'magnolia.jpg',
     name: 'Magnolia',
     species: 'Magnolia grandiflora',
     color: 'White',
@@ -819,7 +819,7 @@ const FlowerData = [
   },
   {
     id: '39b028a5-3191-44b7-b16f-49f4cb73634f',
-    image: 'public/assets/flower_images/Petunia.jpg',
+    image: 'Petunia.jpg',
     name: 'Petunia',
     species: 'Petunia spp.',
     color: 'Purple',

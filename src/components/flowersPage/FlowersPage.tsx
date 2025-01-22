@@ -14,6 +14,7 @@ import {
 import MuiThemeWrapper from '../../theme_mui/MuiThemeWrapper.tsx';
 import { paginate } from '../../utils/pagination.ts';
 import { FlowersArrayType } from './FlowersPage.types.ts';
+import { getPath } from './FlowersPage.constants.ts';
 
 const FlowersPage = () => {
   const { data, isError, isPending } = useFlowerData();
@@ -59,7 +60,7 @@ const FlowersPage = () => {
         {currentData?.map(({ id, name, image, historicalSignificance }) => (
           <Card key={id} size="2">
             <Inset pb="current" side="top">
-              <StyledImage alt={name} src={image} />
+              <StyledImage alt={name} src={getPath(image)} />
             </Inset>
             <Heading size="5">{name}</Heading>
             <FlowerNameText>{historicalSignificance}</FlowerNameText>
