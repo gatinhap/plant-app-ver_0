@@ -12,6 +12,8 @@ const theme = {
     red: '#F87171',
     lightRed: '#FEF2F2',
     lightYellow: '#FFFBEB',
+    darkGray: '#222',
+    black: '#000000',
   },
   fonts: {
     primaryFont: "'Ubuntu', Arial, sans-serif",

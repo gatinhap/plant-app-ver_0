@@ -4,6 +4,7 @@ export const FlowerSchema = z.object({
   items: z.array(
     z.object({
       id: z.string().uuid().describe('Unique identifier for the flower'),
+      image: z.string(),
       name: z.string().min(1).max(100).describe('Name of the flower'),
       species: z
         .string()
