@@ -30,3 +30,11 @@ export const StyledPaginationComponent = styled(Pagination)`
     }
   }
 `;
+
+export const StyledImage = styled.img`
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 140px;
+  background-color: var(--gray-5);
+`;
